@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Joseph Harriott http://momentary.eu/ Last updated: lun. 15 déc. 2014
+# Joseph Harriott http://momentary.eu/ Last updated: mar. 16 déc. 2014
 
 # A series of rsyncs between folders on local and portable media.
 # ---------------------------------------------------------------
@@ -9,58 +9,68 @@
 #   and call it from a terminal with the bash command.
 
 echo "This BASH script will run rsync, pushing all changes."
-read -p "Sync TO (t) or FROM (f) portable drives? " drctn
+read -p "Sync the backup (b), or TO (t) portable drives, or FROM (f)? " drctn
 rsynccom="rsync -irtv --delete"
 if [ $drctn ]; then
-	if [ $drctn = "t" ]; then
-		echo -e "Okay, about to run: \e[104m$rsynccom <localdrive> <portabledrive>\e[0m"
+	if [ $drctn = "b" ]; then
+		echo -e "Okay, running: \e[1m$rsynccom <localdrive> <portabledrivebackup>\e[0m"
+		cnfrm="y"
+	elif [ $drctn = "t" ]; then
+		read -p "Run several: $rsynccom <localdrive> <portabledrive> ?" cnfrm
 	elif [ $drctn = "f" ]; then
-		echo -e "Okay, about to run: \e[104m$rsynccom <portabledrive> <localdrive>\e[0m"
+		echo -e "About to run several: \e[104m$rsynccom <portabledrive> <localdrive>\e[0m"
+		read -p "No recovery possible from this operation, GO AHEAD? " cnfrm
 	else
 		exit
 	fi
+	if [ ! $cnfrm ] || [ $cnfrm != "y" ]; then exit; fi
 else
 	exit
 fi
-read -p "No recovery possible from this operation, GO AHEAD? " cnfrm
-if [ $cnfrm ] && [ $cnfrm = "y" ]; then
-	mntpnt=/media/jo/
-	extdrvdir=( K16GBDTG2/Current/ \
-				SAMSUNG/Dr_Stack/ \
-				SAMSUNG/F+F/ \
-				SAMSUNG/IT_Dld/ \
-				SAMSUNG/IT_stack/ \
-				SAMSUNG/JH_stack/ )
-	intdrvdir=( WD2000JD/Current/ \
-				WD2000JD/Stack/ \
-				WD2000JD/F+F/ \
-				WD2000JD/IT_Dld/ \
-				WD2000JD/IT_stack/ \
-				WD2000JD/JH_stack/ )
-	i=-1
-	outf=${BASH_SOURCE[0]}
-    outf="${outf%.*}.txt"
-	echo "vim: tw=0:" > $outf
-	for extlcn in "${extdrvdir[@]}"
-	do
-		((i++))
-#   	I've put the rsync action in an if-clause to allow for throttling:
-		if [ "$i" -ge "0" ]; then
-			if [ $drctn = "t" ]; then
-				fullcmd="$rsynccom $mntpnt${intdrvdir[i]} $mntpnt$extlcn"
-			else
-				fullcmd="$rsynccom $mntpnt$extlcn $mntpnt${intdrvdir[i]}"
-			fi
-			echo "" | tee -a $outf
-			echo "Push sync $((i+1))" | tee -a $outf
-			echo "-----------" | tee -a $outf
-			echo $fullcmd | tee -a $outf
-			echo "" | tee -a $outf
-	 		$fullcmd | tee -a $outf
-			echo $i
+mntpnt=/media/jo/
+backupdir=( SAMSUNG/rsync-backup/Dr_Current/ \
+			SAMSUNG/rsync-backup/Dr_Stack/ \
+			SAMSUNG/rsync-backup/F+F/ \
+			SAMSUNG/rsync-backup/IT_Dld/ \
+			SAMSUNG/rsync-backup/IT_stack/ \
+			SAMSUNG/rsync-backup/JH_stack/ )
+extdrvdir=( K16GBDTG2/Current/ \
+			SAMSUNG/Dr_Stack/ \
+			SAMSUNG/F+F/ \
+			SAMSUNG/IT_Dld/ \
+			SAMSUNG/IT_stack/ \
+			SAMSUNG/JH_stack/ )
+intdrvdir=( WD2000JD/Current/ \
+			WD2000JD/Stack/ \
+			WD2000JD/F+F/ \
+			WD2000JD/IT_Dld/ \
+			WD2000JD/IT_stack/ \
+			WD2000JD/JH_stack/ )
+i=-1
+outf=${BASH_SOURCE[0]}
+outf="WD2000JD/${outf%.*}.txt"
+echo "vim: tw=0:" > $outf
+for intlcn in "${intdrvdir[@]}"
+do
+	((i++))
+#  	I've put the rsync action in an if-clause to allow for throttling:
+	if [ "$i" -ge "5" ]; then
+		if [ $drctn = "b" ]; then
+			fullcmd="$rsynccom $mntpnt$intlcn $mntpnt${backupdir[i]}"
+		elif [ $drctn = "t" ]; then
+			fullcmd="$rsynccom $mntpnt$intlcn $mntpnt${extdrvdir[i]}"
+		else
+			fullcmd="$rsynccom $mntpnt${extdrvdir[i]} $mntpnt$intlcn"
 		fi
-	done
-	echo "- all done, and logged to $outf"
-fi
+		echo "" | tee -a $outf
+		echo "Push sync $((i+1))" | tee -a $outf
+		echo "-----------" | tee -a $outf
+		echo $fullcmd | tee -a $outf
+		echo "" | tee -a $outf
+ 		$fullcmd | tee -a $outf
+		echo $i
+	fi
+done
+echo "- all done, and logged to $outf"
 exit
 
