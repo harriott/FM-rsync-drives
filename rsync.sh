@@ -51,6 +51,8 @@ i=-1
 outf=${BASH_SOURCE[0]}
 outf="$mntpnt$intdrv${outf%.*}.txt"
 echo "vim: tw=0:" > $outf
+echo "" | tee -a $outf
+echo $(date) | tee -a $outf
 for thisdir in "${intdir[@]}"
 do
 	intlcn=$mntpnt$intdrv$thisdir
