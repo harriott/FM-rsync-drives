@@ -72,7 +72,6 @@ do
 		echo $fullcmd | tee -a $outf
 		echo "" | tee -a $outf
  		$fullcmd | tee -a $outf
-		echo $i
 	fi
 done
 echo "- all done, and logged to $outf"
