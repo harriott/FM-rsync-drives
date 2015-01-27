@@ -27,44 +27,52 @@ if [ $drctn ]; then
 else
 	exit
 fi
-mntpnt=/media/jo/
+if [ -f /etc/os-release ]; then
+	. /etc/os-release
+	if [ "$NAME" = "Arch Linux" ]; then
+		extmnt=/run/media/jo/
+		intdrv=/mnt/WD2000JD/
+   	fi
+else
+	extmnt=/media/jo/
+	intdrv=${extmnt}WD2000JD/
+fi
 backupdir=( SAMSUNG/rsync-backup/Dr_Current/ \
 			SAMSUNG/rsync-backup/Dr_Stack/ \
 			SAMSUNG/rsync-backup/F+F/ \
-			SAMSUNG/rsync-backup/IT_Dld/ \
+			SAMSUNG/rsync-backup/IT_Copied/ \
 			SAMSUNG/rsync-backup/IT_stack/ \
 			SAMSUNG/rsync-backup/JH_stack/ )
 extdrvdir=( K16GBDTG2/Current/ \
 			SAMSUNG/Dr_Stack/ \
 			SAMSUNG/F+F/ \
-			SAMSUNG/IT_Dld/ \
+			SAMSUNG/IT_Copied/ \
 			SAMSUNG/IT_stack/ \
 			SAMSUNG/JH_stack/ )
-intdrv=WD2000JD/
 intdir=( Current/ \
-		 Stack/ \
+		 Dr_Stack/ \
 		 F+F/ \
-		 IT_Dld/ \
+		 IT_Copied/ \
 		 IT_stack/ \
 		 JH_stack/ )
 i=-1
 outf=${BASH_SOURCE[0]}
-outf="$mntpnt$intdrv${outf%.*}.txt"
+outf="$intdrv${outf%.*}.txt"
 echo "vim: tw=0:" > $outf
 echo "" | tee -a $outf
 echo $(date) | tee -a $outf
 for thisdir in "${intdir[@]}"
 do
-	intlcn=$mntpnt$intdrv$thisdir
+	intlcn=$intdrv$thisdir
 	((i++))
 #  	I've put the rsync action in an if-clause to allow for throttling:
 	if [ "$i" -ge "0" ]; then
 		if [ $drctn = "b" ]; then
-			fullcmd="$rsynccom $intlcn $mntpnt${backupdir[i]}"
+			fullcmd="$rsynccom $intlcn $extmnt${backupdir[i]}"
 		elif [ $drctn = "t" ]; then
-			fullcmd="$rsynccom $intlcn $mntpnt${extdrvdir[i]}"
+			fullcmd="$rsynccom $intlcn $extmnt${extdrvdir[i]}"
 		else
-			fullcmd="$rsynccom $mntpnt${extdrvdir[i]} $intlcn"
+			fullcmd="$rsynccom $extmnt${extdrvdir[i]} $intlcn"
 		fi
 		echo "" | tee -a $outf
 		echo "Push sync $((i+1))" | tee -a $outf
