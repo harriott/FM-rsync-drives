@@ -56,7 +56,7 @@ intdir=( Current/ \
 		 IT_stack/ \
 		 JH_stack/ )
 i=-1
-outf=${BASH_SOURCE[0]}
+outf=`basename ${BASH_SOURCE[0]}`
 outf="$intdrv${outf%.*}.txt"
 echo "vim: tw=0:" > $outf
 echo "" | tee -a $outf
