@@ -37,20 +37,26 @@ else
 	extmnt=/media/jo/
 	intdrv=${extmnt}WD2000JD/
 fi
-backupdir=( SAMSUNG/rsync-backup/Dr_Current/ \
+backupdir=( SAMSUNG/rsync-backup/Dr_Copied/ \
+            SAMSUNG/rsync-backup/Dr_Current/ \
+			SAMSUNG/rsync-backup/Dr_Pointure_23/ \
 			SAMSUNG/rsync-backup/Dr_Stack/ \
 			SAMSUNG/rsync-backup/F+F/ \
 			SAMSUNG/rsync-backup/IT_Copied/ \
 			SAMSUNG/rsync-backup/IT_stack/ \
 			SAMSUNG/rsync-backup/JH_stack/ )
-extdrvdir=( K16GBDTG2/Current/ \
+extdrvdir=( SAMSUNG/Dr_Copied/ \
+            K16GBDTG2/Current/ \
+            K16GBDTG2/Pointure_23/ \
 			SAMSUNG/Dr_Stack/ \
 			SAMSUNG/F+F/ \
 			SAMSUNG/IT_Copied/ \
 			SAMSUNG/IT_stack/ \
 			SAMSUNG/JH_stack/ )
-intdir=( Current/ \
-		 Dr_Stack/ \
+intdir=( Dropbox/Copied/ \
+         Dropbox/Current/ \
+         Dropbox/Pointure_23/ \
+		 Dropbox/Stack/ \
 		 F+F/ \
 		 IT_Copied/ \
 		 IT_stack/ \
