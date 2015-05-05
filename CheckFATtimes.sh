@@ -24,9 +24,10 @@ echo "" >> $outf
 for localf in ${lfilesC}; do
 	FAT32f=$FAT32d${localf:$lenld}
 	if [ -s $FAT32f ]; then
-		#Fft=$(stat -c '%Y' $FAT32f)
-		#echo $Fft >> $outf
-		echo $FAT32f" "`expr $(stat -c '%Y' $FAT32f) - 1416474468` >> $outf
+		timediff=$(expr $(stat -c '%Y' $FAT32f) - $(stat -c '%Y' $localf))
+		if [ $timediff != "0" ]; then
+			echo $timediff" "$FAT32f >> $outf
+		fi
 	fi
 done
 echo "Results are in $outf"
