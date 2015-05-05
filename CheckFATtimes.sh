@@ -9,7 +9,7 @@ locald="/mnt/WD2000JD/Dropbox/"
 lenld=${#locald}
 FAT32d="/run/media/jo/K16GBDTG2/"
 lfilesC=$(find $locald"Current/" -type f)
-lfilesP=$(find $locald"Pointure_23/" -type f)
+lfilesP=$(find $locald"Pointure_23/EsL/" -type f)
 
 # use newline as file separator (handle spaces in filenames)
 IFS=$'\n'
@@ -20,15 +20,26 @@ echo "vim: tw=0:" > $outf
 echo "" >> $outf
 echo $(date) >> $outf
 echo "" >> $outf
+echo "Files on FAT32 drive's time offsets:" >> $outf
+echo "      3600   file's 1h newer than local" >> $outf
+echo "      7200   file's 2h newer than local" >> $outf
+echo "     -3600   file's 1h older than local" >> $outf
+echo "     -7200   file's 2h older than local" >> $outf
+echo "         -   file ain't there" >> $outf
+echo "" >> $outf
 
-for localf in ${lfilesC}; do
-	FAT32f=$FAT32d${localf:$lenld}
-	if [ -s $FAT32f ]; then
-		timediff=$(expr $(stat -c '%Y' $FAT32f) - $(stat -c '%Y' $localf))
-		if [ $timediff != "0" ]; then
-			echo $timediff" "$FAT32f >> $outf
+for localfs in $lfilesC $lfilesP; do
+	for localf in ${localfs}; do
+		FAT32f=$FAT32d${localf:$lenld}
+		if [ -s $FAT32f ]; then
+			timediff=$(expr $(stat -c '%Y' $FAT32f) - $(stat -c '%Y' $localf))
+			if [ $timediff != "0" ]; then
+				printf "%10s $FAT32f\n" $timediff >> $outf
+			fi
+		else
+			echo "         - "$FAT32f >> $outf
 		fi
-	fi
+	done
 done
 echo "Results are in $outf"
 
