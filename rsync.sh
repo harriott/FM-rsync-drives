@@ -32,6 +32,9 @@ if [ -f /etc/os-release ]; then
 	if [ "$NAME" = "Arch Linux" ]; then
 		extmnt=/run/media/jo/
 		intdrv=/mnt/WD2000JD/
+	elif [ "$NAME" = "openSUSE" ]; then
+		extmnt=/run/media/jo/
+		intdrv=~/
    	fi
 else
 	extmnt=/media/jo/

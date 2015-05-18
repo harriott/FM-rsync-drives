@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# Joseph Harriott http://momentary.eu/ Last updated: Tue 05 May 2015
+# Joseph Harriott http://momentary.eu/ Last updated: Thu 07 May 2015
 
-# Checks the time differences between matching files stored locally and on a FAT32 USB stick.
-# -------------------------------------------------------------------------------------------
+# Check the time differences between matching files stored locally and on a FAT32 USB stick.
+# ------------------------------------------------------------------------------------------
 
 locald="/mnt/WD2000JD/Dropbox/"
 lenld=${#locald}
@@ -15,7 +15,7 @@ lfilesP=$(find $locald"Pointure_23/EsL/" -type f)
 IFS=$'\n'
 
 # Prepare the output file:
-outf="CheckFATtimes.txt"
+outf=$FAT32d"CheckFATtimes-sprbMb.txt"
 echo "vim: tw=0:" > $outf
 echo "" >> $outf
 echo $(date) >> $outf
