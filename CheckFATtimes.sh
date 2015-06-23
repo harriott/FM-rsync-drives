@@ -48,7 +48,7 @@ echo "         -   file ain't there" >> $outf
 echo "" >> $outf
 
 for localfs in $lfilesC $lfilesF $lfilesP; do
-	echo "- checking $localfs" # - for error catching
+	#echo "- checking $localfs" # - for error catching
 	for localf in ${localfs}; do
 		FAT32f=$FAT32d${localf:$lenld}
 		if [ -s $FAT32f ]; then
