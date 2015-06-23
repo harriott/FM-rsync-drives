@@ -32,26 +32,31 @@ if [ -f /etc/os-release ]; then
 	if [ "$NAME" = "Arch Linux" ]; then
 		extmnt=/run/media/jo/
 		intdrv=/mnt/WD2000JD/
+		mchn=sprbMb
 	elif [ "$NAME" = "openSUSE" ]; then
 		extmnt=/run/media/jo/
 		intdrv=~/
+		mchn=N130
    	fi
 else
 	extmnt=/media/jo/
 	intdrv=${extmnt}WD2000JD/
 fi
-backupdir=( SAMSUNG/rsync-backup/Dr_Copied/ \
-            SAMSUNG/rsync-backup/Dr_Current/ \
-			SAMSUNG/rsync-backup/Dr_Pointure_23/ \
-			SAMSUNG/rsync-backup/Dr_Stack/ \
-			SAMSUNG/rsync-backup/Files/ )
+backupdir=( SAMSUNG/rsync-backup-$mchn/Dr_Copied/ \
+            SAMSUNG/rsync-backup-$mchn/Dr_Current/ \
+            SAMSUNG/rsync-backup-$mchn/Dr_F+F/ \
+			SAMSUNG/rsync-backup-$mchn/Dr_Pointure_23/ \
+			SAMSUNG/rsync-backup-$mchn/Dr_Stack/ \
+			SAMSUNG/rsync-backup-$mchn/Files/ )
 extdrvdir=( SAMSUNG/Dr_Copied/ \
             K16GBDTG2/Current/ \
+            K16GBDTG2/F+F/ \
             K16GBDTG2/Pointure_23/ \
 			SAMSUNG/Dr_Stack/ \
 			SAMSUNG/Files/ )
 intdir=( Dropbox/Copied/ \
          Dropbox/Current/ \
+         Dropbox/F+F/ \
          Dropbox/Pointure_23/ \
 		 Dropbox/Stack/ \
 		 Files/ )
@@ -61,8 +66,7 @@ outf="$intdrv${outf%.*}.txt"
 echo "vim: tw=0:" > $outf
 echo "" | tee -a $outf
 echo $(date) | tee -a $outf
-for thisdir in "${intdir[@]}"
-do
+for thisdir in "${intdir[@]}"; do
 	intlcn=$intdrv$thisdir
 	((i++))
 #  	I've put the rsync action in an if-clause to allow for throttling:
