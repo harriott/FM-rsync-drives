@@ -29,12 +29,11 @@ else
 fi
 if [ -f /etc/os-release ]; then
 	. /etc/os-release
+	extmnt=/run/media/jo/
 	if [ "$NAME" = "Arch Linux" ]; then
-		extmnt=/run/media/jo/
 		intdrv=/mnt/WD2000JD/
 		mchn=sprbMb
 	elif [ "$NAME" = "openSUSE" ]; then
-		extmnt=/run/media/jo/
 		intdrv=~/
 		mchn=N130
    	fi
@@ -69,21 +68,29 @@ echo $(date) | tee -a $outf
 for thisdir in "${intdir[@]}"; do
 	intlcn=$intdrv$thisdir
 	((i++))
-#  	I've put the rsync action in an if-clause to allow for throttling:
+	#  	I've put the rsync action in an if-clause to allow for throttling (0 allows all):
 	if [ "$i" -ge "0" ]; then
 		if [ $drctn = "b" ]; then
 			fullcmd="$rsynccom $intlcn $extmnt${backupdir[i]}"
-		elif [ $drctn = "t" ]; then
-			fullcmd="$rsynccom $intlcn $extmnt${extdrvdir[i]}"
 		else
-			fullcmd="$rsynccom $extmnt${extdrvdir[i]} $intlcn"
+			extdd=${extdrvdir[i]}
+			if [ ${extdd%%/*} = "K16GBDTG2" ]; then
+				modrsc=" --modify-window=1"
+			else
+				modrsc=""
+			fi
+			if [ $drctn = "t" ]; then
+				fullcmd="$rsynccom$modrsc $intlcn $extmnt$extdd"
+			else
+				fullcmd="$rsynccom$modrsc $extmnt$extdd $intlcn"
+			fi
 		fi
 		echo "" | tee -a $outf
 		echo "Push sync $((i+1))" | tee -a $outf
 		echo "-----------" | tee -a $outf
 		echo $fullcmd | tee -a $outf
 		echo "" | tee -a $outf
- 		$fullcmd | tee -a $outf
+ 		$fullcmd | tee -a $outf # - disable when testing
 	fi
 done
 echo "- all done, and logged to $outf"
