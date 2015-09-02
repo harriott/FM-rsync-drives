@@ -44,18 +44,21 @@ fi
 backupdir=( SAMSUNG/rsync-backup-$mchn/Dr_Copied/ \
             SAMSUNG/rsync-backup-$mchn/Dr_Current/ \
             SAMSUNG/rsync-backup-$mchn/Dr_F+F/ \
+            SAMSUNG/rsync-backup-$mchn/Dr_JH/ \
 			SAMSUNG/rsync-backup-$mchn/Dr_Pointure_23/ \
 			SAMSUNG/rsync-backup-$mchn/Dr_Stack/ \
 			SAMSUNG/rsync-backup-$mchn/Files/ )
 extdrvdir=( SAMSUNG/Dr_Copied/ \
             K16GBDTG2/Current/ \
             K16GBDTG2/F+F/ \
+            K16GBDTG2/JH/ \
             K16GBDTG2/Pointure_23/ \
 			SAMSUNG/Dr_Stack/ \
 			SAMSUNG/Files/ )
 intdir=( Dropbox/Copied/ \
          Dropbox/Current/ \
          Dropbox/F+F/ \
+         Dropbox/JH/ \
          Dropbox/Pointure_23/ \
 		 Dropbox/Stack/ \
 		 Files/ )
