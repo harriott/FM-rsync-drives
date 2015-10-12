@@ -1,12 +1,13 @@
 #!/bin/bash
 
-# Joseph Harriott http://momentary.eu/ Last updated: Thu 17 Sep 2015
+# Joseph Harriott http://momentary.eu/ Last updated: Mon 12 Oct 2015
 
 # A series of rsyncs between folders on local and portable media.
 # ---------------------------------------------------------------
 #   As this script performs a high-impact operation,
 #   I prefer to leave it without executable permission
 #   and call it from a terminal with the bash command.
+#   eg: bash ~/Files/IT_stack/rsync-portabledrives/rsync.sh
 
 echo "This BASH script will run rsync, pushing all changes."
 read -p "Sync the backup (b), or TO (t) portable drives, or FROM (f)? " drctn
