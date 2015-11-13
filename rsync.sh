@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Joseph Harriott http://momentary.eu/ Last updated: Mon 12 Oct 2015
+# Joseph Harriott http://momentary.eu/ Last updated: Fri 13 Nov 2015
 
 # A series of rsyncs between folders on local and portable media.
 # ---------------------------------------------------------------
@@ -43,25 +43,25 @@ else
 	intdrv=${extmnt}WD2000JD/
 fi
 backupdir=( SAMSUNG/rsync-backup-$mchn/Dr_Copied/ \
-            SAMSUNG/rsync-backup-$mchn/Dr_Current/ \
+            SAMSUNG/rsync-backup-$mchn/Dr_Now/ \
             SAMSUNG/rsync-backup-$mchn/Dr_F+F/ \
-            SAMSUNG/rsync-backup-$mchn/Dr_JH/ \
+            SAMSUNG/rsync-backup-$mchn/Dr_Further/ \
 			SAMSUNG/rsync-backup-$mchn/Dr_Photos/ \
 			SAMSUNG/rsync-backup-$mchn/Dr_Pointure_23/ \
 			SAMSUNG/rsync-backup-$mchn/Dr_Stack/ \
 			SAMSUNG/rsync-backup-$mchn/Files/ )
 extdrvdir=( SAMSUNG/Dr_Copied/ \
-            K16GBDTG2/Current/ \
+            K16GBDTG2/Now/ \
             SAMSUNG/Dr_F+F/ \
-            K16GBDTG2/JH/ \
+            K16GBDTG2/Further/ \
 			SAMSUNG/Dr_Photos/ \
             K16GBDTG2/Pointure_23/ \
 			SAMSUNG/Dr_Stack/ \
 			SAMSUNG/Files/ )
 intdir=( Dropbox/Copied/ \
-         Dropbox/Current/ \
+         Dropbox/Now/ \
          Dropbox/F+F/ \
-         Dropbox/JH/ \
+         Dropbox/Further/ \
          Dropbox/Photos/ \
          Dropbox/Pointure_23/ \
 		 Dropbox/Stack/ \
@@ -75,8 +75,14 @@ echo $(date) | tee -a $outf
 for thisdir in "${intdir[@]}"; do
 	intlcn=$intdrv$thisdir
 	((i++))
-	#  	I've put the rsync action in an if-clause to allow for throttling (0 allows all):
-	if [ "$i" -ge "0" ]; then
+	# if there's an argument, assume it's an integer to select just one folder pair:
+	if [ $1 ]; then
+		igo=$1
+		((igo--))
+	else
+		igo=$i
+	fi
+    if [ $i = $igo ]; then # this is a throttling clause
 		if [ $drctn = "b" ]; then
 			fullcmd="$rsynccom $intlcn $extmnt${backupdir[i]}"
 		else
@@ -97,7 +103,7 @@ for thisdir in "${intdir[@]}"; do
 		echo "-----------" | tee -a $outf
 		echo $fullcmd | tee -a $outf
 		echo "" | tee -a $outf
- 		$fullcmd | tee -a $outf # - disable when testing
+ 		$fullcmd | tee -a $outf # - disable for testing
 	fi
 done
 echo "- all done, and logged to $outf"
