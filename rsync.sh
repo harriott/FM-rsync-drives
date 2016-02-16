@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Joseph Harriott http://momentary.eu/ Last updated: Fri 13 Nov 2015
+# Joseph Harriott http://momentary.eu/ Last updated: Tue 16 Feb 2016
 
 # A series of rsyncs between folders on local and portable media.
 # ---------------------------------------------------------------
@@ -28,19 +28,12 @@ if [ $drctn ]; then
 else
 	exit
 fi
-if [ -f /etc/os-release ]; then
-	. /etc/os-release
-	extmnt=/run/media/jo/
-	if [ "$NAME" = "Arch Linux" ]; then
-		intdrv=/mnt/WD2000JD/
-		mchn=sprbMb
-	elif [ "$NAME" = "openSUSE" ]; then
-		intdrv=~/
-		mchn=N130
-   	fi
-else
-	extmnt=/media/jo/
-	intdrv=${extmnt}WD2000JD/
+extmnt=/run/media/jo/
+mchn=sprbMb
+intdrv=/mnt/WD2000JD/
+if [ -d /mnt/BX200 ]; then
+	mchn=N130
+	intdrv=/mnt/BX200/
 fi
 backupdir=( SAMSUNG/rsync-backup-$mchn/Dr_Copied/ \
             SAMSUNG/rsync-backup-$mchn/Dr_Now/ \
