@@ -35,7 +35,8 @@ if [ -d /mnt/BX200 ]; then
 	mchn=N130
 	intdrv=/mnt/BX200/
 fi
-backupdir=( SAMSUNG/rsync-backup-$mchn/Dr_Copied/ \
+backupdir=( SAMSUNG/rsync-backup-$mchn/Dr_Close/ \
+            SAMSUNG/rsync-backup-$mchn/Dr_Copied/ \
             SAMSUNG/rsync-backup-$mchn/Dr_Now/ \
             SAMSUNG/rsync-backup-$mchn/Dr_F+F/ \
             SAMSUNG/rsync-backup-$mchn/Dr_Further/ \
@@ -43,15 +44,17 @@ backupdir=( SAMSUNG/rsync-backup-$mchn/Dr_Copied/ \
 			SAMSUNG/rsync-backup-$mchn/Dr_Pointure_23/ \
 			SAMSUNG/rsync-backup-$mchn/Dr_Stack/ \
 			SAMSUNG/rsync-backup-$mchn/Files/ )
-extdrvdir=( SAMSUNG/Dr_Copied/ \
-            K16GBDTG2/Now/ \
+extdrvdir=( K16GB500/Close/ \
+            SAMSUNG/Dr_Copied/ \
+            K16GB500/Now/ \
             SAMSUNG/Dr_F+F/ \
-            K16GBDTG2/Further/ \
+            K16GB500/Further/ \
 			SAMSUNG/Dr_Photos/ \
-            K16GBDTG2/Pointure_23/ \
+            K16GB500/Pointure_23/ \
 			SAMSUNG/Dr_Stack/ \
 			SAMSUNG/Files/ )
-intdir=( Dropbox/Copied/ \
+intdir=( Dropbox/Close/ \
+         Dropbox/Copied/ \
          Dropbox/Now/ \
          Dropbox/F+F/ \
          Dropbox/Further/ \
@@ -80,7 +83,7 @@ for thisdir in "${intdir[@]}"; do
 			fullcmd="$rsynccom $intlcn $extmnt${backupdir[i]}"
 		else
 			extdd=${extdrvdir[i]}
-			if [ ${extdd%%/*} = "K16GBDTG2" ]; then
+			if [ ${extdd%%/*} = "K16GB500" ]; then
 				modrsc=" --modify-window=1"
 			else
 				modrsc=""
