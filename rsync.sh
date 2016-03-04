@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Joseph Harriott http://momentary.eu/ Last updated: Tue 16 Feb 2016
+# Joseph Harriott http://momentary.eu/ Last updated: Fri 04 Mar 2016
 
 # A series of rsyncs between folders on local and portable media.
 # ---------------------------------------------------------------
@@ -10,7 +10,7 @@
 #   eg: bash ~/Files/IT_stack/rsync-portabledrives/rsync.sh
 
 echo "This BASH script will run rsync, pushing all changes."
-read -p "Sync the backup (b), or TO (t) portable drives, or FROM (f)? " drctn
+read -p "Sync the backup (b), or TO (t) portable drives, or FROM (f), or simulate (n)? " drctn
 rsynccom="rsync -irtv --delete"
 if [ $drctn ]; then
 	if [ $drctn = "b" ]; then
@@ -21,6 +21,10 @@ if [ $drctn ]; then
 	elif [ $drctn = "f" ]; then
 		echo -e "About to run several: \e[104m$rsynccom <portabledrive> <localdrive>\e[0m"
 		read -p "No recovery possible from this operation, GO AHEAD? " cnfrm
+	elif [ $drctn = "n" ]; then
+        rsynccom="rsync -inrtv --delete"
+		echo -e "Okay, running: \e[1m$rsynccom <localdrive> <portabledrivebackup>\e[0m"
+		cnfrm="y"
 	else
 		exit
 	fi
