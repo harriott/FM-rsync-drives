@@ -10,7 +10,7 @@
 #   eg: bash ~/Files/IT_stack/rsync-portabledrives/rsync.sh
 
 echo "This BASH script will run rsync, pushing all changes."
-read -p "Sync the backup (b), or TO (t) portable drives, or FROM (f), or simulate (n)? " drctn
+read -p "Sync the backup (b), or TO (t) portable drives (or simulate (n)), or FROM (f)?" drctn
 rsynccom="rsync -irtv --delete"
 if [ $drctn ]; then
 	if [ $drctn = "b" ]; then
