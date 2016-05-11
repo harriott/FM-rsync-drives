@@ -66,7 +66,7 @@ done
 echo -e "\e[0m"
 
 # Ask what to do:
-read -p "Sync the backup (b), or TO (t) portable drives, or FROM (f) (or simulate (n))?" drctn
+read -p "Sync the backup (b), or TO (t) portable drives, or FROM (f) (or simulate (n))? " drctn
 rsynccom="rsync -irtv --delete"
 if [ $drctn ]; then
 	if [ $drctn = "b" ]; then
