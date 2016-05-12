@@ -36,14 +36,14 @@ include=( 1 \
           1 \
 		  1 \
 		  1 )
-backupdir=( SAMSUNG/rsync-backup-$mchn/Dr_Close/ \
-            SAMSUNG/rsync-backup-$mchn/Dr_Copied/ \
-            SAMSUNG/rsync-backup-$mchn/Dr_F+F/ \
-            SAMSUNG/rsync-backup-$mchn/Dr_Further/ \
-            SAMSUNG/rsync-backup-$mchn/Dr_Now/ \
-			SAMSUNG/rsync-backup-$mchn/Dr_Photos/ \
-			SAMSUNG/rsync-backup-$mchn/Dr_Pointure_23/ \
-			SAMSUNG/rsync-backup-$mchn/Dr_Stack/ \
+backupdir=( SAMSUNG/rsync-backup-$mchn/Close/ \
+            SAMSUNG/rsync-backup-$mchn/Copied/ \
+            SAMSUNG/rsync-backup-$mchn/F+F/ \
+            SAMSUNG/rsync-backup-$mchn/Further/ \
+            SAMSUNG/rsync-backup-$mchn/Now/ \
+			SAMSUNG/rsync-backup-$mchn/Photos/ \
+			SAMSUNG/rsync-backup-$mchn/Pointure_23/ \
+			SAMSUNG/rsync-backup-$mchn/Stack/ \
 			SAMSUNG/rsync-backup-$mchn/Files/ )
 extdrvdir=( K16GB500/Close/ \
             SAMSUNG/Dr_Copied/ \
