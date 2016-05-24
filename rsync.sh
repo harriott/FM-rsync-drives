@@ -1,13 +1,13 @@
 #!/bin/bash
 
-# Joseph Harriott http://momentary.eu/ Last updated: Wed 11 May 2016
+# Joseph Harriott http://momentary.eu/ Last updated: Tue 24 May 2016
 
 # A series of rsyncs between folders on local and portable media.
 # ---------------------------------------------------------------
 #   As this script performs a high-impact operation,
 #   I prefer to leave it without executable permission
 #   and call it from a terminal with the bash command.
-#   eg: bash ~/Files/IT_stack/rsync-portabledrives/rsync.sh
+#   eg: bash ~/More/IT_stack/rsync-portabledrives/rsync.sh
 
 # Prepare the locations:
 extmnt=/run/media/jo/
@@ -25,7 +25,8 @@ intdir=( Dropbox/Close/ \
          Dropbox/Photos/ \
          Dropbox/Pointure_23/ \
 		 Dropbox/Stack/ \
-		 Files/ )
+		 IT_Copied/ \
+		 More/ )
 # set to 0 to exclude a directory:
 include=( 1 \
           1 \
@@ -44,7 +45,8 @@ backupdir=( SAMSUNG/rsync-backup-$mchn/Close/ \
 			SAMSUNG/rsync-backup-$mchn/Photos/ \
 			SAMSUNG/rsync-backup-$mchn/Pointure_23/ \
 			SAMSUNG/rsync-backup-$mchn/Stack/ \
-			SAMSUNG/rsync-backup-$mchn/Files/ )
+			SAMSUNG/rsync-backup-$mchn/IT_Copied/ \
+			SAMSUNG/rsync-backup-$mchn/More/ )
 extdrvdir=( K16GB500/Close/ \
             SAMSUNG/Dr_Copied/ \
             SAMSUNG/Dr_F+F/ \
@@ -53,7 +55,8 @@ extdrvdir=( K16GB500/Close/ \
 			SAMSUNG/Dr_Photos/ \
             SAMSUNG/Dr_Pointure_23/ \
 			SAMSUNG/Dr_Stack/ \
-			SAMSUNG/Files/ )
+			SAMSUNG/IT_Copied/ \
+			SAMSUNG/More/ )
 
 # List the included directories:
 echo -en "This BASH script will run \e[1mrsync\e[0m, pushing all changes, "
