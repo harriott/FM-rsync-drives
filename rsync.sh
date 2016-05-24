@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Joseph Harriott http://momentary.eu/ Last updated: Tue 24 May 2016
+# Joseph Harriott http://momentary.eu/ Last updated: Wed 25 May 2016
 
 # A series of rsyncs between folders on local and portable media.
 # ---------------------------------------------------------------
@@ -23,7 +23,7 @@ intdir=( Dropbox/Close/ \
          Dropbox/Further/ \
          Dropbox/Now/ \
          Dropbox/Photos/ \
-         Dropbox/Pointure_23/ \
+         Dropbox/Pointure23/ \
 		 Dropbox/Stack/ \
 		 IT_Copied/ \
 		 More/ )
@@ -43,7 +43,7 @@ backupdir=( SAMSUNG/rsync-backup-$mchn/Close/ \
             SAMSUNG/rsync-backup-$mchn/Further/ \
             SAMSUNG/rsync-backup-$mchn/Now/ \
 			SAMSUNG/rsync-backup-$mchn/Photos/ \
-			SAMSUNG/rsync-backup-$mchn/Pointure_23/ \
+			SAMSUNG/rsync-backup-$mchn/Pointure23/ \
 			SAMSUNG/rsync-backup-$mchn/Stack/ \
 			SAMSUNG/rsync-backup-$mchn/IT_Copied/ \
 			SAMSUNG/rsync-backup-$mchn/More/ )
@@ -53,7 +53,7 @@ extdrvdir=( K16GB500/Close/ \
             K16GB500/Further/ \
             K16GB500/Now/ \
 			SAMSUNG/Dr_Photos/ \
-            SAMSUNG/Dr_Pointure_23/ \
+            SAMSUNG/Dr_Pointure23/ \
 			SAMSUNG/Dr_Stack/ \
 			SAMSUNG/IT_Copied/ \
 			SAMSUNG/More/ )
