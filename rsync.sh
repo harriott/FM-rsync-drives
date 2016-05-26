@@ -35,6 +35,7 @@ include=( 1 \
           1 \
           1 \
           1 \
+          1 \
 		  1 \
 		  1 )
 backupdir=( SAMSUNG/rsync-backup-$mchn/Close/ \
