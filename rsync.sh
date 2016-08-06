@@ -1,13 +1,13 @@
 #!/bin/bash
 
-# Joseph Harriott http://momentary.eu/ Last updated: Wed 25 May 2016
+# Joseph Harriott http://momentary.eu/ Last updated: Sat 06 Aug 2016
 
 # A series of rsyncs between folders on local and portable media.
 # ---------------------------------------------------------------
 #   As this script performs a high-impact operation,
 #   I prefer to leave it without executable permission
 #   and call it from a terminal with the bash command.
-#   eg: bash ~/More/IT_stack/rsync-portabledrives/rsync.sh
+#   eg: bash /mnt/WD2000JD/More/IT_stack/rsync-portabledrives/rsync.sh
 
 # Prepare the locations:
 extmnt=/run/media/jo/
