@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Joseph Harriott http://momentary.eu/ Last updated: Sat 06 Aug 2016
+# Joseph Harriott http://momentary.eu/ Last updated: Wed 07 Sep 2016
 
 # A series of rsyncs between folders on local and portable media.
 # ---------------------------------------------------------------
@@ -17,15 +17,20 @@ if [ -d /mnt/BX200 ]; then
 	mchn=N130
 	intdrv=/mnt/BX200/
 fi
-intdir=( Dropbox/Close/ \
-         Dropbox/Copied/ \
-         Dropbox/F+F/ \
-         Dropbox/Further/ \
-         Dropbox/Now/ \
-         Dropbox/Photos/ \
-         Dropbox/Pointure23/ \
-		 Dropbox/Stack/ \
-		 IT_Copied/ \
+intdir=( Dropbox/Copied/ \
+         Dropbox/Copied-Music-toPlay/ \
+         Dropbox/Copied-OutThere-Audio/ \
+         Dropbox/Copied-UK-audio/ \
+         Dropbox/JH-Close/ \
+         Dropbox/JH-F+F/ \
+         Dropbox/JH-Further/ \
+         Dropbox/JH-Now/ \
+         Dropbox/JH-Photos/ \
+         Dropbox/JH-Pointure23/ \
+		 Dropbox/JH-Stack/ \
+		 Dropbox/JH-Work/ \
+		 IT-Copied/ \
+		 IT-DebianBased-Copied/ \
 		 More/ )
 # set to 0 to exclude a directory:
 include=( 1 \
@@ -36,27 +41,42 @@ include=( 1 \
           1 \
           1 \
           1 \
+          1 \
+          1 \
+          1 \
+          1 \
+          1 \
 		  1 \
 		  1 )
-backupdir=( SAMSUNG/rsync-backup-$mchn/Close/ \
-            SAMSUNG/rsync-backup-$mchn/Copied/ \
-            SAMSUNG/rsync-backup-$mchn/F+F/ \
-            SAMSUNG/rsync-backup-$mchn/Further/ \
-            SAMSUNG/rsync-backup-$mchn/Now/ \
-			SAMSUNG/rsync-backup-$mchn/Photos/ \
-			SAMSUNG/rsync-backup-$mchn/Pointure23/ \
-			SAMSUNG/rsync-backup-$mchn/Stack/ \
+backupdir=( SAMSUNG/rsync-backup-$mchn/Copied/ \
+            SAMSUNG/rsync-backup-$mchn/Copied/-Music-toPlay \
+            SAMSUNG/rsync-backup-$mchn/Copied/-OutThere-Audio \
+            SAMSUNG/rsync-backup-$mchn/Copied/-UK-audio \
+            SAMSUNG/rsync-backup-$mchn/JH-Close/ \
+            SAMSUNG/rsync-backup-$mchn/JH-F+F/ \
+            SAMSUNG/rsync-backup-$mchn/JH-Further/ \
+            SAMSUNG/rsync-backup-$mchn/JH-Now/ \
+			SAMSUNG/rsync-backup-$mchn/JH-Photos/ \
+			SAMSUNG/rsync-backup-$mchn/JH-Pointure23/ \
+			SAMSUNG/rsync-backup-$mchn/JH-Stack/ \
+			SAMSUNG/rsync-backup-$mchn/JH-Work/ \
 			SAMSUNG/rsync-backup-$mchn/IT_Copied/ \
+			SAMSUNG/rsync-backup-$mchn/IT_Copied/-DebianBased \
 			SAMSUNG/rsync-backup-$mchn/More/ )
-extdrvdir=( K16GB500/Close/ \
-            SAMSUNG/Dr_Copied/ \
-            SAMSUNG/Dr_F+F/ \
-            K16GB500/Further/ \
-            K16GB500/Now/ \
-			SAMSUNG/Dr_Photos/ \
-            SAMSUNG/Dr_Pointure23/ \
-			SAMSUNG/Dr_Stack/ \
+extdrvdir=( SAMSUNG/Dr_Copied/ \
+            SAMSUNG/Dr_Copied/-Music-toPlay \
+            SAMSUNG/Dr_Copied/-OutThere-Audio \
+            SAMSUNG/Dr_Copied/-UK-audio \
+            K16GB500/JH-Close/ \
+            SAMSUNG/JH-Dr_F+F/ \
+            K16GB500/JH-Further/ \
+            K16GB500/JH-Now/ \
+			SAMSUNG/JH-Dr_Photos/ \
+            SAMSUNG/JH-Dr_Pointure23/ \
+			SAMSUNG/JH-Dr_Stack/ \
+			SAMSUNG/JH-Dr_Work/ \
 			SAMSUNG/IT_Copied/ \
+			SAMSUNG/IT_Copied/-DebianBased \
 			SAMSUNG/More/ )
 
 # List the included directories:
