@@ -10,10 +10,12 @@
 #   eg: bash /mnt/WD2000JD/More/IT_stack/rsync-portabledrives/rsync.sh
 
 # Prepare the locations:
-extmnt=/run/media/jo/
+backupdrv=/mnt/WD30EZRZ
+extmnt=/run/media/jo
 mchn=sprbMb
 intdrv=/mnt/WD2000JD/
 if [ -d /mnt/BX200 ]; then
+    backupdrv="$extmnt/SAMSUNG"
 	mchn=N130
 	intdrv=/mnt/BX200/
 fi
@@ -21,17 +23,17 @@ intdir=( Dropbox/Copied/ \
          Dropbox/Copied-Music-toPlay/ \
          Dropbox/Copied-OutThere-Audio/ \
          Dropbox/Copied-UK-audio/ \
-         Dropbox/JH-Close/ \
-         Dropbox/JH-F+F/ \
-         Dropbox/JH-Further/ \
-         Dropbox/JH-Now/ \
-         Dropbox/JH-Photos/ \
-         Dropbox/JH-Pointure23/ \
-		 Dropbox/JH-Stack/ \
-		 Dropbox/JH-Work/ \
+         Dropbox/JH/Close/ \
+         Dropbox/JH/F+F/ \
+         Dropbox/JH/Further/ \
+         Dropbox/JH/Now/ \
+         Dropbox/JH/Pointure23/ \
+		 Dropbox/JH/Stack/ \
+		 Dropbox/JH/Work/ \
 		 IT-Copied/ \
 		 IT-DebianBased-Copied/ \
-		 More/ )
+		 More/ \
+         Dropbox/Photos/ )
 # set to 0 to exclude a directory:
 include=( 1 \
           1 \
@@ -48,36 +50,36 @@ include=( 1 \
           1 \
 		  1 \
 		  1 )
-backupdir=( SAMSUNG/rsync-backup-$mchn/Copied/ \
-            SAMSUNG/rsync-backup-$mchn/Copied/-Music-toPlay \
-            SAMSUNG/rsync-backup-$mchn/Copied/-OutThere-Audio \
-            SAMSUNG/rsync-backup-$mchn/Copied/-UK-audio \
-            SAMSUNG/rsync-backup-$mchn/JH-Close/ \
-            SAMSUNG/rsync-backup-$mchn/JH-F+F/ \
-            SAMSUNG/rsync-backup-$mchn/JH-Further/ \
-            SAMSUNG/rsync-backup-$mchn/JH-Now/ \
-			SAMSUNG/rsync-backup-$mchn/JH-Photos/ \
-			SAMSUNG/rsync-backup-$mchn/JH-Pointure23/ \
-			SAMSUNG/rsync-backup-$mchn/JH-Stack/ \
-			SAMSUNG/rsync-backup-$mchn/JH-Work/ \
-			SAMSUNG/rsync-backup-$mchn/IT_Copied/ \
-			SAMSUNG/rsync-backup-$mchn/IT_Copied/-DebianBased \
-			SAMSUNG/rsync-backup-$mchn/More/ )
-extdrvdir=( SAMSUNG/Dr_Copied/ \
-            SAMSUNG/Dr_Copied/-Music-toPlay \
-            SAMSUNG/Dr_Copied/-OutThere-Audio \
-            SAMSUNG/Dr_Copied/-UK-audio \
-            K16GB500/JH-Close/ \
-            SAMSUNG/JH-Dr_F+F/ \
-            K16GB500/JH-Further/ \
-            K16GB500/JH-Now/ \
-			SAMSUNG/JH-Dr_Photos/ \
-            SAMSUNG/JH-Dr_Pointure23/ \
-			SAMSUNG/JH-Dr_Stack/ \
-			SAMSUNG/JH-Dr_Work/ \
-			SAMSUNG/IT_Copied/ \
-			SAMSUNG/IT_Copied/-DebianBased \
-			SAMSUNG/More/ )
+backupdir=( $backupdrv/rsync-backup-$mchn/Copied/ \
+            $backupdrv/rsync-backup-$mchn/Copied-Music-toPlay \
+            $backupdrv/rsync-backup-$mchn/Copied-OutThere-Audio \
+            $backupdrv/rsync-backup-$mchn/Copied-UK-Audio \
+            $backupdrv/rsync-backup-$mchn/JH-Close/ \
+            $backupdrv/rsync-backup-$mchn/JH-F+F/ \
+            $backupdrv/rsync-backup-$mchn/JH-Further/ \
+            $backupdrv/rsync-backup-$mchn/JH-Now/ \
+			$backupdrv/rsync-backup-$mchn/JH-Pointure23/ \
+			$backupdrv/rsync-backup-$mchn/JH-Stack/ \
+			$backupdrv/rsync-backup-$mchn/JH-Work/ \
+			$backupdrv/rsync-backup-$mchn/IT-Copied/ \
+			$backupdrv/rsync-backup-$mchn/IT-Copied-DebianBased \
+			$backupdrv/rsync-backup-$mchn/More/ \
+			$backupdrv/rsync-backup-$mchn/Photos/ )
+extdrvdir=( SAMSUNG/Sync/Copied/ \
+            SAMSUNG/Sync/Copied-Music-toPlay \
+            SAMSUNG/Sync/Copied-OutThere-Audio \
+            SAMSUNG/Sync/Copied-UK-Audio \
+            K16GB500/Close/ \
+            SAMSUNG/Sync/JH-F+F/ \
+            K16GB500/Further/ \
+            K16GB500/Now/ \
+            SAMSUNG/Sync/JH-Pointure23/ \
+			SAMSUNG/Sync/JH-Stack/ \
+            K16GB500/Work/ \
+			SAMSUNG/Sync/IT-Copied/ \
+			SAMSUNG/Sync/IT-DebianBased-Copied \
+			SAMSUNG/Sync/More/ \
+			SAMSUNG/Sync/Photos/ )
 
 # List the included directories:
 echo -en "This BASH script will run \e[1mrsync\e[0m, pushing all changes, "
@@ -125,7 +127,7 @@ for thisdir in "${intdir[@]}"; do
 	if [ ${include[i]} -ne "0" ]; then
 	    intlcn=$intdrv$thisdir
 	    if [ $drctn = "b" ]; then
-	    	fullcmd="$rsynccom $intlcn $extmnt${backupdir[i]}"
+	    	fullcmd="$rsynccom $intlcn ${backupdir[i]}"
 	    else
 	    	extdd=${extdrvdir[i]}
 	    	if [ ${extdd%%/*} = "K16GB500" ]; then
@@ -134,9 +136,9 @@ for thisdir in "${intdir[@]}"; do
 	    		modrsc=""
 	    	fi
 	    	if [ $drctn = "t" ]; then
-	    		fullcmd="$rsynccom$modrsc $intlcn $extmnt$extdd"
+	    		fullcmd="$rsynccom$modrsc $intlcn $extmnt/$extdd"
 	    	else
-	    		fullcmd="$rsynccom$modrsc $extmnt$extdd $intlcn"
+	    		fullcmd="$rsynccom$modrsc $extmnt/$extdd $intlcn"
 	    	fi
 	    fi
 	    echo "" | tee -a $outf
