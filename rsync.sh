@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Joseph Harriott http://momentary.eu/ Last updated: Wed 07 Sep 2016
+# Joseph Harriott http://momentary.eu/ Last updated: Mon 12 Sep 2016
 
 # A series of rsyncs between folders on local and portable media.
 # ---------------------------------------------------------------
@@ -51,9 +51,9 @@ include=( 1 \
 		  1 \
 		  1 )
 backupdir=( $backupdrv/rsync-backup-$mchn/Copied/ \
-            $backupdrv/rsync-backup-$mchn/Copied-Music-toPlay \
-            $backupdrv/rsync-backup-$mchn/Copied-OutThere-Audio \
-            $backupdrv/rsync-backup-$mchn/Copied-UK-Audio \
+            $backupdrv/rsync-backup-$mchn/Copied-Music-toPlay/ \
+            $backupdrv/rsync-backup-$mchn/Copied-OutThere-Audio/ \
+            $backupdrv/rsync-backup-$mchn/Copied-UK-Audio/ \
             $backupdrv/rsync-backup-$mchn/JH-Close/ \
             $backupdrv/rsync-backup-$mchn/JH-F+F/ \
             $backupdrv/rsync-backup-$mchn/JH-Further/ \
@@ -62,13 +62,13 @@ backupdir=( $backupdrv/rsync-backup-$mchn/Copied/ \
 			$backupdrv/rsync-backup-$mchn/JH-Stack/ \
 			$backupdrv/rsync-backup-$mchn/JH-Work/ \
 			$backupdrv/rsync-backup-$mchn/IT-Copied/ \
-			$backupdrv/rsync-backup-$mchn/IT-Copied-DebianBased \
+			$backupdrv/rsync-backup-$mchn/IT-Copied-DebianBased/ \
 			$backupdrv/rsync-backup-$mchn/More/ \
 			$backupdrv/rsync-backup-$mchn/Photos/ )
 extdrvdir=( SAMSUNG/Sync/Copied/ \
-            SAMSUNG/Sync/Copied-Music-toPlay \
-            SAMSUNG/Sync/Copied-OutThere-Audio \
-            SAMSUNG/Sync/Copied-UK-Audio \
+            SAMSUNG/Sync/Copied-Music-toPlay/ \
+            SAMSUNG/Sync/Copied-OutThere-Audio/ \
+            SAMSUNG/Sync/Copied-UK-Audio/ \
             K16GB500/Close/ \
             SAMSUNG/Sync/JH-F+F/ \
             K16GB500/Further/ \
@@ -77,7 +77,7 @@ extdrvdir=( SAMSUNG/Sync/Copied/ \
 			SAMSUNG/Sync/JH-Stack/ \
             K16GB500/Work/ \
 			SAMSUNG/Sync/IT-Copied/ \
-			SAMSUNG/Sync/IT-DebianBased-Copied \
+			SAMSUNG/Sync/IT-DebianBased-Copied/ \
 			SAMSUNG/Sync/More/ \
 			SAMSUNG/Sync/Photos/ )
 
@@ -92,7 +92,7 @@ done
 echo -e "\e[0m"
 
 # Ask what to do:
-read -p "Sync the backup (b), or TO (t) portable drives, or FROM (f) (or simulate (n))? " drctn
+read -p "Sync the backup (b), or TO (t) portable drives, or FROM (F) (or simulate (f))? " drctn
 rsynccom="rsync -irtv --delete"
 if [ $drctn ]; then
 	if [ $drctn = "b" ]; then
@@ -100,10 +100,10 @@ if [ $drctn ]; then
 		cnfrm="y"
 	elif [ $drctn = "t" ]; then
 		read -p "Run several: $rsynccom <localdrive> <portabledrive> ? " cnfrm
-	elif [ $drctn = "f" ]; then
+	elif [ $drctn = "F" ]; then
 		echo -e "About to run several: \e[1m\e[95m$rsynccom <portabledrive> <localdrive>\e[0m"
 		read -p "No recovery possible from this operation, GO AHEAD? " cnfrm
-	elif [ $drctn = "n" ]; then
+	elif [ $drctn = "f" ]; then
         rsynccom="rsync -inrtv --delete"
 		echo -e "Okay, running: \e[1m$rsynccom <portabledrivebackup> <localdrive>\e[0m"
 		cnfrm="y"
