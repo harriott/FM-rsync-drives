@@ -1,7 +1,7 @@
 #!/bin/bash
 # vim: set et tw=0:
 
-# Joseph Harriott http://momentary.eu/ Last updated: Thu 13 Oct 2016
+# Joseph Harriott http://momentary.eu/ Last updated: Wed 02 Nov 2016
 
 # A series of rsyncs between folders on local and portable media.
 # ---------------------------------------------------------------
@@ -19,13 +19,13 @@ intdir=( "$intdrv/Dropbox/Copied/" \
          "$intdrv/Dropbox/Copied-Music-toPlay/" \
          "$intdrv/Dropbox/Copied-OutThere-Audio/" \
          "$intdrv/Dropbox/Copied-UK-Audio/" \
-         "$intdrv/Dropbox/JH/Close/" \
-         "$intdrv/Dropbox/JH/F+F/" \
-         "$intdrv/Dropbox/JH/Further/" \
-         "$intdrv/Dropbox/JH/Now/" \
-         "$intdrv/Dropbox/JH/Stack/" \
-         "$intdrv/Dropbox/JH/Theatre/" \
-         "$intdrv/Dropbox/JH/Work/" \
+         "$intdrv/Dropbox/JH/d-F+F/" \
+         "$intdrv/Dropbox/JH/d-Stack/" \
+         "$intdrv/Dropbox/JH/d-Theatre/" \
+         "$intdrv/Dropbox/JH/k-Close/" \
+         "$intdrv/Dropbox/JH/k-Further/" \
+         "$intdrv/Dropbox/JH/k-Now/" \
+         "$intdrv/Dropbox/JH/k-Work/" \
          "$intdrv/IT-Copied/" \
          "$backupdrv/IT-DebianBased-Copied/" \
          "$intdrv/More/" \
@@ -38,13 +38,13 @@ if [ -d /mnt/BX200 ]; then
              "$intdrv/Dropbox/Copied-Music-toPlay/" \
              "$intdrv/Dropbox/Copied-OutThere-Audio/" \
              "$intdrv/Dropbox/Copied-UK-Audio/" \
-             "$intdrv/Dropbox/JH/Close/" \
-             "$intdrv/Dropbox/JH/F+F/" \
-             "$intdrv/Dropbox/JH/Further/" \
-             "$intdrv/Dropbox/JH/Now/" \
-             "$intdrv/Dropbox/JH/Stack/" \
-             "$intdrv/Dropbox/JH/Theatre/" \
-             "$intdrv/Dropbox/JH/Work/" \
+             "$intdrv/Dropbox/JH/d-F+F/" \
+             "$intdrv/Dropbox/JH/d-Stack/" \
+             "$intdrv/Dropbox/JH/d-Theatre/" \
+             "$intdrv/Dropbox/JH/k-Close/" \
+             "$intdrv/Dropbox/JH/k-Further/" \
+             "$intdrv/Dropbox/JH/k-Now/" \
+             "$intdrv/Dropbox/JH/k-Work/" \
              "$intdrv/IT-Copied/" \
              "$intdrv/IT-DebianBased-Copied/" \
              "$intdrv/More/" \
@@ -70,13 +70,13 @@ backupdir=( $backupdrv/rsync-backup-$mchn/Copied/ \
             $backupdrv/rsync-backup-$mchn/Copied-Music-toPlay/ \
             $backupdrv/rsync-backup-$mchn/Copied-OutThere-Audio/ \
             $backupdrv/rsync-backup-$mchn/Copied-UK-Audio/ \
-            $backupdrv/rsync-backup-$mchn/JH-Close/ \
-            $backupdrv/rsync-backup-$mchn/JH-F+F/ \
-            $backupdrv/rsync-backup-$mchn/JH-Further/ \
-            $backupdrv/rsync-backup-$mchn/JH-Now/ \
-            $backupdrv/rsync-backup-$mchn/JH-Stack/ \
-            $backupdrv/rsync-backup-$mchn/JH-Theatre/ \
-            $backupdrv/rsync-backup-$mchn/JH-Work/ \
+            $backupdrv/rsync-backup-$mchn/JH-d-F+F/ \
+            $backupdrv/rsync-backup-$mchn/JH-d-Stack/ \
+            $backupdrv/rsync-backup-$mchn/JH-d-Theatre/ \
+            $backupdrv/rsync-backup-$mchn/JH-k-Close/ \
+            $backupdrv/rsync-backup-$mchn/JH-k-Further/ \
+            $backupdrv/rsync-backup-$mchn/JH-k-Now/ \
+            $backupdrv/rsync-backup-$mchn/JH-k-Work/ \
             $backupdrv/rsync-backup-$mchn/IT-Copied/ \
             $backupdrv/rsync-backup-$mchn/IT-Copied-DebianBased/ \
             $backupdrv/rsync-backup-$mchn/More/ \
@@ -85,13 +85,13 @@ extdrvdir=( SAMSUNG/Sync/Copied/ \
             SAMSUNG/Sync/Copied-Music-toPlay/ \
             SAMSUNG/Sync/Copied-OutThere-Audio/ \
             SAMSUNG/Sync/Copied-UK-Audio/ \
-            K16GB500/Close/ \
-            SAMSUNG/Sync/JH-F+F/ \
-            K16GB500/Further/ \
-            K16GB500/Now/ \
-            SAMSUNG/Sync/JH-Stack/ \
-            SAMSUNG/Sync/JH-Theatre/ \
-            K16GB500/Work/ \
+            SAMSUNG/Sync/JH-d-F+F/ \
+            SAMSUNG/Sync/JH-d-Stack/ \
+            SAMSUNG/Sync/JH-d-Theatre/ \
+            K16GB500/k-Close/ \
+            K16GB500/k-Further/ \
+            K16GB500/k-Now/ \
+            K16GB500/k-Work/ \
             SAMSUNG/Sync/IT-Copied/ \
             SAMSUNG/Sync/IT-DebianBased-Copied/ \
             SAMSUNG/Sync/More/ \
