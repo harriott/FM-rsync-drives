@@ -1,20 +1,20 @@
 #!/bin/bash
 # vim: set et tw=0:
 
-# Joseph Harriott http://momentary.eu/ Last updated: Wed 02 Nov 2016
+# Joseph Harriott http://momentary.eu/ Last updated: Mon 14 Nov 2016
 
 # A series of rsyncs between folders on local and portable media.
 # ---------------------------------------------------------------
 #   As this script performs a high-impact operation,
 #   I prefer to leave it without executable permission
 #   and call it from a terminal with the bash command.
-#   eg: bash /mnt/WD2000JD/More/IT_stack/rsync-portabledrives/rsync.sh
+#   eg: bash /mnt/SDSSDA240G/More/IT_stack/rsync-portabledrives/rsync.sh
 
 # Prepare the locations:
 backupdrv=/mnt/WD30EZRZ
 extmnt=/run/media/jo
 mchn=sprbMb
-intdrv=/mnt/WD2000JD
+intdrv=/mnt/SDSSDA240G
 intdir=( "$intdrv/Dropbox/Copied/" \
          "$intdrv/Dropbox/Copied-Music-toPlay/" \
          "$intdrv/Dropbox/Copied-OutThere-Audio/" \
@@ -22,14 +22,15 @@ intdir=( "$intdrv/Dropbox/Copied/" \
          "$intdrv/Dropbox/JH/d-F+F/" \
          "$intdrv/Dropbox/JH/d-Stack/" \
          "$intdrv/Dropbox/JH/d-Theatre/" \
-         "$intdrv/Dropbox/JH/k-Close/" \
-         "$intdrv/Dropbox/JH/k-Further/" \
+         "$intdrv/Dropbox/JH/k-Copied/" \
          "$intdrv/Dropbox/JH/k-Now/" \
+         "$intdrv/Dropbox/JH/k-Then0/" \
+         "$intdrv/Dropbox/JH/k-Then1/" \
          "$intdrv/Dropbox/JH/k-Work/" \
-         "$intdrv/IT-Copied/" \
+         "$intdrv/Dropbox/Photos/" \
+         "$backupdrv/IT-Copied/" \
          "$backupdrv/IT-DebianBased-Copied/" \
-         "$intdrv/More/" \
-         "$intdrv/Dropbox/Photos/" )
+         "$intdrv/More/" )
 if [ -d /mnt/BX200 ]; then
     backupdrv="$extmnt/SAMSUNG"
     mchn=N130
@@ -41,30 +42,32 @@ if [ -d /mnt/BX200 ]; then
              "$intdrv/Dropbox/JH/d-F+F/" \
              "$intdrv/Dropbox/JH/d-Stack/" \
              "$intdrv/Dropbox/JH/d-Theatre/" \
-             "$intdrv/Dropbox/JH/k-Close/" \
-             "$intdrv/Dropbox/JH/k-Further/" \
+             "$intdrv/Dropbox/JH/k-Copied/" \
              "$intdrv/Dropbox/JH/k-Now/" \
+             "$intdrv/Dropbox/JH/k-Then0/" \
+             "$intdrv/Dropbox/JH/k-Then1/" \
              "$intdrv/Dropbox/JH/k-Work/" \
+             "$intdrv/Dropbox/Photos/" \
              "$intdrv/IT-Copied/" \
              "$intdrv/IT-DebianBased-Copied/" \
-             "$intdrv/More/" \
-             "$intdrv/Dropbox/Photos/" )
+             "$intdrv/More/" )
 fi
 # set to 0 to exclude a directory:
-include=( 1 \
-          1 \
-          1 \
-          1 \
-          1 \
-          1 \
-          1 \
-          1 \
-          1 \
-          1 \
-          1 \
-          1 \
-          1 \
-          1 \
+include=( 0 \
+          0 \
+          0 \
+          0 \
+          0 \
+          0 \
+          0 \
+          0 \
+          0 \
+          0 \
+          0 \
+          0 \
+          0 \
+          0 \
+          0 \
           1 )
 backupdir=( $backupdrv/rsync-backup-$mchn/Copied/ \
             $backupdrv/rsync-backup-$mchn/Copied-Music-toPlay/ \
@@ -73,29 +76,31 @@ backupdir=( $backupdrv/rsync-backup-$mchn/Copied/ \
             $backupdrv/rsync-backup-$mchn/JH-d-F+F/ \
             $backupdrv/rsync-backup-$mchn/JH-d-Stack/ \
             $backupdrv/rsync-backup-$mchn/JH-d-Theatre/ \
-            $backupdrv/rsync-backup-$mchn/JH-k-Close/ \
-            $backupdrv/rsync-backup-$mchn/JH-k-Further/ \
+            $backupdrv/rsync-backup-$mchn/JH-k-Copied/ \
             $backupdrv/rsync-backup-$mchn/JH-k-Now/ \
+            $backupdrv/rsync-backup-$mchn/JH-k-Then0/ \
+            $backupdrv/rsync-backup-$mchn/JH-k-Then1/ \
             $backupdrv/rsync-backup-$mchn/JH-k-Work/ \
+            $backupdrv/rsync-backup-$mchn/Photos/ \
             $backupdrv/rsync-backup-$mchn/IT-Copied/ \
-            $backupdrv/rsync-backup-$mchn/IT-Copied-DebianBased/ \
-            $backupdrv/rsync-backup-$mchn/More/ \
-            $backupdrv/rsync-backup-$mchn/Photos/ )
-extdrvdir=( SAMSUNG/Sync/Copied/ \
-            SAMSUNG/Sync/Copied-Music-toPlay/ \
-            SAMSUNG/Sync/Copied-OutThere-Audio/ \
-            SAMSUNG/Sync/Copied-UK-Audio/ \
-            SAMSUNG/Sync/JH-d-F+F/ \
-            SAMSUNG/Sync/JH-d-Stack/ \
-            SAMSUNG/Sync/JH-d-Theatre/ \
-            K16GB500/k-Close/ \
-            K16GB500/k-Further/ \
+            $backupdrv/rsync-backup-$mchn/IT-DebianBased-Copied/ \
+            $backupdrv/rsync-backup-$mchn/More/ )
+extdrvdir=( SAMSUNG/Sync/Dr-Copied/ \
+            SAMSUNG/Sync/Dr-Copied-Music-toPlay/ \
+            SAMSUNG/Sync/Dr-Copied-OutThere-Audio/ \
+            SAMSUNG/Sync/Dr-Copied-UK-Audio/ \
+            SAMSUNG/Sync/Dr-JH-d-F+F/ \
+            SAMSUNG/Sync/Dr-JH-d-Stack/ \
+            SAMSUNG/Sync/Dr-JH-d-Theatre/ \
+            K16GB500/k-Copied/ \
             K16GB500/k-Now/ \
+            K16GB500/k-Then0/ \
+            K16GB500/k-Then1/ \
             K16GB500/k-Work/ \
+            SAMSUNG/Sync/Dr-Photos/ \
             SAMSUNG/Sync/IT-Copied/ \
             SAMSUNG/Sync/IT-DebianBased-Copied/ \
-            SAMSUNG/Sync/More/ \
-            SAMSUNG/Sync/Photos/ )
+            SAMSUNG/Sync/More/ )
 
 # List the included directories:
 echo -en "This BASH script will run \e[1mrsync\e[0m, pushing all changes, "
@@ -117,14 +122,14 @@ if [ $drctn ]; then
     elif [ $drctn = "T" ]; then
         read -p "Run several: $rsynccom <localdrive> <portabledrive> ? " cnfrm
     elif [ $drctn = "t" ]; then
-        rsynccom="rsync -inrtv --delete"
+        rsynccom="rsync -inrtv --delete" # simulate
         echo -e "Okay, running: \e[1m$rsynccom <localdrive> <portabledrivebackup>\e[0m"
         cnfrm="y"
     elif [ $drctn = "F" ]; then
         echo -e "About to run several: \e[1m\e[95m$rsynccom <portabledrive> <localdrive>\e[0m"
         read -p "No recovery possible from this operation, GO AHEAD? " cnfrm
     elif [ $drctn = "f" ]; then
-        rsynccom="rsync -inrtv --delete"
+        rsynccom="rsync -inrtv --delete" # simulate
         echo -e "Okay, running: \e[1m$rsynccom <portabledrivebackup> <localdrive>\e[0m"
         cnfrm="y"
     else
@@ -155,7 +160,8 @@ for thisdir in "${intdir[@]}"; do
             else
                 modrsc=""
             fi
-            if [ $drctn = "t" ]; then
+            if [ ${drctn,,} = "t" ]; # case-insensitive test
+            then
                 fullcmd="$rsynccom$modrsc $intlcn $extmnt/$extdd"
             else
                 fullcmd="$rsynccom$modrsc $extmnt/$extdd $intlcn"
