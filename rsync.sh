@@ -52,23 +52,8 @@ if [ -d /mnt/BX200 ]; then
              "$intdrv/IT-DebianBased-Copied/" \
              "$intdrv/More/" )
 fi
-# set to 0 to exclude a directory:
-include=( 0 \
-          0 \
-          0 \
-          0 \
-          0 \
-          0 \
-          0 \
-          0 \
-          0 \
-          0 \
-          0 \
-          0 \
-          0 \
-          0 \
-          0 \
-          1 )
+# Define an array like  include=(1 1 ... ), with values set to 0 to exclude directories:
+source "$( dirname "${BASH_SOURCE[0]}" )/include.sh"
 backupdir=( $backupdrv/rsync-backup-$mchn/Copied/ \
             $backupdrv/rsync-backup-$mchn/Copied-Music-toPlay/ \
             $backupdrv/rsync-backup-$mchn/Copied-OutThere-Audio/ \
@@ -172,7 +157,7 @@ for thisdir in "${intdir[@]}"; do
         echo "-----------" | tee -a $outf
         echo $fullcmd | tee -a $outf
         echo "" | tee -a $outf
-        $fullcmd | tee -a $outf # - disable for testing
+        # $fullcmd | tee -a $outf # - disable for testing
     fi
 done
 echo "- all done, and logged to $outf"
