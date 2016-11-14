@@ -117,7 +117,7 @@ read -p "Sync the backup (b), or TO (T) portable drives (or simulate (t)), or FR
 rsynccom="rsync -irtv --delete"
 if [ $drctn ]; then
     if [ $drctn = "b" ]; then
-        echo -e "Okay, running: \e[1m$rsynccom <localdrive> <portabledrivebackup>\e[0m"
+        echo -e "Okay, running: \e[1m$rsynccom <localdrive> <backupdrivebackup>\e[0m"
         cnfrm="y"
     elif [ $drctn = "T" ]; then
         read -p "Run several: $rsynccom <localdrive> <portabledrive> ? " cnfrm
