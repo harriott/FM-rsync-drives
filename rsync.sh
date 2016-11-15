@@ -77,11 +77,11 @@ extdrvdir=( SAMSUNG/Sync/Dr-Copied/ \
             SAMSUNG/Sync/Dr-JH-d-F+F/ \
             SAMSUNG/Sync/Dr-JH-d-Stack/ \
             SAMSUNG/Sync/Dr-JH-d-Theatre/ \
-            K16GB500/k-Copied/ \
-            K16GB500/k-Now/ \
-            K16GB500/k-Then0/ \
-            K16GB500/k-Then1/ \
-            K16GB500/k-Work/ \
+            SAMSUNG/Sync/Dr-JH-k-Copied/ \
+            SAMSUNG/Sync/Dr-JH-k-Now/ \
+            SAMSUNG/Sync/Dr-JH-k-Then0/ \
+            SAMSUNG/Sync/Dr-JH-k-Then1/ \
+            SAMSUNG/Sync/Dr-JH-k-Work/ \
             SAMSUNG/Sync/Dr-Photos/ \
             SAMSUNG/Sync/IT-Copied/ \
             SAMSUNG/Sync/IT-DebianBased-Copied/ \
@@ -128,10 +128,11 @@ fi
 # Do it:
 i=-1
 outf=`basename ${BASH_SOURCE[0]}`
-outf="$intdrv/${outf%.*}.txt"
-echo "vim: tw=0:" > $outf
-echo "" | tee -a $outf
-echo $(date) | tee -a $outf
+outf0="$intdrv/${outf%.*}"
+outf1="$outf0.txt"
+echo "vim: tw=0:" > $outf1
+echo "" | tee -a $outf1
+echo $(date) | tee -a $outf1
 for thisdir in "${intdir[@]}"; do
     ((i++))
     if [ ${include[i]} -ne "0" ]; then
@@ -152,14 +153,17 @@ for thisdir in "${intdir[@]}"; do
                 fullcmd="$rsynccom$modrsc $extmnt/$extdd $intlcn"
             fi
         fi
-        echo "" | tee -a $outf
-        echo "Push sync $((i+1))" | tee -a $outf
-        echo "-----------" | tee -a $outf
-        echo $fullcmd | tee -a $outf
-        echo "" | tee -a $outf
-        # $fullcmd | tee -a $outf # - disable for testing
+        echo "" | tee -a $outf1
+        echo "Push sync $((i+1))" | tee -a $outf1
+        echo "-----------" | tee -a $outf1
+        echo $fullcmd | tee -a $outf1
+        echo "" | tee -a $outf1
+        $fullcmd | tee -a $outf1 # - disable for testing
     fi
 done
-echo "- all done, and logged to $outf"
+jHM=$(date "+%j-%H%M")
+outf2="$outf0-$jHM.txt"
+cp $outf1 $outf2
+echo "- all done, and logged to $outf1 (& $outf2)"
 exit
 
