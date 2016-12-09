@@ -4,10 +4,14 @@
 # Called from  rsync.sh
 
 # set to 0 to exclude a directory:
-includeIndexed=( 1 Dropbox/Copied \
-                 1 Dropbox/Copied-Music-toPlay \
-                 1 Dropbox/Copied-OutThere-Audio \
-                 1 Dropbox/Copied-UK-Audio \
+includeIndexed=( 1 Dropbox/CAMusic-Europe \
+                 1 Dropbox/CAMusic-Germanic \
+                 1 Dropbox/CAMusic-USA \
+                 1 Dropbox/CAMusic-West \
+                 1 Dropbox/CAMusic-World \
+                 1 Dropbox/CA-OutThere-UK \
+                 1 Dropbox/CAudio-OutThere \
+                 1 Dropbox/Copied \
                  1 Dropbox/JH/d-F+F \
                  1 Dropbox/JH/d-Stack \
                  1 Dropbox/JH/d-Theatre \

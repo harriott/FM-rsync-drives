@@ -1,7 +1,7 @@
 #!/bin/bash
 # vim: set et tw=0:
 
-# Joseph Harriott http://momentary.eu/ Last updated: Mon 14 Nov 2016
+# Joseph Harriott http://momentary.eu/ Last updated: Tue 06 Dec 2016
 
 # A series of rsyncs between folders on local and portable media.
 # ---------------------------------------------------------------
@@ -15,10 +15,14 @@ backupdrv=/mnt/WD30EZRZ
 extmnt=/run/media/jo
 mchn=sprbMb
 intdrv=/mnt/SDSSDA240G
-intdir=( "$intdrv/Dropbox/Copied/" \
-         "$intdrv/Dropbox/Copied-Music-toPlay/" \
-         "$intdrv/Dropbox/Copied-OutThere-Audio/" \
-         "$intdrv/Dropbox/Copied-UK-Audio/" \
+intdir=( "$intdrv/Dropbox/CAMusic-Europe/" \
+         "$intdrv/Dropbox/CAMusic-Germanic/" \
+         "$intdrv/Dropbox/CAMusic-USA/" \
+         "$intdrv/Dropbox/CAMusic-West/" \
+         "$intdrv/Dropbox/CAMusic-World/" \
+         "$intdrv/Dropbox/CA-OutThere-UK/" \
+         "$intdrv/Dropbox/CAudio-OutThere/" \
+         "$intdrv/Dropbox/Copied/" \
          "$intdrv/Dropbox/JH/d-F+F/" \
          "$intdrv/Dropbox/JH/d-Stack/" \
          "$intdrv/Dropbox/JH/d-Theatre/" \
@@ -35,10 +39,14 @@ if [ -d /mnt/BX200 ]; then
     backupdrv="$extmnt/SAMSUNG"
     mchn=N130
     intdrv=/mnt/BX200
-    intdir=( "$intdrv/Dropbox/Copied/" \
-             "$intdrv/Dropbox/Copied-Music-toPlay/" \
-             "$intdrv/Dropbox/Copied-OutThere-Audio/" \
-             "$intdrv/Dropbox/Copied-UK-Audio/" \
+    intdir=( "-" \
+             "-" \
+             "-" \
+             "-" \
+             "-" \
+             "-" \
+             "-" \
+             "-" \
              "$intdrv/Dropbox/JH/d-F+F/" \
              "$intdrv/Dropbox/JH/d-Stack/" \
              "$intdrv/Dropbox/JH/d-Theatre/" \
@@ -48,32 +56,40 @@ if [ -d /mnt/BX200 ]; then
              "$intdrv/Dropbox/JH/k-Then1/" \
              "$intdrv/Dropbox/JH/k-Work/" \
              "$intdrv/Dropbox/Photos/" \
-             "$intdrv/IT-Copied/" \
-             "$intdrv/IT-DebianBased-Copied/" \
+             "-" \
+             "-" \
              "$intdrv/More/" )
 fi
 # Define an array like  include=(1 1 ... ), with values set to 0 to exclude directories:
 source "$( dirname "${BASH_SOURCE[0]}" )/include.sh"
-backupdir=( $backupdrv/rsync-backup-$mchn/Copied/ \
-            $backupdrv/rsync-backup-$mchn/Copied-Music-toPlay/ \
-            $backupdrv/rsync-backup-$mchn/Copied-OutThere-Audio/ \
-            $backupdrv/rsync-backup-$mchn/Copied-UK-Audio/ \
-            $backupdrv/rsync-backup-$mchn/JH-d-F+F/ \
-            $backupdrv/rsync-backup-$mchn/JH-d-Stack/ \
-            $backupdrv/rsync-backup-$mchn/JH-d-Theatre/ \
-            $backupdrv/rsync-backup-$mchn/JH-k-Copied/ \
-            $backupdrv/rsync-backup-$mchn/JH-k-Now/ \
-            $backupdrv/rsync-backup-$mchn/JH-k-Then0/ \
-            $backupdrv/rsync-backup-$mchn/JH-k-Then1/ \
-            $backupdrv/rsync-backup-$mchn/JH-k-Work/ \
-            $backupdrv/rsync-backup-$mchn/Photos/ \
+backupdir=( $backupdrv/rsync-backup-$mchn/Dr-CAMusic-Europe/ \
+            $backupdrv/rsync-backup-$mchn/Dr-CAMusic-Germanic/ \
+            $backupdrv/rsync-backup-$mchn/Dr-CAMusic-USA/ \
+            $backupdrv/rsync-backup-$mchn/Dr-CAMusic-West/ \
+            $backupdrv/rsync-backup-$mchn/Dr-CAMusic-World/ \
+            $backupdrv/rsync-backup-$mchn/Dr-CA-OutThere-UK/ \
+            $backupdrv/rsync-backup-$mchn/Dr-CAudio-OutThere/ \
+            $backupdrv/rsync-backup-$mchn/Dr-Copied/ \
+            $backupdrv/rsync-backup-$mchn/Dr-JH-d-F+F/ \
+            $backupdrv/rsync-backup-$mchn/Dr-JH-d-Stack/ \
+            $backupdrv/rsync-backup-$mchn/Dr-JH-d-Theatre/ \
+            $backupdrv/rsync-backup-$mchn/Dr-JH-k-Copied/ \
+            $backupdrv/rsync-backup-$mchn/Dr-JH-k-Now/ \
+            $backupdrv/rsync-backup-$mchn/Dr-JH-k-Then0/ \
+            $backupdrv/rsync-backup-$mchn/Dr-JH-k-Then1/ \
+            $backupdrv/rsync-backup-$mchn/Dr-JH-k-Work/ \
+            $backupdrv/rsync-backup-$mchn/Dr-Photos/ \
             $backupdrv/rsync-backup-$mchn/IT-Copied/ \
             $backupdrv/rsync-backup-$mchn/IT-DebianBased-Copied/ \
             $backupdrv/rsync-backup-$mchn/More/ )
-extdrvdir=( SAMSUNG/Sync/Dr-Copied/ \
-            SAMSUNG/Sync/Dr-Copied-Music-toPlay/ \
-            SAMSUNG/Sync/Dr-Copied-OutThere-Audio/ \
-            SAMSUNG/Sync/Dr-Copied-UK-Audio/ \
+extdrvdir=( SAMSUNG/Sync/Dr-CAMusic-Europe/ \
+            SAMSUNG/Sync/Dr-CAMusic-Germanic/ \
+            SAMSUNG/Sync/Dr-CAMusic-USA/ \
+            SAMSUNG/Sync/Dr-CAMusic-West/ \
+            SAMSUNG/Sync/Dr-CAMusic-World/ \
+            SAMSUNG/Sync/Dr-CA-OutThere-UK/ \
+            SAMSUNG/Sync/Dr-CAudio-OutThere/ \
+            SAMSUNG/Sync/Dr-Copied/ \
             SAMSUNG/Sync/Dr-JH-d-F+F/ \
             SAMSUNG/Sync/Dr-JH-d-Stack/ \
             SAMSUNG/Sync/Dr-JH-d-Theatre/ \
@@ -136,21 +152,22 @@ echo $(date) | tee -a $outf1
 for thisdir in "${intdir[@]}"; do
     ((i++))
     if [ ${include[i]} -ne "0" ]; then
-        intlcn=$thisdir
-        if [ $drctn = "b" ]; then
-            fullcmd="$rsynccom $intlcn ${backupdir[i]}"
-        else
-            extdd=${extdrvdir[i]}
-            if [ ${extdd%%/*} = "K16GB500" ]; then
-                modrsc=" --modify-window=1"
+        if [ ! $thisdir = "-" ]; then
+            if [ $drctn = "b" ]; then
+                fullcmd="$rsynccom $thisdir ${backupdir[i]}"
             else
-                modrsc=""
-            fi
-            if [ ${drctn,,} = "t" ]; # case-insensitive test
-            then
-                fullcmd="$rsynccom$modrsc $intlcn $extmnt/$extdd"
-            else
-                fullcmd="$rsynccom$modrsc $extmnt/$extdd $intlcn"
+                extdd=${extdrvdir[i]}
+                if [ ${extdd%%/*} = "K16GB500" ]; then
+                    modrsc=" --modify-window=1"
+                else
+                    modrsc=""
+                fi
+                if [ ${drctn,,} = "t" ]; # case-insensitive test
+                then
+                    fullcmd="$rsynccom$modrsc $thisdir $extmnt/$extdd"
+                else
+                    fullcmd="$rsynccom$modrsc $extmnt/$extdd $thisdir"
+                fi
             fi
         fi
         echo "" | tee -a $outf1
