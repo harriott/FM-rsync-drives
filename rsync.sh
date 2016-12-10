@@ -47,15 +47,15 @@ if [ -d /mnt/BX200 ]; then
              "-" \
              "-" \
              "-" \
-             "$intdrv/Dropbox/JH/d-F+F/" \
-             "$intdrv/Dropbox/JH/d-Stack/" \
-             "$intdrv/Dropbox/JH/d-Theatre/" \
-             "$intdrv/Dropbox/JH/k-Copied/" \
+             "-" \
+             "-" \
+             "-" \
+             "-" \
              "$intdrv/Dropbox/JH/k-Now/" \
-             "$intdrv/Dropbox/JH/k-Then0/" \
-             "$intdrv/Dropbox/JH/k-Then1/" \
-             "$intdrv/Dropbox/JH/k-Work/" \
-             "$intdrv/Dropbox/Photos/" \
+             "-" \
+             "-" \
+             "-" \
+             "-" \
              "-" \
              "-" \
              "$intdrv/More/" )
