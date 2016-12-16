@@ -1,7 +1,7 @@
 #!/bin/bash
 # vim: set et tw=0:
 
-# Joseph Harriott http://momentary.eu/ Last updated: Tue 06 Dec 2016
+# Joseph Harriott http://momentary.eu/ Last updated: Fri 16 Dec 2016
 
 # A series of rsyncs between folders on local and portable media.
 # ---------------------------------------------------------------
@@ -34,7 +34,7 @@ intdir=( "$intdrv/Dropbox/CAMusic-Europe/" \
          "$intdrv/Dropbox/Photos/" \
          "$backupdrv/IT-Copied/" \
          "$backupdrv/IT-DebianBased-Copied/" \
-         "$intdrv/More/" )
+         "$backupdrv/More/" )
 if [ -d /mnt/BX200 ]; then
     backupdrv="$extmnt/SAMSUNG"
     mchn=N130
@@ -108,8 +108,10 @@ echo -en "This BASH script will run \e[1mrsync\e[0m, pushing all changes, "
 echo "either to or from these local directories:"
 i=-1
 for thisdir in "${intdir[@]}"; do
-    ((i++))
-    if [ ${include[i]} -ne "0" ]; then echo -en "\e[92m  $thisdir\n"; fi
+    if [ ! $thisdir = "-" ]; then
+        ((i++))
+        if [ ${include[i]} -ne "0" ]; then echo -en "\e[92m  $thisdir\n"; fi
+    fi
 done
 echo -e "\e[0m"
 
@@ -164,18 +166,19 @@ for thisdir in "${intdir[@]}"; do
                 fi
                 if [ ${drctn,,} = "t" ]; # case-insensitive test
                 then
+                    modrsc=" --modify-window=1" # don't send fraction of second changes
                     fullcmd="$rsynccom$modrsc $thisdir $extmnt/$extdd"
                 else
                     fullcmd="$rsynccom$modrsc $extmnt/$extdd $thisdir"
                 fi
             fi
+            echo "" | tee -a $outf1
+            echo "Push sync $((i+1))" | tee -a $outf1
+            echo "-----------" | tee -a $outf1
+            echo $fullcmd | tee -a $outf1
+            echo "" | tee -a $outf1
+            $fullcmd | tee -a $outf1 # - disable for testing
         fi
-        echo "" | tee -a $outf1
-        echo "Push sync $((i+1))" | tee -a $outf1
-        echo "-----------" | tee -a $outf1
-        echo $fullcmd | tee -a $outf1
-        echo "" | tee -a $outf1
-        $fullcmd | tee -a $outf1 # - disable for testing
     fi
 done
 jHM=$(date "+%j-%H%M")
