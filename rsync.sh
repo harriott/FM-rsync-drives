@@ -1,7 +1,7 @@
 #!/bin/bash
 # vim: set et tw=0:
 
-# Joseph Harriott http://momentary.eu/ Last updated: Fri 16 Dec 2016
+# Joseph Harriott http://momentary.eu/ Last updated: Sat 04 Feb 2017
 
 # A series of rsyncs between folders on local and portable media.
 # ---------------------------------------------------------------
@@ -21,11 +21,13 @@ intdir=( "$intdrv/Dropbox/CAMusic-Europe/" \
          "$intdrv/Dropbox/CAMusic-West/" \
          "$intdrv/Dropbox/CAMusic-World/" \
          "$intdrv/Dropbox/CA-OutThere-UK/" \
+         "$intdrv/Dropbox/CAudio-Music/" \
          "$intdrv/Dropbox/CAudio-OutThere/" \
-         "$intdrv/Dropbox/Copied/" \
+         "$intdrv/Dropbox/Copied-OutThere/" \
          "$intdrv/Dropbox/JH/d-F+F/" \
          "$intdrv/Dropbox/JH/d-Stack/" \
          "$intdrv/Dropbox/JH/d-Theatre/" \
+         "$intdrv/Dropbox/JH/d-toReduce/" \
          "$intdrv/Dropbox/JH/k-Copied/" \
          "$intdrv/Dropbox/JH/k-Now/" \
          "$intdrv/Dropbox/JH/k-Then0/" \
@@ -68,11 +70,13 @@ backupdir=( $backupdrv/rsync-backup-$mchn/Dr-CAMusic-Europe/ \
             $backupdrv/rsync-backup-$mchn/Dr-CAMusic-West/ \
             $backupdrv/rsync-backup-$mchn/Dr-CAMusic-World/ \
             $backupdrv/rsync-backup-$mchn/Dr-CA-OutThere-UK/ \
+            $backupdrv/rsync-backup-$mchn/Dr-CAudio-Music/ \
             $backupdrv/rsync-backup-$mchn/Dr-CAudio-OutThere/ \
-            $backupdrv/rsync-backup-$mchn/Dr-Copied/ \
+            $backupdrv/rsync-backup-$mchn/Dr-Copied-OutThere/ \
             $backupdrv/rsync-backup-$mchn/Dr-JH-d-F+F/ \
             $backupdrv/rsync-backup-$mchn/Dr-JH-d-Stack/ \
             $backupdrv/rsync-backup-$mchn/Dr-JH-d-Theatre/ \
+            $backupdrv/rsync-backup-$mchn/Dr-JH-d-toReduce/ \
             $backupdrv/rsync-backup-$mchn/Dr-JH-k-Copied/ \
             $backupdrv/rsync-backup-$mchn/Dr-JH-k-Now/ \
             $backupdrv/rsync-backup-$mchn/Dr-JH-k-Then0/ \
@@ -88,11 +92,13 @@ extdrvdir=( SAMSUNG/Sync/Dr-CAMusic-Europe/ \
             SAMSUNG/Sync/Dr-CAMusic-West/ \
             SAMSUNG/Sync/Dr-CAMusic-World/ \
             SAMSUNG/Sync/Dr-CA-OutThere-UK/ \
+            SAMSUNG/Sync/Dr-CAudio-Music/ \
             SAMSUNG/Sync/Dr-CAudio-OutThere/ \
-            SAMSUNG/Sync/Dr-Copied/ \
+            SAMSUNG/Sync/Dr-Copied-OutThere/ \
             SAMSUNG/Sync/Dr-JH-d-F+F/ \
             SAMSUNG/Sync/Dr-JH-d-Stack/ \
             SAMSUNG/Sync/Dr-JH-d-Theatre/ \
+            SAMSUNG/Sync/Dr-JH-d-toReduce/ \
             SAMSUNG/Sync/Dr-JH-k-Copied/ \
             SAMSUNG/Sync/Dr-JH-k-Now/ \
             SAMSUNG/Sync/Dr-JH-k-Then0/ \

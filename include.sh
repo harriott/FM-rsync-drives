@@ -10,11 +10,13 @@ includeIndexed=( 1 Dropbox/CAMusic-Europe \
                  1 Dropbox/CAMusic-West \
                  1 Dropbox/CAMusic-World \
                  1 Dropbox/CA-OutThere-UK \
+                 1 Dropbox/CAudio-Music \
                  1 Dropbox/CAudio-OutThere \
-                 1 Dropbox/Copied \
+                 1 Dropbox/Copied-OutThere \
                  1 Dropbox/JH/d-F+F \
                  1 Dropbox/JH/d-Stack \
                  1 Dropbox/JH/d-Theatre \
+                 1 Dropbox/JH/d-toReduce \
                  1 Dropbox/JH/k-Copied \
                  1 Dropbox/JH/k-Now \
                  1 Dropbox/JH/k-Then0 \
