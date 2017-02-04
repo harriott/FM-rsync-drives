@@ -172,9 +172,9 @@ for thisdir in "${intdir[@]}"; do
                 fi
                 if [ ${drctn,,} = "t" ]; # case-insensitive test
                 then
-                    modrsc=" --modify-window=1" # don't send fraction of second changes
                     fullcmd="$rsynccom$modrsc $thisdir $extmnt/$extdd"
                 else
+                    modrsc=" --modify-window=1" # don't send fraction of second changes
                     fullcmd="$rsynccom$modrsc $extmnt/$extdd $thisdir"
                 fi
             fi
