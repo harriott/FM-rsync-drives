@@ -1,7 +1,7 @@
 #!/bin/bash
 # vim: set et tw=0:
 
-# Joseph Harriott http://momentary.eu/ Last updated: Sat 04 Feb 2017
+# Joseph Harriott http://momentary.eu/ Last updated: Tue 07 Mar 2017
 
 # A series of rsyncs between folders on local and portable media.
 # ---------------------------------------------------------------
@@ -166,7 +166,7 @@ for thisdir in "${intdir[@]}"; do
             else
                 extdd=${extdrvdir[i]}
                 if [ ${extdd%%/*} = "K16GB500" ]; then
-                    modrsc=" --modify-window=1"
+                    modrsc=" --modify-window=1" # don't send fraction of second changes
                 else
                     modrsc=""
                 fi
@@ -174,7 +174,7 @@ for thisdir in "${intdir[@]}"; do
                 then
                     fullcmd="$rsynccom$modrsc $thisdir $extmnt/$extdd"
                 else
-                    modrsc=" --modify-window=1" # don't send fraction of second changes
+                    modrsc=" --modify-window=1" # don't receive fraction of second changes
                     fullcmd="$rsynccom$modrsc $extmnt/$extdd $thisdir"
                 fi
             fi
