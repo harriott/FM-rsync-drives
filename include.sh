@@ -3,26 +3,30 @@
 
 # Called from  rsync.sh
 
-# set to 0 to exclude a directory:
-includeIndexed=( 0 Dropbox/CAMusic-Europe \
-                 0 Dropbox/CAMusic-Germanic \
-                 0 Dropbox/CAMusic-USA \
-                 0 Dropbox/CAMusic-West \
-                 0 Dropbox/CAMusic-World \
-                 0 Dropbox/CA-OutThere-UK \
-                 0 Dropbox/CAudio-Music \
-                 0 Dropbox/CAudio-OutThere \
-                 0 Dropbox/Copied-OutThere \
-                 0 Dropbox/JH/d-F+F \
-                 0 Dropbox/JH/d-Stack \
-                 0 Dropbox/JH/d-Theatre \
-                 0 Dropbox/JH/d-toReduce \
-                 0 Dropbox/JH/k-Copied \
-                 0 Dropbox/JH/k-Now \
-                 0 Dropbox/JH/k-Then0 \
-                 0 Dropbox/JH/k-Then1 \
-                 0 Dropbox/JH/k-Work \
-                 0 Dropbox/Photos \
+# set first item to 0 to exclude a directory:
+includeIndexed=( 1 Dropbox/CA-Buddhism \
+                 1 Dropbox/CAMusic-Europe \
+                 1 Dropbox/CAMusic-Germanic \
+                 1 Dropbox/CAMusic-USA \
+                 1 Dropbox/CAMusic-West \
+                 1 Dropbox/CAMusic-World \
+                 1 Dropbox/CA-OutThere-UK \
+                 1 Dropbox/CA-Theravada \
+                 1 Dropbox/CAudio-Music \
+                 1 Dropbox/CAudio-OutThere \
+                 1 Dropbox/Copied-OutThere \
+                 1 Dropbox/JH/Copied \
+                 1 Dropbox/JH/F+F \
+                 1 Dropbox/JH/IT_stack \
+                 1 Dropbox/JH/Now \
+                 1 Dropbox/JH/Stack \
+                 1 Dropbox/JH/Theatre0 \
+                 1 Dropbox/JH/Theatre1 \
+                 1 Dropbox/JH/Then0 \
+                 1 Dropbox/JH/Then1 \
+                 1 Dropbox/JH/toReduce \
+                 1 Dropbox/JH/Work \
+                 1 Dropbox/Photos \
                  1 IT-Copied \
                  1 IT-DebianBased-Copied \
                  1 More)

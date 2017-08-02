@@ -1,7 +1,7 @@
 #!/bin/bash
 # vim: set et tw=0:
 
-# Joseph Harriott http://momentary.eu/ Last updated: Tue 07 Mar 2017
+# Joseph Harriott http://momentary.eu/ Last updated: Tue 13 Jun 2017
 
 # A series of rsyncs between folders on local and portable media.
 # ---------------------------------------------------------------
@@ -11,37 +11,44 @@
 #   eg: bash /mnt/SDSSDA240G/More/IT_stack/rsync-portabledrives/rsync.sh
 
 # Prepare the locations:
-backupdrv=/mnt/WD30EZRZ
+backupdrv=/mnt/WD1001FALS
+backuppath=/mnt/WD1001FALS/rsyncBackup-sprbMb
 extmnt=/run/media/jo
 mchn=sprbMb
-intdrv=/mnt/SDSSDA240G
-intdir=( "$intdrv/Dropbox/CAMusic-Europe/" \
+intdrv=/mnt/WD30EZRZ
+intdir=( "$intdrv/Dropbox/CA-Buddhism/" \
+         "$intdrv/Dropbox/CAMusic-Europe/" \
          "$intdrv/Dropbox/CAMusic-Germanic/" \
          "$intdrv/Dropbox/CAMusic-USA/" \
          "$intdrv/Dropbox/CAMusic-West/" \
          "$intdrv/Dropbox/CAMusic-World/" \
          "$intdrv/Dropbox/CA-OutThere-UK/" \
+         "$intdrv/Dropbox/CA-Theravada/" \
          "$intdrv/Dropbox/CAudio-Music/" \
          "$intdrv/Dropbox/CAudio-OutThere/" \
          "$intdrv/Dropbox/Copied-OutThere/" \
-         "$intdrv/Dropbox/JH/d-F+F/" \
-         "$intdrv/Dropbox/JH/d-Stack/" \
-         "$intdrv/Dropbox/JH/d-Theatre/" \
-         "$intdrv/Dropbox/JH/d-toReduce/" \
-         "$intdrv/Dropbox/JH/k-Copied/" \
-         "$intdrv/Dropbox/JH/k-Now/" \
-         "$intdrv/Dropbox/JH/k-Then0/" \
-         "$intdrv/Dropbox/JH/k-Then1/" \
-         "$intdrv/Dropbox/JH/k-Work/" \
+         "$intdrv/Dropbox/JH/Copied/" \
+         "$intdrv/Dropbox/JH/F+F/" \
+         "$intdrv/Dropbox/JH/IT_stack/" \
+         "$intdrv/Dropbox/JH/Now/" \
+         "$intdrv/Dropbox/JH/Stack/" \
+         "$intdrv/Dropbox/JH/Theatre0/" \
+         "$intdrv/Dropbox/JH/Theatre1/" \
+         "$intdrv/Dropbox/JH/Then0/" \
+         "$intdrv/Dropbox/JH/Then1/" \
+         "$intdrv/Dropbox/JH/toReduce/" \
+         "$intdrv/Dropbox/JH/Work/" \
          "$intdrv/Dropbox/Photos/" \
-         "$backupdrv/IT-Copied/" \
-         "$backupdrv/IT-DebianBased-Copied/" \
-         "$backupdrv/More/" )
+         "/mnt/SDSSDA240G/IT-Copied/" \
+         "/mnt/SDSSDA240G/IT-DebianBased-Copied/" \
+         "/mnt/SDSSDA240G/More/" )
 if [ -d /mnt/BX200 ]; then
     backupdrv="$extmnt/SAMSUNG"
     mchn=N130
     intdrv=/mnt/BX200
     intdir=( "-" \
+             "-" \
+             "-" \
              "-" \
              "-" \
              "-" \
@@ -60,50 +67,61 @@ if [ -d /mnt/BX200 ]; then
              "-" \
              "-" \
              "-" \
+             "-" \
+             "-" \
+             "-" \
              "$intdrv/More/" )
 fi
 # Define an array like  include=(1 1 ... ), with values set to 0 to exclude directories:
 source "$( dirname "${BASH_SOURCE[0]}" )/include.sh"
-backupdir=( $backupdrv/rsync-backup-$mchn/Dr-CAMusic-Europe/ \
-            $backupdrv/rsync-backup-$mchn/Dr-CAMusic-Germanic/ \
-            $backupdrv/rsync-backup-$mchn/Dr-CAMusic-USA/ \
-            $backupdrv/rsync-backup-$mchn/Dr-CAMusic-West/ \
-            $backupdrv/rsync-backup-$mchn/Dr-CAMusic-World/ \
-            $backupdrv/rsync-backup-$mchn/Dr-CA-OutThere-UK/ \
-            $backupdrv/rsync-backup-$mchn/Dr-CAudio-Music/ \
-            $backupdrv/rsync-backup-$mchn/Dr-CAudio-OutThere/ \
-            $backupdrv/rsync-backup-$mchn/Dr-Copied-OutThere/ \
-            $backupdrv/rsync-backup-$mchn/Dr-JH-d-F+F/ \
-            $backupdrv/rsync-backup-$mchn/Dr-JH-d-Stack/ \
-            $backupdrv/rsync-backup-$mchn/Dr-JH-d-Theatre/ \
-            $backupdrv/rsync-backup-$mchn/Dr-JH-d-toReduce/ \
-            $backupdrv/rsync-backup-$mchn/Dr-JH-k-Copied/ \
-            $backupdrv/rsync-backup-$mchn/Dr-JH-k-Now/ \
-            $backupdrv/rsync-backup-$mchn/Dr-JH-k-Then0/ \
-            $backupdrv/rsync-backup-$mchn/Dr-JH-k-Then1/ \
-            $backupdrv/rsync-backup-$mchn/Dr-JH-k-Work/ \
-            $backupdrv/rsync-backup-$mchn/Dr-Photos/ \
-            $backupdrv/rsync-backup-$mchn/IT-Copied/ \
-            $backupdrv/rsync-backup-$mchn/IT-DebianBased-Copied/ \
-            $backupdrv/rsync-backup-$mchn/More/ )
-extdrvdir=( SAMSUNG/Sync/Dr-CAMusic-Europe/ \
+backupdir=( $backuppath/Dr-CA-Buddhism/ \
+            $backuppath/Dr-CAMusic-Europe/ \
+            $backuppath/Dr-CAMusic-Germanic/ \
+            $backuppath/Dr-CAMusic-USA/ \
+            $backuppath/Dr-CAMusic-West/ \
+            $backuppath/Dr-CAMusic-World/ \
+            $backuppath/Dr-CA-OutThere-UK/ \
+            $backuppath/Dr-CA-Theravada/ \
+            $backuppath/Dr-CAudio-Music/ \
+            $backuppath/Dr-CAudio-OutThere/ \
+            $backuppath/Dr-Copied-OutThere/ \
+            $backuppath/Dr-JH-Copied/ \
+            $backuppath/Dr-JH-F+F/ \
+            $backuppath/Dr-JH-IT_stack/ \
+            $backuppath/Dr-JH-Now/ \
+            $backuppath/Dr-JH-Stack/ \
+            $backuppath/Dr-JH-Theatre0/ \
+            $backuppath/Dr-JH-Theatre1/ \
+            $backuppath/Dr-JH-Then0/ \
+            $backuppath/Dr-JH-Then1/ \
+            $backuppath/Dr-JH-toReduce/ \
+            $backuppath/Dr-JH-Work/ \
+            $backuppath/Dr-Photos/ \
+            $backuppath/IT-Copied/ \
+            $backuppath/IT-DebianBased-Copied/ \
+            $backuppath/More/ )
+extdrvdir=( SAMSUNG/Sync/Dr-CA-Buddhism/ \
+            SAMSUNG/Sync/Dr-CAMusic-Europe/ \
             SAMSUNG/Sync/Dr-CAMusic-Germanic/ \
             SAMSUNG/Sync/Dr-CAMusic-USA/ \
             SAMSUNG/Sync/Dr-CAMusic-West/ \
             SAMSUNG/Sync/Dr-CAMusic-World/ \
             SAMSUNG/Sync/Dr-CA-OutThere-UK/ \
+            SAMSUNG/Sync/Dr-CA-Theravada/ \
             SAMSUNG/Sync/Dr-CAudio-Music/ \
             SAMSUNG/Sync/Dr-CAudio-OutThere/ \
             SAMSUNG/Sync/Dr-Copied-OutThere/ \
-            SAMSUNG/Sync/Dr-JH-d-F+F/ \
-            SAMSUNG/Sync/Dr-JH-d-Stack/ \
-            SAMSUNG/Sync/Dr-JH-d-Theatre/ \
-            SAMSUNG/Sync/Dr-JH-d-toReduce/ \
-            SAMSUNG/Sync/Dr-JH-k-Copied/ \
-            SAMSUNG/Sync/Dr-JH-k-Now/ \
-            SAMSUNG/Sync/Dr-JH-k-Then0/ \
-            SAMSUNG/Sync/Dr-JH-k-Then1/ \
-            SAMSUNG/Sync/Dr-JH-k-Work/ \
+            SAMSUNG/Sync/Dr-JH-Copied/ \
+            SAMSUNG/Sync/Dr-JH-F+F/ \
+            SAMSUNG/Sync/Dr-JH-IT_stack/ \
+            SAMSUNG/Sync/Dr-JH-Now/ \
+            SAMSUNG/Sync/Dr-JH-Stack/ \
+            SAMSUNG/Sync/Dr-JH-Theatre0/ \
+            SAMSUNG/Sync/Dr-JH-Theatre1/ \
+            SAMSUNG/Sync/Dr-JH-Then0/ \
+            SAMSUNG/Sync/Dr-JH-Then1/ \
+            SAMSUNG/Sync/Dr-JH-toReduce/ \
+            SAMSUNG/Sync/Dr-JH-Work/ \
             SAMSUNG/Sync/Dr-Photos/ \
             SAMSUNG/Sync/IT-Copied/ \
             SAMSUNG/Sync/IT-DebianBased-Copied/ \
