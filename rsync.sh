@@ -1,20 +1,18 @@
 #!/bin/bash
 # vim: set et tw=0:
 
-# Joseph Harriott http://momentary.eu/ Last updated: Tue 13 Jun 2017
+# Joseph Harriott http://momentary.eu/ Last updated: Wed 02 Aug 2017
 
 # A series of rsyncs between folders on local and portable media.
 # ---------------------------------------------------------------
 #   As this script performs a high-impact operation,
 #   I prefer to leave it without executable permission
 #   and call it from a terminal with the bash command.
-#   eg: bash /mnt/SDSSDA240G/More/IT_stack/rsync-portabledrives/rsync.sh
+#   eg: bash /mnt/WD30EZRZ/Dropbox/JH/IT_stack/rsync-portabledrives/rsync.sh
 
 # Prepare the locations:
-backupdrv=/mnt/WD1001FALS
 backuppath=/mnt/WD1001FALS/rsyncBackup-sprbMb
 extmnt=/run/media/jo
-mchn=sprbMb
 intdrv=/mnt/WD30EZRZ
 intdir=( "$intdrv/Dropbox/CA-Buddhism/" \
          "$intdrv/Dropbox/CAMusic-Europe/" \
@@ -42,37 +40,6 @@ intdir=( "$intdrv/Dropbox/CA-Buddhism/" \
          "/mnt/SDSSDA240G/IT-Copied/" \
          "/mnt/SDSSDA240G/IT-DebianBased-Copied/" \
          "/mnt/SDSSDA240G/More/" )
-if [ -d /mnt/BX200 ]; then
-    backupdrv="$extmnt/SAMSUNG"
-    mchn=N130
-    intdrv=/mnt/BX200
-    intdir=( "-" \
-             "-" \
-             "-" \
-             "-" \
-             "-" \
-             "-" \
-             "-" \
-             "-" \
-             "-" \
-             "-" \
-             "-" \
-             "-" \
-             "-" \
-             "-" \
-             "$intdrv/Dropbox/JH/k-Now/" \
-             "-" \
-             "-" \
-             "-" \
-             "-" \
-             "-" \
-             "-" \
-             "-" \
-             "-" \
-             "-" \
-             "$intdrv/More/" )
-fi
-# Define an array like  include=(1 1 ... ), with values set to 0 to exclude directories:
 source "$( dirname "${BASH_SOURCE[0]}" )/include.sh"
 backupdir=( $backuppath/Dr-CA-Buddhism/ \
             $backuppath/Dr-CAMusic-Europe/ \
@@ -100,6 +67,60 @@ backupdir=( $backuppath/Dr-CA-Buddhism/ \
             $backuppath/IT-Copied/ \
             $backuppath/IT-DebianBased-Copied/ \
             $backuppath/More/ )
+if [ -d /mnt/BX200 ]; then
+    backuppath="$extmnt/SAMSUNG/rsyncBackupN130"
+    intdrv=/mnt/BX200
+    intdir=( "-" \
+             "-" \
+             "-" \
+             "-" \
+             "-" \
+             "-" \
+             "-" \
+             "-" \
+             "-" \
+             "-" \
+             "-" \
+             "-" \
+             "-" \
+             "-" \
+             "$intdrv/Dropbox/JH/k-Now/" \
+             "-" \
+             "-" \
+             "-" \
+             "-" \
+             "-" \
+             "-" \
+             "-" \
+             "-" \
+             "-" \
+             "$intdrv/More/" )
+    backupdir=( "-" \
+                "-" \
+                "-" \
+                "-" \
+                "-" \
+                "-" \
+                "-" \
+                "-" \
+                "-" \
+                "-" \
+                "-" \
+                "-" \
+                "-" \
+                "-" \
+                $backuppath/Dr-JH-Now/ \
+                "-" \
+                "-" \
+                "-" \
+                "-" \
+                "-" \
+                "-" \
+                "-" \
+                "-" \
+                "-" \
+                $backuppath/More/ )
+fi
 extdrvdir=( SAMSUNG/Sync/Dr-CA-Buddhism/ \
             SAMSUNG/Sync/Dr-CAMusic-Europe/ \
             SAMSUNG/Sync/Dr-CAMusic-Germanic/ \
