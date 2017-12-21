@@ -5,14 +5,14 @@
 
 # set first item to 0 to exclude a directory:
 includeIndexed=( 1 Dropbox/CA-Buddhism \
+                 1 Dropbox/CA-OutThere-UK \
+                 1 Dropbox/CA-Theravada \
                  1 Dropbox/CAMusic-Europe \
+                 1 Dropbox/CAMusic-fromSharon \
                  1 Dropbox/CAMusic-Germanic \
                  1 Dropbox/CAMusic-USA \
                  1 Dropbox/CAMusic-West \
                  1 Dropbox/CAMusic-World \
-                 1 Dropbox/CA-OutThere-UK \
-                 1 Dropbox/CA-Theravada \
-                 1 Dropbox/CAudio-Music \
                  1 Dropbox/CAudio-OutThere \
                  1 Dropbox/Copied-OutThere \
                  1 Dropbox/JH/Copied \

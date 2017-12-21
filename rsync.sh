@@ -1,7 +1,7 @@
 #!/bin/bash
 # vim: set et tw=0:
 
-# Joseph Harriott http://momentary.eu/ Last updated: Wed 02 Aug 2017
+# Joseph Harriott http://momentary.eu/ Last updated: Fri 22 Sep 2017
 
 # A series of rsyncs between folders on local and portable media.
 # ---------------------------------------------------------------
@@ -15,14 +15,14 @@ backuppath=/mnt/WD1001FALS/rsyncBackup-sprbMb
 extmnt=/run/media/jo
 intdrv=/mnt/WD30EZRZ
 intdir=( "$intdrv/Dropbox/CA-Buddhism/" \
+         "$intdrv/Dropbox/CA-OutThere-UK/" \
+         "$intdrv/Dropbox/CA-Theravada/" \
          "$intdrv/Dropbox/CAMusic-Europe/" \
+         "$intdrv/Dropbox/CAMusic-fromSharon/" \
          "$intdrv/Dropbox/CAMusic-Germanic/" \
          "$intdrv/Dropbox/CAMusic-USA/" \
          "$intdrv/Dropbox/CAMusic-West/" \
          "$intdrv/Dropbox/CAMusic-World/" \
-         "$intdrv/Dropbox/CA-OutThere-UK/" \
-         "$intdrv/Dropbox/CA-Theravada/" \
-         "$intdrv/Dropbox/CAudio-Music/" \
          "$intdrv/Dropbox/CAudio-OutThere/" \
          "$intdrv/Dropbox/Copied-OutThere/" \
          "$intdrv/Dropbox/JH/Copied/" \
@@ -42,31 +42,31 @@ intdir=( "$intdrv/Dropbox/CA-Buddhism/" \
          "/mnt/SDSSDA240G/More/" )
 source "$( dirname "${BASH_SOURCE[0]}" )/include.sh"
 backupdir=( $backuppath/Dr-CA-Buddhism/ \
+            $backuppath/Dr-CA-OutThere-UK/ \
+            $backuppath/Dr-CA-Theravada/ \
             $backuppath/Dr-CAMusic-Europe/ \
+            $backuppath/Dr-CAMusic-fromSharon/ \
             $backuppath/Dr-CAMusic-Germanic/ \
             $backuppath/Dr-CAMusic-USA/ \
             $backuppath/Dr-CAMusic-West/ \
             $backuppath/Dr-CAMusic-World/ \
-            $backuppath/Dr-CA-OutThere-UK/ \
-            $backuppath/Dr-CA-Theravada/ \
-            $backuppath/Dr-CAudio-Music/ \
             $backuppath/Dr-CAudio-OutThere/ \
             $backuppath/Dr-Copied-OutThere/ \
-            $backuppath/Dr-JH-Copied/ \
-            $backuppath/Dr-JH-F+F/ \
-            $backuppath/Dr-JH-IT_stack/ \
-            $backuppath/Dr-JH-Now/ \
-            $backuppath/Dr-JH-Stack/ \
-            $backuppath/Dr-JH-Theatre0/ \
-            $backuppath/Dr-JH-Theatre1/ \
-            $backuppath/Dr-JH-Then0/ \
-            $backuppath/Dr-JH-Then1/ \
-            $backuppath/Dr-JH-toReduce/ \
-            $backuppath/Dr-JH-Work/ \
-            $backuppath/Dr-Photos/ \
+            $backuppath/Frequent/Dr-JH-Copied/ \
+            $backuppath/Frequent/Dr-JH-F+F/ \
+            $backuppath/Frequent/Dr-JH-IT_stack/ \
+            $backuppath/Frequent/Dr-JH-Now/ \
+            $backuppath/Frequent/Dr-JH-Stack/ \
+            $backuppath/Frequent/Dr-JH-Theatre0/ \
+            $backuppath/Frequent/Dr-JH-Theatre1/ \
+            $backuppath/Frequent/Dr-JH-Then0/ \
+            $backuppath/Frequent/Dr-JH-Then1/ \
+            $backuppath/Frequent/Dr-JH-toReduce/ \
+            $backuppath/Frequent/Dr-JH-Work/ \
+            $backuppath/Frequent/Dr-Photos/ \
             $backuppath/IT-Copied/ \
             $backuppath/IT-DebianBased-Copied/ \
-            $backuppath/More/ )
+            $backuppath/Frequent/More/ )
 if [ -d /mnt/BX200 ]; then
     backuppath="$extmnt/SAMSUNG/rsyncBackupN130"
     intdrv=/mnt/BX200
@@ -122,14 +122,14 @@ if [ -d /mnt/BX200 ]; then
                 $backuppath/More/ )
 fi
 extdrvdir=( SAMSUNG/Sync/Dr-CA-Buddhism/ \
+            SAMSUNG/Sync/Dr-CA-OutThere-UK/ \
+            SAMSUNG/Sync/Dr-CA-Theravada/ \
             SAMSUNG/Sync/Dr-CAMusic-Europe/ \
+            SAMSUNG/Sync/Dr-CAMusic-fromSharon/ \
             SAMSUNG/Sync/Dr-CAMusic-Germanic/ \
             SAMSUNG/Sync/Dr-CAMusic-USA/ \
             SAMSUNG/Sync/Dr-CAMusic-West/ \
             SAMSUNG/Sync/Dr-CAMusic-World/ \
-            SAMSUNG/Sync/Dr-CA-OutThere-UK/ \
-            SAMSUNG/Sync/Dr-CA-Theravada/ \
-            SAMSUNG/Sync/Dr-CAudio-Music/ \
             SAMSUNG/Sync/Dr-CAudio-OutThere/ \
             SAMSUNG/Sync/Dr-Copied-OutThere/ \
             SAMSUNG/Sync/Dr-JH-Copied/ \
