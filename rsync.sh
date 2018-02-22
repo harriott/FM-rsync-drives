@@ -1,7 +1,7 @@
 #!/bin/bash
 # vim: set et tw=0:
 
-# Joseph Harriott http://momentary.eu/ Last updated: Fri 22 Sep 2017
+# Joseph Harriott http://momentary.eu/ Last updated: Thu 22 Feb 2018
 
 # A series of rsyncs between folders on local and portable media.
 # ---------------------------------------------------------------
@@ -14,9 +14,9 @@
 backuppath=/mnt/WD1001FALS/rsyncBackup-sprbMb
 extmnt=/run/media/jo
 intdrv=/mnt/WD30EZRZ
-intdir=( "$intdrv/Dropbox/CA-Buddhism/" \
+intdir=( "$intdrv/Dropbox/CAB-Theravada/" \
+         "$intdrv/Dropbox/CA-Buddhism/" \
          "$intdrv/Dropbox/CA-OutThere-UK/" \
-         "$intdrv/Dropbox/CA-Theravada/" \
          "$intdrv/Dropbox/CAMusic-Europe/" \
          "$intdrv/Dropbox/CAMusic-fromSharon/" \
          "$intdrv/Dropbox/CAMusic-Germanic/" \
@@ -41,9 +41,9 @@ intdir=( "$intdrv/Dropbox/CA-Buddhism/" \
          "/mnt/SDSSDA240G/IT-DebianBased-Copied/" \
          "/mnt/SDSSDA240G/More/" )
 source "$( dirname "${BASH_SOURCE[0]}" )/include.sh"
-backupdir=( $backuppath/Dr-CA-Buddhism/ \
+backupdir=( $backuppath/Dr-CAB-Theravada/ \
+            $backuppath/Dr-CA-Buddhism/ \
             $backuppath/Dr-CA-OutThere-UK/ \
-            $backuppath/Dr-CA-Theravada/ \
             $backuppath/Dr-CAMusic-Europe/ \
             $backuppath/Dr-CAMusic-fromSharon/ \
             $backuppath/Dr-CAMusic-Germanic/ \
@@ -121,9 +121,9 @@ if [ -d /mnt/BX200 ]; then
                 "-" \
                 $backuppath/More/ )
 fi
-extdrvdir=( SAMSUNG/Sync/Dr-CA-Buddhism/ \
+extdrvdir=( SAMSUNG/Sync/Dr-CAB-Theravada/ \
+            SAMSUNG/Sync/Dr-CA-Buddhism/ \
             SAMSUNG/Sync/Dr-CA-OutThere-UK/ \
-            SAMSUNG/Sync/Dr-CA-Theravada/ \
             SAMSUNG/Sync/Dr-CAMusic-Europe/ \
             SAMSUNG/Sync/Dr-CAMusic-fromSharon/ \
             SAMSUNG/Sync/Dr-CAMusic-Germanic/ \

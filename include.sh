@@ -4,9 +4,9 @@
 # Called from  rsync.sh
 
 # set first item to 0 to exclude a directory:
-includeIndexed=( 1 Dropbox/CA-Buddhism \
+includeIndexed=( 1 Dropbox/CAB-Theravada \
+                 1 Dropbox/CA-Buddhism \
                  1 Dropbox/CA-OutThere-UK \
-                 1 Dropbox/CA-Theravada \
                  1 Dropbox/CAMusic-Europe \
                  1 Dropbox/CAMusic-fromSharon \
                  1 Dropbox/CAMusic-Germanic \
