@@ -1,152 +1,101 @@
 #!/bin/bash
 # vim: set et tw=0:
 
-# Joseph Harriott http://momentary.eu/ Last updated: Thu 22 Feb 2018
+# Joseph Harriott http://momentary.eu/ Last updated: Sun 25 Feb 2018
 
 # A series of rsyncs between folders on local and portable media.
 # ---------------------------------------------------------------
 #   As this script performs a high-impact operation,
 #   I prefer to leave it without executable permission
 #   and call it from a terminal with the bash command.
-#   eg: bash /mnt/WD30EZRZ/Dropbox/JH/IT_stack/rsync-portabledrives/rsync.sh
+#   eg: bash /<fullpath>/rsync.sh
 
-# Prepare the locations:
+# Prepare the locations for AcerVeritonT661:
 backuppath=/mnt/WD1001FALS/rsyncBackup-sprbMb
 extmnt=/run/media/jo
-intdrv=/mnt/WD30EZRZ
-intdir=( "$intdrv/Dropbox/CAB-Theravada/" \
-         "$intdrv/Dropbox/CA-Buddhism/" \
-         "$intdrv/Dropbox/CA-OutThere-UK/" \
-         "$intdrv/Dropbox/CAMusic-Europe/" \
-         "$intdrv/Dropbox/CAMusic-fromSharon/" \
-         "$intdrv/Dropbox/CAMusic-Germanic/" \
-         "$intdrv/Dropbox/CAMusic-USA/" \
-         "$intdrv/Dropbox/CAMusic-West/" \
-         "$intdrv/Dropbox/CAMusic-World/" \
-         "$intdrv/Dropbox/CAudio-OutThere/" \
-         "$intdrv/Dropbox/Copied-OutThere/" \
-         "$intdrv/Dropbox/JH/Copied/" \
-         "$intdrv/Dropbox/JH/F+F/" \
-         "$intdrv/Dropbox/JH/IT_stack/" \
-         "$intdrv/Dropbox/JH/Now/" \
-         "$intdrv/Dropbox/JH/Stack/" \
-         "$intdrv/Dropbox/JH/Theatre0/" \
-         "$intdrv/Dropbox/JH/Theatre1/" \
-         "$intdrv/Dropbox/JH/Then0/" \
-         "$intdrv/Dropbox/JH/Then1/" \
-         "$intdrv/Dropbox/JH/toReduce/" \
-         "$intdrv/Dropbox/JH/Work/" \
-         "$intdrv/Dropbox/Photos/" \
-         "/mnt/SDSSDA240G/IT-Copied/" \
-         "/mnt/SDSSDA240G/IT-DebianBased-Copied/" \
-         "/mnt/SDSSDA240G/More/" )
-source "$( dirname "${BASH_SOURCE[0]}" )/include.sh"
-backupdir=( $backuppath/Dr-CAB-Theravada/ \
-            $backuppath/Dr-CA-Buddhism/ \
-            $backuppath/Dr-CA-OutThere-UK/ \
-            $backuppath/Dr-CAMusic-Europe/ \
-            $backuppath/Dr-CAMusic-fromSharon/ \
-            $backuppath/Dr-CAMusic-Germanic/ \
-            $backuppath/Dr-CAMusic-USA/ \
-            $backuppath/Dr-CAMusic-West/ \
-            $backuppath/Dr-CAMusic-World/ \
-            $backuppath/Dr-CAudio-OutThere/ \
-            $backuppath/Dr-Copied-OutThere/ \
-            $backuppath/Frequent/Dr-JH-Copied/ \
-            $backuppath/Frequent/Dr-JH-F+F/ \
-            $backuppath/Frequent/Dr-JH-IT_stack/ \
-            $backuppath/Frequent/Dr-JH-Now/ \
-            $backuppath/Frequent/Dr-JH-Stack/ \
-            $backuppath/Frequent/Dr-JH-Theatre0/ \
-            $backuppath/Frequent/Dr-JH-Theatre1/ \
-            $backuppath/Frequent/Dr-JH-Then0/ \
-            $backuppath/Frequent/Dr-JH-Then1/ \
-            $backuppath/Frequent/Dr-JH-toReduce/ \
-            $backuppath/Frequent/Dr-JH-Work/ \
-            $backuppath/Frequent/Dr-Photos/ \
-            $backuppath/IT-Copied/ \
-            $backuppath/IT-DebianBased-Copied/ \
-            $backuppath/Frequent/More/ )
-if [ -d /mnt/BX200 ]; then
-    backuppath="$extmnt/SAMSUNG/rsyncBackupN130"
-    intdrv=/mnt/BX200
-    intdir=( "-" \
-             "-" \
-             "-" \
-             "-" \
-             "-" \
-             "-" \
-             "-" \
-             "-" \
-             "-" \
-             "-" \
-             "-" \
-             "-" \
-             "-" \
-             "-" \
-             "$intdrv/Dropbox/JH/k-Now/" \
-             "-" \
-             "-" \
-             "-" \
-             "-" \
-             "-" \
-             "-" \
-             "-" \
-             "-" \
-             "-" \
-             "$intdrv/More/" )
-    backupdir=( "-" \
-                "-" \
-                "-" \
-                "-" \
-                "-" \
-                "-" \
-                "-" \
-                "-" \
-                "-" \
-                "-" \
-                "-" \
-                "-" \
-                "-" \
-                "-" \
-                $backuppath/Dr-JH-Now/ \
-                "-" \
-                "-" \
-                "-" \
-                "-" \
-                "-" \
-                "-" \
-                "-" \
-                "-" \
-                "-" \
-                $backuppath/More/ )
-fi
-extdrvdir=( SAMSUNG/Sync/Dr-CAB-Theravada/ \
-            SAMSUNG/Sync/Dr-CA-Buddhism/ \
-            SAMSUNG/Sync/Dr-CA-OutThere-UK/ \
-            SAMSUNG/Sync/Dr-CAMusic-Europe/ \
-            SAMSUNG/Sync/Dr-CAMusic-fromSharon/ \
-            SAMSUNG/Sync/Dr-CAMusic-Germanic/ \
-            SAMSUNG/Sync/Dr-CAMusic-USA/ \
-            SAMSUNG/Sync/Dr-CAMusic-West/ \
-            SAMSUNG/Sync/Dr-CAMusic-World/ \
-            SAMSUNG/Sync/Dr-CAudio-OutThere/ \
-            SAMSUNG/Sync/Dr-Copied-OutThere/ \
-            SAMSUNG/Sync/Dr-JH-Copied/ \
-            SAMSUNG/Sync/Dr-JH-F+F/ \
-            SAMSUNG/Sync/Dr-JH-IT_stack/ \
-            SAMSUNG/Sync/Dr-JH-Now/ \
-            SAMSUNG/Sync/Dr-JH-Stack/ \
-            SAMSUNG/Sync/Dr-JH-Theatre0/ \
-            SAMSUNG/Sync/Dr-JH-Theatre1/ \
-            SAMSUNG/Sync/Dr-JH-Then0/ \
-            SAMSUNG/Sync/Dr-JH-Then1/ \
-            SAMSUNG/Sync/Dr-JH-toReduce/ \
-            SAMSUNG/Sync/Dr-JH-Work/ \
-            SAMSUNG/Sync/Dr-Photos/ \
-            SAMSUNG/Sync/IT-Copied/ \
-            SAMSUNG/Sync/IT-DebianBased-Copied/ \
-            SAMSUNG/Sync/More/ )
+intdrv=/mnt/SDSSDA240G
+intdir=(
+  "/mnt/HD103SJ/Share-AV-Stack/" \
+  "/mnt/9QG2FFEE/Share-Dr-CAT-Buddhism/" \
+  "/mnt/9QG2FFEE/Share-Dr-CAT-Buddhism-Theravada/" \
+  "/mnt/9QG2FFEE/Share-Dr-CAT-OutThere/" \
+  "/mnt/9QG2FFEE/Share-Dr-CAT-OutThere-UK/" \
+  "/mnt/HD103SJ/Share-IT-Copied/" \
+  "/mnt/HD103SJ/Share-IT-DebianBased-Copied/" \
+  "/mnt/HD103SJ/Share-More/" \
+  "/mnt/HD103SJ/Share-toReduce/" \
+  "$intdrv/Dropbox/Copied-OutThere/" \
+  "$intdrv/Dropbox/JH/Copied/" \
+  "$intdrv/Dropbox/JH/F+F/" \
+  "$intdrv/Dropbox/JH/IT_stack/" \
+  "$intdrv/Dropbox/JH/Now/" \
+  "$intdrv/Dropbox/JH/Theatre0/" \
+  "$intdrv/Dropbox/JH/Theatre1/" \
+  "$intdrv/Dropbox/JH/Then0/" \
+  "$intdrv/Dropbox/JH/Then1/" \
+  "$intdrv/Dropbox/JH/toReduce/" \
+  "$intdrv/Dropbox/JH/Work/" \
+  "$intdrv/Dropbox/Photos/" \
+  "$intdrv/Dropbox/CAM-fromSharon/" \
+  "$intdrv/Dropbox/CAMusic/" \
+  "$intdrv/Dropbox/JH/Stack/" \
+)
+scriptFolder=$( dirname "${BASH_SOURCE[0]}" )
+source "$scriptFolder/include.sh"
+backupdir=(
+  $backuppath/Share-AV-Stack/ \
+  $backuppath/Share-Dr-CAT-Buddhism/ \
+  $backuppath/Share-Dr-CAT-Buddhism-Theravada/ \
+  $backuppath/Share-Dr-CAT-OutThere/ \
+  $backuppath/Share-Dr-CAT-OutThere-UK/ \
+  $backuppath/Share-IT-Copied/ \
+  $backuppath/Share-IT-DebianBased-Copied/ \
+  $backuppath/Share-More/ \
+  $backuppath/Share-toReduce/ \
+  $backuppath/Sync0-Dr-Copied-OutThere/ \
+  $backuppath/Sync0-Dr-JH-Copied/ \
+  $backuppath/Sync0-Dr-JH-F+F/ \
+  $backuppath/Sync0-Dr-JH-IT_stack/ \
+  $backuppath/Sync0-Dr-JH-Now/ \
+  $backuppath/Sync0-Dr-JH-Theatre0/ \
+  $backuppath/Sync0-Dr-JH-Theatre1/ \
+  $backuppath/Sync0-Dr-JH-Then0/ \
+  $backuppath/Sync0-Dr-JH-Then1/ \
+  $backuppath/Sync0-Dr-JH-toReduce/ \
+  $backuppath/Sync0-Dr-JH-Work/ \
+  $backuppath/Sync0-Dr-Photos/ \
+  $backuppath/Sync1-Dr-CAM-fromSharon/ \
+  $backuppath/Sync1-Dr-CAMusic/ \
+  $backuppath/Sync1-Dr-JH-Stack/ \
+)
+source "$scriptFolder/N130.sh"
+# This drive defines the sort order:
+extdrvdir=(
+  SM3/Share/AV-Stack/ \
+  SM3/Share/Dr-CAT-Buddhism/ \
+  SM3/Share/Dr-CAT-Buddhism-Theravada/ \
+  SM3/Share/Dr-CAT-OutThere/ \
+  SM3/Share/Dr-CAT-OutThere-UK/ \
+  SM3/Share/IT-Copied/ \
+  SM3/Share/IT-DebianBased-Copied/ \
+  SM3/Share/More/ \
+  SM3/Share/toReduce/ \
+  SM3/Sync0/Dr-Copied-OutThere/ \
+  SM3/Sync0/Dr-JH-Copied/ \
+  SM3/Sync0/Dr-JH-F+F/ \
+  SM3/Sync0/Dr-JH-IT_stack/ \
+  SM3/Sync0/Dr-JH-Now/ \
+  SM3/Sync0/Dr-JH-Theatre0/ \
+  SM3/Sync0/Dr-JH-Theatre1/ \
+  SM3/Sync0/Dr-JH-Then0/ \
+  SM3/Sync0/Dr-JH-Then1/ \
+  SM3/Sync0/Dr-JH-toReduce/ \
+  SM3/Sync0/Dr-JH-Work/ \
+  SM3/Sync0/Dr-Photos/ \
+  SM3/Sync1/Dr-CAM-fromSharon/ \
+  SM3/Sync1/Dr-CAMusic/ \
+  SM3/Sync1/Dr-JH-Stack/ \
+)
 
 # List the included directories:
 echo -en "This BASH script will run \e[1mrsync\e[0m, pushing all changes, "
@@ -192,7 +141,7 @@ fi
 i=-1
 outf=`basename ${BASH_SOURCE[0]}`
 outf0="$intdrv/${outf%.*}"
-outf1="$outf0.txt"
+outf1="$outf0.log"
 echo "vim: tw=0:" > $outf1
 echo "" | tee -a $outf1
 echo $(date) | tee -a $outf1
@@ -227,7 +176,7 @@ for thisdir in "${intdir[@]}"; do
     fi
 done
 jHM=$(date "+%j-%H%M")
-outf2="$outf0-$jHM.txt"
+outf2="$outf0-$jHM.log"
 cp $outf1 $outf2
 echo "- all done, and logged to $outf1 (& $outf2)"
 exit

@@ -4,32 +4,32 @@
 # Called from  rsync.sh
 
 # set first item to 0 to exclude a directory:
-includeIndexed=( 1 Dropbox/CAB-Theravada \
-                 1 Dropbox/CA-Buddhism \
-                 1 Dropbox/CA-OutThere-UK \
-                 1 Dropbox/CAMusic-Europe \
-                 1 Dropbox/CAMusic-fromSharon \
-                 1 Dropbox/CAMusic-Germanic \
-                 1 Dropbox/CAMusic-USA \
-                 1 Dropbox/CAMusic-West \
-                 1 Dropbox/CAMusic-World \
-                 1 Dropbox/CAudio-OutThere \
-                 1 Dropbox/Copied-OutThere \
-                 1 Dropbox/JH/Copied \
-                 1 Dropbox/JH/F+F \
-                 1 Dropbox/JH/IT_stack \
-                 1 Dropbox/JH/Now \
-                 1 Dropbox/JH/Stack \
-                 1 Dropbox/JH/Theatre0 \
-                 1 Dropbox/JH/Theatre1 \
-                 1 Dropbox/JH/Then0 \
-                 1 Dropbox/JH/Then1 \
-                 1 Dropbox/JH/toReduce \
-                 1 Dropbox/JH/Work \
-                 1 Dropbox/Photos \
-                 1 IT-Copied \
-                 1 IT-DebianBased-Copied \
-                 1 More)
+includeIndexed=(
+  0 Share-AV-Stack \
+  0 Share-CAT-Buddhism \
+  0 Share-CAT-Buddhism-Theravada \
+  0 Share-CAT-OutThere \
+  0 Share-CAT-OutThere-UK \
+  0 Share-IT-Copied \
+  0 Share-IT-DebianBased-Copied \
+  0 Share-More \
+  1 Share-toReduce \
+  0 Sync0-Copied-OutThere \
+  0 Sync0-JH-Copied \
+  0 Sync0-JH-F+F \
+  0 Sync0-JH-IT_stack \
+  0 Sync0-JH-Now \
+  0 Sync0-JH-Theatre0 \
+  0 Sync0-JH-Theatre1 \
+  0 Sync0-JH-Then0 \
+  0 Sync0-JH-Then1 \
+  0 Sync0-JH-toReduce \
+  0 Sync0-JH-Work \
+  0 Sync0-Photos \
+  0 Sync1-CAM-fromSharon \
+  0 Sync1-CAMusic \
+  0 Sync1-JH-Stack \
+)
 # get the include array:
 include=(${includeIndexed[0]})
 i=0
