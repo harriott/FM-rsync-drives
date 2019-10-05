@@ -5,14 +5,14 @@
 
 # set first item to 0 to exclude a directory:
 includeIndexed=(
-  0 Share-AV-Stack \
-  0 Share-CAT-Buddhism \
-  0 Share-CAT-Buddhism-Theravada \
-  0 Share-CAT-OutThere \
-  0 Share-CAT-OutThere-UK \
-  0 Share-IT-Copied \
-  0 Share-IT-DebianBased-Copied \
-  0 Share-More \
+  1 Share-AV-Stack \
+  1 Share-CAT-Buddhism \
+  1 Share-CAT-Buddhism-Theravada \
+  1 Share-CAT-OutThere \
+  1 Share-CAT-OutThere-UK \
+  1 Share-IT-Copied \
+  1 Share-IT-DebianBased-Copied \
+  1 Share-More \
   1 Share-toReduce \
   0 Sync0-Copied-OutThere \
   0 Sync0-JH-Copied \

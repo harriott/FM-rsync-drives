@@ -111,7 +111,7 @@ echo -e "\e[0m"
 
 # Ask what to do:
 read -p "Sync the backup (b), or TO (T) portable drives (or simulate (t)), or FROM (F) (or simulate (f))? " drctn
-rsynccom="rsync -irtv --delete"
+rsynccom="rsync -ilrtv --delete"
 if [ $drctn ]; then
     if [ $drctn = "b" ]; then
         echo -e "Okay, running: \e[1m$rsynccom <localdrive> <backupdrivebackup>\e[0m"
@@ -119,14 +119,14 @@ if [ $drctn ]; then
     elif [ $drctn = "T" ]; then
         read -p "Run several: $rsynccom <localdrive> <portabledrive> ? " cnfrm
     elif [ $drctn = "t" ]; then
-        rsynccom="rsync -inrtv --delete" # simulate
+        rsynccom="rsync -ilnrtv --delete" # simulate
         echo -e "Okay, running: \e[1m$rsynccom <localdrive> <portabledrivebackup>\e[0m"
         cnfrm="y"
     elif [ $drctn = "F" ]; then
         echo -e "About to run several: \e[1m\e[95m$rsynccom <portabledrive> <localdrive>\e[0m"
         read -p "No recovery possible from this operation, GO AHEAD? " cnfrm
     elif [ $drctn = "f" ]; then
-        rsynccom="rsync -inrtv --delete" # simulate
+        rsynccom="rsync -ilnrtv --delete" # simulate
         echo -e "Okay, running: \e[1m$rsynccom <portabledrivebackup> <localdrive>\e[0m"
         cnfrm="y"
     else
