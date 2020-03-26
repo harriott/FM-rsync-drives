@@ -1,7 +1,7 @@
 #!/bin/bash
 # vim: set et tw=0:
 
-# Joseph Harriott http://momentary.eu/ Last updated: Sun 25 Feb 2018
+# Joseph Harriott http://momentary.eu/ Last updated: Mon 23 Dec 2019
 
 # A series of rsyncs between folders on local and portable media.
 # ---------------------------------------------------------------
@@ -11,7 +11,7 @@
 #   eg: bash /<fullpath>/rsync.sh
 
 # Prepare the locations for AcerVeritonT661:
-backuppath=/mnt/WD1001FALS/rsyncBackup-sprbMb
+backuppath=/mnt/WD1001FALS/rsyncBackup-AVT661
 extmnt=/run/media/jo
 intdrv=/mnt/SDSSDA240G
 intdir=(
@@ -24,6 +24,7 @@ intdir=(
   "/mnt/HD103SJ/Share-IT-DebianBased-Copied/" \
   "/mnt/HD103SJ/Share-More/" \
   "/mnt/HD103SJ/Share-toReduce/" \
+  "$intdrv/Dropbox/Apps/" \
   "$intdrv/Dropbox/Copied-OutThere/" \
   "$intdrv/Dropbox/JH/Copied/" \
   "$intdrv/Dropbox/JH/F+F/" \
@@ -37,6 +38,8 @@ intdir=(
   "$intdrv/Dropbox/JH/Work/" \
   "$intdrv/Dropbox/Photos/" \
   "$intdrv/Dropbox/CAM-fromSharon/" \
+  "$intdrv/Dropbox/CAM-UK/" \
+  "$intdrv/Dropbox/CAM-USA/" \
   "$intdrv/Dropbox/CAMusic/" \
   "$intdrv/Dropbox/JH/Stack/" \
 )
@@ -52,6 +55,7 @@ backupdir=(
   $backuppath/Share-IT-DebianBased-Copied/ \
   $backuppath/Share-More/ \
   $backuppath/Share-toReduce/ \
+  $backuppath/Sync1-Dr-Apps/ \
   $backuppath/Sync0-Dr-Copied-OutThere/ \
   $backuppath/Sync0-Dr-JH-Copied/ \
   $backuppath/Sync0-Dr-JH-F+F/ \
@@ -65,10 +69,12 @@ backupdir=(
   $backuppath/Sync0-Dr-JH-Work/ \
   $backuppath/Sync0-Dr-Photos/ \
   $backuppath/Sync1-Dr-CAM-fromSharon/ \
+  $backuppath/Sync1-Dr-CAM-UK/ \
+  $backuppath/Sync1-Dr-CAM-USA/ \
   $backuppath/Sync1-Dr-CAMusic/ \
   $backuppath/Sync1-Dr-JH-Stack/ \
 )
-source "$scriptFolder/N130.sh"
+# source "$scriptFolder/N130.sh"
 # This drive defines the sort order:
 extdrvdir=(
   SM3/Share/AV-Stack/ \
@@ -80,6 +86,7 @@ extdrvdir=(
   SM3/Share/IT-DebianBased-Copied/ \
   SM3/Share/More/ \
   SM3/Share/toReduce/ \
+  SM3/Sync1/Dr-Apps/ \
   SM3/Sync0/Dr-Copied-OutThere/ \
   SM3/Sync0/Dr-JH-Copied/ \
   SM3/Sync0/Dr-JH-F+F/ \
@@ -93,6 +100,8 @@ extdrvdir=(
   SM3/Sync0/Dr-JH-Work/ \
   SM3/Sync0/Dr-Photos/ \
   SM3/Sync1/Dr-CAM-fromSharon/ \
+  SM3/Sync1/Dr-CAM-UK/ \
+  SM3/Sync1/Dr-CAM-USA/ \
   SM3/Sync1/Dr-CAMusic/ \
   SM3/Sync1/Dr-JH-Stack/ \
 )
@@ -101,12 +110,17 @@ extdrvdir=(
 echo -en "This BASH script will run \e[1mrsync\e[0m, pushing all changes, "
 echo "either to or from these local directories:"
 i=-1
+j=0
 for thisdir in "${intdir[@]}"; do
     if [ ! $thisdir = "-" ]; then
         ((i++))
-        if [ ${include[i]} -ne "0" ]; then echo -en "\e[92m  $thisdir\n"; fi
+        if [ ${include[i]} -ne "0" ]; then
+          echo -en "\e[92m  $thisdir\n"
+          ((j++))
+        fi
     fi
 done
+printf -v included "%02d" $j
 echo -e "\e[0m"
 
 # Ask what to do:
@@ -145,10 +159,12 @@ outf1="$outf0.log"
 echo "vim: tw=0:" > $outf1
 echo "" | tee -a $outf1
 echo $(date) | tee -a $outf1
+j=0
 for thisdir in "${intdir[@]}"; do
     ((i++))
     if [ ${include[i]} -ne "0" ]; then
         if [ ! $thisdir = "-" ]; then
+            ((j++))
             if [ $drctn = "b" ]; then
                 fullcmd="$rsynccom $thisdir ${backupdir[i]}"
             else
@@ -167,8 +183,9 @@ for thisdir in "${intdir[@]}"; do
                 fi
             fi
             echo "" | tee -a $outf1
-            echo "Push sync $((i+1))" | tee -a $outf1
-            echo "-----------" | tee -a $outf1
+            printf -v include "%02d" $j
+            echo "Push sync $include of $included" | tee -a $outf1
+            echo "------------------" | tee -a $outf1
             echo $fullcmd | tee -a $outf1
             echo "" | tee -a $outf1
             $fullcmd | tee -a $outf1 # - disable for testing

@@ -14,21 +14,24 @@ includeIndexed=(
   1 Share-IT-DebianBased-Copied \
   1 Share-More \
   1 Share-toReduce \
-  0 Sync0-Copied-OutThere \
-  0 Sync0-JH-Copied \
-  0 Sync0-JH-F+F \
-  0 Sync0-JH-IT_stack \
-  0 Sync0-JH-Now \
-  0 Sync0-JH-Theatre0 \
-  0 Sync0-JH-Theatre1 \
-  0 Sync0-JH-Then0 \
-  0 Sync0-JH-Then1 \
-  0 Sync0-JH-toReduce \
-  0 Sync0-JH-Work \
-  0 Sync0-Photos \
-  0 Sync1-CAM-fromSharon \
-  0 Sync1-CAMusic \
-  0 Sync1-JH-Stack \
+  1 Sync0-Apps \
+  1 Sync0-Copied-OutThere \
+  1 Sync0-JH-Copied \
+  1 Sync0-JH-F+F \
+  1 Sync0-JH-IT_stack \
+  1 Sync0-JH-Now \
+  1 Sync0-JH-Theatre0 \
+  1 Sync0-JH-Theatre1 \
+  1 Sync0-JH-Then0 \
+  1 Sync0-JH-Then1 \
+  1 Sync0-JH-toReduce \
+  1 Sync0-JH-Work \
+  1 Sync0-Photos \
+  1 Sync1-CAM-fromSharon \
+  1 Sync1-CAM-UK \
+  1 Sync1-CAM-USA \
+  1 Sync1-CAMusic \
+  1 Sync1-JH-Stack \
 )
 # get the include array:
 include=(${includeIndexed[0]})
