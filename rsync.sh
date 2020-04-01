@@ -26,6 +26,7 @@ intdir=(
   "/mnt/HD103SJ/Share-toReduce/" \
   "$intdrv/Dropbox/Apps/" \
   "$intdrv/Dropbox/Copied-OutThere/" \
+  "$intdrv/Dropbox/JH/Cafezoide/" \
   "$intdrv/Dropbox/JH/Copied/" \
   "$intdrv/Dropbox/JH/F+F/" \
   "$intdrv/Dropbox/JH/IT_stack/" \
@@ -57,6 +58,7 @@ backupdir=(
   $backuppath/Share-toReduce/ \
   $backuppath/Sync1-Dr-Apps/ \
   $backuppath/Sync0-Dr-Copied-OutThere/ \
+  $backuppath/Sync0-Dr-JH-Cafezoide/ \
   $backuppath/Sync0-Dr-JH-Copied/ \
   $backuppath/Sync0-Dr-JH-F+F/ \
   $backuppath/Sync0-Dr-JH-IT_stack/ \
@@ -88,6 +90,7 @@ extdrvdir=(
   SM3/Share/toReduce/ \
   SM3/Sync1/Dr-Apps/ \
   SM3/Sync0/Dr-Copied-OutThere/ \
+  SM3/Sync0/Dr-JH-Cafezoide/ \
   SM3/Sync0/Dr-JH-Copied/ \
   SM3/Sync0/Dr-JH-F+F/ \
   SM3/Sync0/Dr-JH-IT_stack/ \
