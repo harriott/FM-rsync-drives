@@ -3,6 +3,8 @@
 
 # Joseph Harriott http://momentary.eu/ Last updated: Fri 20 Sep 2019
 
+# Now outdated...
+
 if [ -d /mnt/BX200 ]; then
     backuppath="$extmnt/SAMSUNG/rsyncBackupN130"
     intdrv=/mnt/BX200
