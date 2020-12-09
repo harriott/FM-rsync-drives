@@ -1,7 +1,7 @@
 #!/bin/bash
 # vim: fdm=expr ft=sh.shfold:
 
-# Joseph Harriott - Mon 12 Oct 2020
+# Joseph Harriott - Mon 09 Nov 2020
 
 # A series of rsyncs between folders on local and portable media.
 # ---------------------------------------------------------------
@@ -44,7 +44,6 @@ intdir=(
   "$intdrv/Dropbox/JH/JCD-imagey-e3/" \
   "$intdrv/Dropbox/JH/Now/" \
   "$intdrv/Dropbox/JH/Sh-81A4/" \
-  "$intdrv/Dropbox/JH/Sh-MotoG4-Ext/" \
   "$intdrv/Dropbox/JH/Sh-XA10/" \
   "$intdrv/Dropbox/JH/Sh-XA2/" \
   "/mnt/9QG2FFEE/Share/Dr-JH-Stack/" \
@@ -85,7 +84,6 @@ extdrvdir=(
   SM3/Sync0/Dr-JH-JCD-imagey-e3/ \
   SM3/Sync0/Dr-JH-Now/ \
   SM3/Sync0/Dr-JH-Sh-81A4/ \
-  SM3/Sync0/Dr-JH-Sh-MotoG4-Ext/ \
   SM3/Sync0/Dr-JH-Sh-XA10/ \
   SM3/Sync0/Dr-JH-Sh-XA2/ \
   SM3/Sync1/Dr-JH-Stack/ \
@@ -130,7 +128,7 @@ if [ $drctn ]; then
         echo "Okay, running: ${tpf7b}$rsynccom <localdrive> <portabledrivebackup>${tpfn}"
         cnfrm="y"
     elif [ $drctn = "F" ]; then
-        echo -e "About to run several: \e[1m\e[95m$rsynccom <portabledrive> <localdrive>\e[0m"
+        echo "About to run several: ${tpf5b}$rsynccom <portabledrive> <localdrive>${tpfn}"
         read -p "No recovery possible from this operation, GO AHEAD? " cnfrm
     elif [ $drctn = "f" ]; then
         dryrun=' - dry-run'
@@ -150,11 +148,13 @@ i=-1
 outf=`basename ${BASH_SOURCE[0]}`
 outf0="$intdrv/${outf%.*}"
 outf1="$outf0.log"
-outf2="$outf0.tmp"
+outf2="$outf0.tmp"; touch $outf2
 echo "vim: ft=rsynclog fdm=expr:" > $outf1
 echo "" | tee -a $outf1
 echo $(date)$dryrun | tee -a $outf1
 underline='------------------'
+nfd="! no SRC !"
+ntd="! no DEST !"
 j=0
 for thisdir in "${intdir[@]}"; do
     ((i++))
@@ -186,13 +186,26 @@ for thisdir in "${intdir[@]}"; do
             fullcmd="$cmd $fr $to"
             echo ${tpf7b}$fullcmd${tpfn}
             echo $fullcmd >> $outf1
-            [ ! -d $fr ] && echo "--- !!! $fr ain't there !!! ---" >> $outf1
-            echo ${tpf7}
-            $fullcmd | tee $outf2 # - disable for testing
-            if [ -s $outf2 ]; then
-                echo "" >> $outf1
-                echo "Changes:" >> $outf1
-                cat $outf2 >> $outf1
+            if [ -d $fr ]; then
+                if [ -d $to ]; then
+                    echo ${tpf7}
+                    $fullcmd 2>&1 | tee $outf2 # - disable for testing
+                    if [ -s $outf2 ]; then
+                        echo "" >> $outf1
+                        echo "Action:" >> $outf1
+                        cat $outf2 >> $outf1
+                    fi
+                else # no destination
+                    echo "" | tee -a $outf1
+                    echo ${tpf1b}$ntd${tpfn}
+                    echo "Action:" >> $outf1
+                    echo $ntd >> $outf1
+                fi
+            else # no source
+                echo "" | tee -a $outf1
+                echo ${tpf1b}$nfd${tpfn}
+                echo "Action:" >> $outf1
+                echo $nfd >> $outf1
             fi
             echo -en '\e[0m'
         fi
@@ -205,6 +218,6 @@ outf3="$outf0-$jHM.log"
 cp $outf1 $outf3
 echo ''
 echo "- all done, and logged to $outf1 ${tpf7}(& $outf3)${tpfn}"
-gvim -c "silent! /^Changes" $outf1
+gvim -c "silent! /^Action" $outf1
 exit
 
