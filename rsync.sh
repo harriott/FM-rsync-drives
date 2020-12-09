@@ -11,54 +11,12 @@
 #   eg: bash /<fullpath>/rsync.sh
 
 #=> directory locations
+# $DROPBOX is defined in my ~/.xinitrc
+extmnt=/run/media/jo
 scriptFolder=$( dirname "${BASH_SOURCE[0]}" )
 
-#==> include list
-source "$scriptFolder/include.sh"
-
-#==> source locations on AVT661
-extmnt=/run/media/jo
-intdrv=/mnt/SDSSDA240G
-intdir=(
-  "/mnt/9QG2FFEE/Share/AV-Stack/" \
-  "/mnt/9QG2FFEE/Share/Dr-CAT-Buddhism/" \
-  "/mnt/9QG2FFEE/Share/Dr-CAT-Buddhism-Theravada/" \
-  "/mnt/9QG2FFEE/Share/Dr-CAT-OutThere/" \
-  "/mnt/9QG2FFEE/Share/Dr-CAT-OutThere-UK/" \
-  "/mnt/9QG2FFEE/Share/IT-Copied/" \
-  "/mnt/9QG2FFEE/Share/IT-DebianBased-Copied/" \
-  "/mnt/9QG2FFEE/Share/More/" \
-  "/mnt/9QG2FFEE/Share/toReduce/" \
-  "$intdrv/Dropbox/Apps/" \
-  "$intdrv/Dropbox/CAM-toSort/" \
-  "$intdrv/Dropbox/CAM-UK/" \
-  "$intdrv/Dropbox/CAM-USA/" \
-  "/mnt/9QF58B0C/CAMusic/" \
-  "/mnt/9QF58B0C/ThunderbirdProfiles/" \
-  "$intdrv/Dropbox/JH/Cafezoide/" \
-  "$intdrv/Dropbox/JH/CforWork/" \
-  "$intdrv/Dropbox/JH/Copied/" \
-  "$intdrv/Dropbox/JH/core/" \
-  "/mnt/9QG2FFEE/Share/Dr-JH-COutThere/" \
-  "$intdrv/Dropbox/JH/F+F/" \
-  "$intdrv/Dropbox/JH/JCD-imagey-e3/" \
-  "$intdrv/Dropbox/JH/Now/" \
-  "$intdrv/Dropbox/JH/Sh-81A4/" \
-  "$intdrv/Dropbox/JH/Sh-XA10/" \
-  "$intdrv/Dropbox/JH/Sh-XA2/" \
-  "/mnt/9QG2FFEE/Share/Dr-JH-Stack/" \
-  "$intdrv/Dropbox/JH/Technos/" \
-  "$intdrv/Dropbox/JH/Theatre0/" \
-  "$intdrv/Dropbox/JH/Theatre1/" \
-  "$intdrv/Dropbox/JH/Then0/" \
-  "$intdrv/Dropbox/JH/Then1/" \
-  "$intdrv/Dropbox/JH/toReduce/" \
-  "$intdrv/Dropbox/JH/TP.default-release/" \
-  "$intdrv/Dropbox/JH/Work/" \
-  "$intdrv/Dropbox/Photos/" \
-)
 #==> backup locations on SM3
-# This drive defines the sort order:
+# this drive defines the sort order
 extdrvdir=(
   SM3/Share/AV-Stack/ \
   SM3/Share/Dr-CAT-Buddhism/ \
@@ -98,6 +56,94 @@ extdrvdir=(
   SM3/Sync0/Dr-Photos/ \
 )
 
+#==> include list
+source "$scriptFolder/include.sh"
+
+#==> source locations on AVT661
+if [ $machine = "AVT661" ]; then
+    intdrv=/mnt/SDSSDA240G
+    intdir=(
+        "/mnt/9QG2FFEE/Share/AV-Stack/" \
+        "/mnt/9QG2FFEE/Share/Dr-CAT-Buddhism/" \
+        "/mnt/9QG2FFEE/Share/Dr-CAT-Buddhism-Theravada/" \
+        "/mnt/9QG2FFEE/Share/Dr-CAT-OutThere/" \
+        "/mnt/9QG2FFEE/Share/Dr-CAT-OutThere-UK/" \
+        "/mnt/9QG2FFEE/Share/IT-Copied/" \
+        "/mnt/9QG2FFEE/Share/IT-DebianBased-Copied/" \
+        "/mnt/9QG2FFEE/Share/More/" \
+        "/mnt/9QG2FFEE/Share/toReduce/" \
+        "$DROPBOX/Apps/" \
+        "$DROPBOX/CAM-toSort/" \
+        "$DROPBOX/CAM-UK/" \
+        "$DROPBOX/CAM-USA/" \
+        "/mnt/9QF58B0C/CAMusic/" \
+        "/mnt/9QF58B0C/ThunderbirdProfiles/" \
+        "$DROPBOX/JH/Cafezoide/" \
+        "$DROPBOX/JH/CforWork/" \
+        "$DROPBOX/JH/Copied/" \
+        "$DROPBOX/JH/core/" \
+        "/mnt/9QG2FFEE/Share/Dr-JH-COutThere/" \
+        "$DROPBOX/JH/F+F/" \
+        "$DROPBOX/JH/JCD-imagey-e3/" \
+        "$DROPBOX/JH/Now/" \
+        "$DROPBOX/JH/Sh-81A4/" \
+        "$DROPBOX/JH/Sh-XA10/" \
+        "$DROPBOX/JH/Sh-XA2/" \
+        "/mnt/9QG2FFEE/Share/Dr-JH-Stack/" \
+        "$DROPBOX/JH/Technos/" \
+        "$DROPBOX/JH/Theatre0/" \
+        "$DROPBOX/JH/Theatre1/" \
+        "$DROPBOX/JH/Then0/" \
+        "$DROPBOX/JH/Then1/" \
+        "$DROPBOX/JH/toReduce/" \
+        "$DROPBOX/JH/TP.default-release/" \
+        "$DROPBOX/JH/Work/" \
+        "$DROPBOX/Photos/" \
+    )
+fi
+
+#==> source locations on sbMb
+if [ $machine = "sbMb" ]; then
+    intdrv=/mnt/SD480GSSDPlus
+    intdir=(
+        "/mnt/9QF57J6Q/Share/AV-Stack/" \
+        "$DROPBOX/CAT-Buddhism/" \
+        "$DROPBOX/CAT-Buddhism-Theravada/" \
+        "$DROPBOX/CAT-OutThere/" \
+        "$DROPBOX/CAT-OutThere-UK/" \
+        "/mnt/9QF57J6Q/Share/IT-Copied/" \
+        "/mnt/9QF57J6Q/Share/IT-DebianBased-Copied/" \
+        "/mnt/9QG2FFEE/Share/More/" \
+        "/mnt/9QG2FFEE/Share/toReduce/" \
+        "$DROPBOX/Apps/" \
+        "$DROPBOX/CAM-toSort/" \
+        "$DROPBOX/CAM-UK/" \
+        "$DROPBOX/CAM-USA/" \
+        "/mnt/9QF58B0C/CAMusic/" \
+        "/mnt/9QF58B0C/ThunderbirdProfiles/" \
+        "$DROPBOX/JH/Cafezoide/" \
+        "$DROPBOX/JH/CforWork/" \
+        "$DROPBOX/JH/Copied/" \
+        "$DROPBOX/JH/core/" \
+        "/mnt/9QG2FFEE/Share/Dr-JH-COutThere/" \
+        "$DROPBOX/JH/F+F/" \
+        "$DROPBOX/JH/JCD-imagey-e3/" \
+        "$DROPBOX/JH/Now/" \
+        "$DROPBOX/JH/Sh-81A4/" \
+        "$DROPBOX/JH/Sh-XA10/" \
+        "$DROPBOX/JH/Sh-XA2/" \
+        "/mnt/9QG2FFEE/Share/Dr-JH-Stack/" \
+        "$DROPBOX/JH/Technos/" \
+        "$DROPBOX/JH/Theatre0/" \
+        "$DROPBOX/JH/Theatre1/" \
+        "$DROPBOX/JH/Then0/" \
+        "$DROPBOX/JH/Then1/" \
+        "$DROPBOX/JH/toReduce/" \
+        "$DROPBOX/JH/TP.default-release/" \
+        "$DROPBOX/JH/Work/" \
+        "$DROPBOX/Photos/" \
+    )
+fi
 #=> list the included directories
 echo -en "This BASH script will run \e[1mrsync\e[0m, pushing all changes, "
 echo "either to or from these local directories:"
