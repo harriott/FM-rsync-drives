@@ -1,10 +1,7 @@
 #!/bin/bash
-# vim: set et tw=0:
-
-# Joseph Harriott
 
 # A series of rsyncs between folders on local and portable archive media.
-# alias rs0 is defined in my bashrc
+# alias rs0 is defined in my  $Bash/bashrc-console
 
 ac="rsync -irtv --delete --progress $DROPBOX"
 

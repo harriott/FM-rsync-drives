@@ -1,5 +1,4 @@
 #!/bin/bash
-# vim: fdm=expr ft=sh.shfold:
 
 # Joseph Harriott - Mon 09 Nov 2020
 
@@ -11,11 +10,14 @@
 #   eg: bash /<fullpath>/rsync.sh
 
 #=> directory locations
-# $DROPBOX is defined in my ~/.xinitrc
+# $DROPBOX  &  $Storage  are defined in my  ~/.xinitrc
 extmnt=/run/media/jo
 scriptFolder=$( dirname "${BASH_SOURCE[0]}" )
 
-#==> backup locations on SM3
+#==> include list
+source "$scriptFolder/include.sh"
+
+#==> backup locations on portable drives
 # this drive defines the sort order
 extdrvdir=(
   SM3/Share/AV-Stack/ \
@@ -26,25 +28,19 @@ extdrvdir=(
   SM3/Share/IT-Copied/ \
   SM3/Share/IT-DebianBased-Copied/ \
   SM3/Share/More/ \
+  SM3/Share/ThunderbirdProfiles/ \
   SM3/Share/toReduce/ \
-  SM3/Sync1/Dr-Apps/ \
-  SM3/Sync1/Dr-CAM-toSort/ \
-  SM3/Sync1/Dr-CAM-UK/ \
-  SM3/Sync1/Dr-CAM-USA/ \
-  SM3/Sync1/Dr-CAMusic/ \
-  SM3/Sync1/ThunderbirdProfiles/ \
   SM3/Sync0/Dr-JH-Cafezoide/ \
   SM3/Sync0/Dr-JH-CforWork/ \
   SM3/Sync0/Dr-JH-Copied/ \
   SM3/Sync0/Dr-JH-core/ \
-  SM3/Sync0/Dr-JH-COutThere/ \
   SM3/Sync0/Dr-JH-F+F/ \
   SM3/Sync0/Dr-JH-JCD-imagey-e3/ \
   SM3/Sync0/Dr-JH-Now/ \
   SM3/Sync0/Dr-JH-Sh-81A4/ \
   SM3/Sync0/Dr-JH-Sh-XA10/ \
   SM3/Sync0/Dr-JH-Sh-XA2/ \
-  SM3/Sync1/Dr-JH-Stack/ \
+  SM3/Sync0/Dr-JH-Stack/ \
   SM3/Sync0/Dr-JH-Technos/ \
   SM3/Sync0/Dr-JH-Theatre0/ \
   SM3/Sync0/Dr-JH-Theatre1/ \
@@ -54,85 +50,39 @@ extdrvdir=(
   SM3/Sync0/Dr-JH-TP.default-release/ \
   SM3/Sync0/Dr-JH-Work/ \
   SM3/Sync0/Dr-Photos/ \
+  SM3/Sync1/Dr-Apps/ \
+  SM3/Sync1/Dr-CAM-toSort/ \
+  SM3/Sync1/Dr-CAM-UK/ \
+  SM3/Sync1/Dr-CAM-USA/ \
+  SM3/Sync1/Dr-CAMusic/ \
+  SM3/Sync1/Dr-COutThere/ \
+  TOSHIBA/Vs/ \
 )
-
-#==> include list
-source "$scriptFolder/include.sh"
-
-#==> source locations on AVT661
-if [ $machine = "AVT661" ]; then
-    intdrv=/mnt/SDSSDA240G
-    intdir=(
-        "/mnt/9QG2FFEE/Share/AV-Stack/" \
-        "/mnt/9QG2FFEE/Share/Dr-CAT-Buddhism/" \
-        "/mnt/9QG2FFEE/Share/Dr-CAT-Buddhism-Theravada/" \
-        "/mnt/9QG2FFEE/Share/Dr-CAT-OutThere/" \
-        "/mnt/9QG2FFEE/Share/Dr-CAT-OutThere-UK/" \
-        "/mnt/9QG2FFEE/Share/IT-Copied/" \
-        "/mnt/9QG2FFEE/Share/IT-DebianBased-Copied/" \
-        "/mnt/9QG2FFEE/Share/More/" \
-        "/mnt/9QG2FFEE/Share/toReduce/" \
-        "$DROPBOX/Apps/" \
-        "$DROPBOX/CAM-toSort/" \
-        "$DROPBOX/CAM-UK/" \
-        "$DROPBOX/CAM-USA/" \
-        "/mnt/9QF58B0C/CAMusic/" \
-        "/mnt/9QF58B0C/ThunderbirdProfiles/" \
-        "$DROPBOX/JH/Cafezoide/" \
-        "$DROPBOX/JH/CforWork/" \
-        "$DROPBOX/JH/Copied/" \
-        "$DROPBOX/JH/core/" \
-        "/mnt/9QG2FFEE/Share/Dr-JH-COutThere/" \
-        "$DROPBOX/JH/F+F/" \
-        "$DROPBOX/JH/JCD-imagey-e3/" \
-        "$DROPBOX/JH/Now/" \
-        "$DROPBOX/JH/Sh-81A4/" \
-        "$DROPBOX/JH/Sh-XA10/" \
-        "$DROPBOX/JH/Sh-XA2/" \
-        "/mnt/9QG2FFEE/Share/Dr-JH-Stack/" \
-        "$DROPBOX/JH/Technos/" \
-        "$DROPBOX/JH/Theatre0/" \
-        "$DROPBOX/JH/Theatre1/" \
-        "$DROPBOX/JH/Then0/" \
-        "$DROPBOX/JH/Then1/" \
-        "$DROPBOX/JH/toReduce/" \
-        "$DROPBOX/JH/TP.default-release/" \
-        "$DROPBOX/JH/Work/" \
-        "$DROPBOX/Photos/" \
-    )
-fi
 
 #==> source locations on sbMb
 if [ $machine = "sbMb" ]; then
-    intdrv=/mnt/SD480GSSDPlus
     intdir=(
-        "/mnt/9QF57J6Q/Share/AV-Stack/" \
+        "/mnt/ST3500413AS/Share/AV-Stack/" \
         "$DROPBOX/CAT-Buddhism/" \
         "$DROPBOX/CAT-Buddhism-Theravada/" \
         "$DROPBOX/CAT-OutThere/" \
         "$DROPBOX/CAT-OutThere-UK/" \
-        "/mnt/9QF57J6Q/Share/IT-Copied/" \
-        "/mnt/9QF57J6Q/Share/IT-DebianBased-Copied/" \
-        "/mnt/9QG2FFEE/Share/More/" \
-        "/mnt/9QG2FFEE/Share/toReduce/" \
-        "$DROPBOX/Apps/" \
-        "$DROPBOX/CAM-toSort/" \
-        "$DROPBOX/CAM-UK/" \
-        "$DROPBOX/CAM-USA/" \
-        "/mnt/9QF58B0C/CAMusic/" \
-        "/mnt/9QF58B0C/ThunderbirdProfiles/" \
+        "/mnt/ST3500413AS/Share/IT-Copied/" \
+        "/mnt/ST3500413AS/Share/IT-DebianBased-Copied/" \
+        "/mnt/ST3500413AS/Share/More/" \
+        "/mnt/ST3500413AS/Share/ThunderbirdProfiles/" \
+        "/mnt/ST3500413AS/Share/toReduce/" \
         "$DROPBOX/JH/Cafezoide/" \
         "$DROPBOX/JH/CforWork/" \
         "$DROPBOX/JH/Copied/" \
         "$DROPBOX/JH/core/" \
-        "/mnt/9QG2FFEE/Share/Dr-JH-COutThere/" \
         "$DROPBOX/JH/F+F/" \
         "$DROPBOX/JH/JCD-imagey-e3/" \
         "$DROPBOX/JH/Now/" \
         "$DROPBOX/JH/Sh-81A4/" \
         "$DROPBOX/JH/Sh-XA10/" \
         "$DROPBOX/JH/Sh-XA2/" \
-        "/mnt/9QG2FFEE/Share/Dr-JH-Stack/" \
+        "$DROPBOX/JH/Stack/" \
         "$DROPBOX/JH/Technos/" \
         "$DROPBOX/JH/Theatre0/" \
         "$DROPBOX/JH/Theatre1/" \
@@ -142,6 +92,13 @@ if [ $machine = "sbMb" ]; then
         "$DROPBOX/JH/TP.default-release/" \
         "$DROPBOX/JH/Work/" \
         "$DROPBOX/Photos/" \
+        "$DROPBOX/Apps/" \
+        "$DROPBOX/CAM-toSort/" \
+        "$DROPBOX/CAM-UK/" \
+        "$DROPBOX/CAM-USA/" \
+        "$DROPBOX/CAMusic/" \
+        "$DROPBOX/COutThere/" \
+        "/mnt/WD30EZRZ/Vs/" \
     )
 fi
 #=> list the included directories
@@ -153,7 +110,7 @@ for thisdir in "${intdir[@]}"; do
     if [ ! $thisdir = "-" ]; then
         ((i++))
         if [ ${includeswitch[i]} -ne "0" ]; then
-          echo -en "\e[92m  $thisdir\n"
+          echo "${tpf2}  $thisdir"
           ((j++))
         fi
     fi
@@ -192,7 +149,7 @@ fi
 #=> do it
 i=-1
 outf=`basename ${BASH_SOURCE[0]}`
-outf0="$intdrv/${outf%.*}"
+outf0="$Storage/${outf%.*}"
 outf1="$outf0.log"
 outf2="$outf0.tmp"; touch $outf2
 echo "vim: ft=rsynclog fdm=expr:" > $outf1
