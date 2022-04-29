@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Joseph Harriott - Mon 09 Nov 2020
+# Joseph Harriott - Tue 26 Apr 2022
 
 # A series of rsyncs between folders on local and portable media.
 # ---------------------------------------------------------------
@@ -9,116 +9,166 @@
 #   and call it from a terminal with the bash command.
 #   eg: bash /<fullpath>/rsync.sh
 
-#=> directory locations
-# $DROPBOX  &  $Storage  are defined in my  ~/.xinitrc
+# alias rpd  is defined in my  $Bash/bashrc-ob
+
+#=> 0 directory locations
+# $DROPBOX  is defined in my  $ARCHBUILDS/Bash/export-storage
 extmnt=/run/media/jo
-scriptFolder=$( dirname "${BASH_SOURCE[0]}" )
+scriptDir=$( dirname "${BASH_SOURCE[0]}" )
 
 #==> include list
-source "$scriptFolder/include.sh"
+source "$scriptDir/include0.sh"
 
-#==> backup locations on portable drives
-# this drive defines the sort order
-extdrvdir=(
-  SM3/Share/AV-Stack/ \
-  SM3/Share/Dr-CAT-Buddhism/ \
-  SM3/Share/Dr-CAT-Buddhism-Theravada/ \
-  SM3/Share/Dr-CAT-OutThere/ \
-  SM3/Share/Dr-CAT-OutThere-UK/ \
-  SM3/Share/IT-Copied/ \
-  SM3/Share/IT-DebianBased-Copied/ \
-  SM3/Share/More/ \
-  SM3/Share/ThunderbirdProfiles/ \
-  SM3/Share/toReduce/ \
-  SM3/Sync0/Dr-JH-Cafezoide/ \
-  SM3/Sync0/Dr-JH-CforWork/ \
-  SM3/Sync0/Dr-JH-Copied/ \
-  SM3/Sync0/Dr-JH-core/ \
-  SM3/Sync0/Dr-JH-F+F/ \
-  SM3/Sync0/Dr-JH-JCD-imagey-e3/ \
-  SM3/Sync0/Dr-JH-Now/ \
-  SM3/Sync0/Dr-JH-Sh-81A4/ \
-  SM3/Sync0/Dr-JH-Sh-XA10/ \
-  SM3/Sync0/Dr-JH-Sh-XA2/ \
-  SM3/Sync0/Dr-JH-Stack/ \
-  SM3/Sync0/Dr-JH-Technos/ \
-  SM3/Sync0/Dr-JH-Theatre0/ \
-  SM3/Sync0/Dr-JH-Theatre1/ \
-  SM3/Sync0/Dr-JH-Then0/ \
-  SM3/Sync0/Dr-JH-Then1/ \
-  SM3/Sync0/Dr-JH-toReduce/ \
-  SM3/Sync0/Dr-JH-TP.default-release/ \
-  SM3/Sync0/Dr-JH-Work/ \
-  SM3/Sync0/Dr-Photos/ \
-  SM3/Sync1/Dr-Apps/ \
-  SM3/Sync1/Dr-CAM-toSort/ \
-  SM3/Sync1/Dr-CAM-UK/ \
-  SM3/Sync1/Dr-CAM-USA/ \
-  SM3/Sync1/Dr-CAMusic/ \
-  SM3/Sync1/Dr-COutThere/ \
-  TOSHIBA/Vs/ \
-)
-
-#==> source locations on sbMb
-if [ $machine = "sbMb" ]; then
-    intdir=(
-        "/mnt/ST3500413AS/Share/AV-Stack/" \
-        "$DROPBOX/CAT-Buddhism/" \
-        "$DROPBOX/CAT-Buddhism-Theravada/" \
-        "$DROPBOX/CAT-OutThere/" \
-        "$DROPBOX/CAT-OutThere-UK/" \
-        "/mnt/ST3500413AS/Share/IT-Copied/" \
-        "/mnt/ST3500413AS/Share/IT-DebianBased-Copied/" \
-        "/mnt/ST3500413AS/Share/More/" \
-        "/mnt/ST3500413AS/Share/ThunderbirdProfiles/" \
-        "/mnt/ST3500413AS/Share/toReduce/" \
+#==> source locations on i34G1TU02
+if [ $host = "i34G1TU02" ]; then
+    dirSource=(
         "$DROPBOX/JH/Cafezoide/" \
         "$DROPBOX/JH/CforWork/" \
-        "$DROPBOX/JH/Copied/" \
+        "$DROPBOX/JH/copied/" \
         "$DROPBOX/JH/core/" \
         "$DROPBOX/JH/F+F/" \
         "$DROPBOX/JH/JCD-imagey-e3/" \
-        "$DROPBOX/JH/Now/" \
+        "$DROPBOX/JH/now/" \
         "$DROPBOX/JH/Sh-81A4/" \
-        "$DROPBOX/JH/Sh-XA10/" \
+        "$DROPBOX/JH/Sh-XA10II/" \
         "$DROPBOX/JH/Sh-XA2/" \
         "$DROPBOX/JH/Stack/" \
-        "$DROPBOX/JH/Technos/" \
+        "$DROPBOX/JH/technos/" \
         "$DROPBOX/JH/Theatre0/" \
         "$DROPBOX/JH/Theatre1/" \
         "$DROPBOX/JH/Then0/" \
         "$DROPBOX/JH/Then1/" \
         "$DROPBOX/JH/toReduce/" \
-        "$DROPBOX/JH/TP.default-release/" \
-        "$DROPBOX/JH/Work/" \
+        "$DROPBOX/JH/T91-default-release/" \
+        "$DROPBOX/JH/work/" \
         "$DROPBOX/Photos/" \
         "$DROPBOX/Apps/" \
-        "$DROPBOX/CAM-toSort/" \
-        "$DROPBOX/CAM-UK/" \
-        "$DROPBOX/CAM-USA/" \
-        "$DROPBOX/CAMusic/" \
-        "$DROPBOX/COutThere/" \
-        "/mnt/WD30EZRZ/Vs/" \
     )
-fi
-#=> list the included directories
-echo -en "This BASH script will run \e[1mrsync\e[0m, pushing all changes, "
-echo "either to or from these local directories:"
-i=-1
-j=0
-for thisdir in "${intdir[@]}"; do
-    if [ ! $thisdir = "-" ]; then
-        ((i++))
-        if [ ${includeswitch[i]} -ne "0" ]; then
-          echo "${tpf2}  $thisdir"
-          ((j++))
-        fi
-    fi
-done
-printf -v included "%02d" $j  # catches the total number of included locations
-echo -e "\e[0m"
+fi  # $host  is defined in  $ARCHBUILDS/Bash/export-storage
 
-#=> ask what to do
+#==> source locations on sbMb
+if [ $host = "sbMb" ]; then
+    dirSource=(
+        "$DROPBOX/JH/Cafezoide/" \
+        "$DROPBOX/JH/CforWork/" \
+        "$DROPBOX/JH/copied/" \
+        "$DROPBOX/JH/core/" \
+        "$DROPBOX/JH/F+F/" \
+        "$DROPBOX/JH/JCD-imagey-e3/" \
+        "$DROPBOX/JH/now/" \
+        "$DROPBOX/JH/Sh-81A4/" \
+        "$DROPBOX/JH/Sh-XA10II/" \
+        "$DROPBOX/JH/Sh-XA2/" \
+        "$DROPBOX/JH/Stack/" \
+        "$DROPBOX/JH/technos/" \
+        "$DROPBOX/JH/Theatre0/" \
+        "$DROPBOX/JH/Theatre1/" \
+        "$DROPBOX/JH/Then0/" \
+        "$DROPBOX/JH/Then1/" \
+        "$DROPBOX/JH/toReduce/" \
+        "$DROPBOX/JH/T91-default-release/" \
+        "$DROPBOX/JH/work/" \
+        "$DROPBOX/Photos/" \
+        "$DROPBOX/Apps/" \
+        "$DROPBOX/CAM-favs/" \
+        "$DROPBOX/CAM-toSort0/" \
+        "$DROPBOX/CAM-toSort1/" \
+        "$DROPBOX/CAM-toSort1-UK/" \
+        "$DROPBOX/CAM-toSort1-USA/" \
+        "$DROPBOX/COutThere/" \
+        "/mnt/WD30EZRZ/Sync2/" \
+        "/mnt/WD30EZRZ/Dr-CAT-Buddhism/" \
+        "$DROPBOX/CAT-OutThere/" \
+        "$DROPBOX/CAT-OutThere-UK/" \
+        "/mnt/WD30EZRZ/IT-Copied/" \
+        "/mnt/ST4000VN008/Vs-do/" \
+        "/mnt/ST4000VN008/Vs-forChildren-best/" \
+        "/mnt/ST4000VN008/Vs-forChildren-best-Europe/" \
+        "/mnt/ST4000VN008/Vs-forChildren-best-US/" \
+        "/mnt/ST4000VN008/Vs-forChildren-unseen/" \
+        "/mnt/ST4000VN008/Vs-inform-arts/" \
+        "/mnt/ST4000VN008/Vs-inform-belief/" \
+        "/mnt/ST4000VN008/Vs-inform-history/" \
+        "/mnt/ST4000VN008/Vs-inform-other/" \
+        "/mnt/ST4000VN008/Vs-inform-technos/" \
+        "/mnt/ST4000VN008/Vs-inform-war/" \
+        "/mnt/ST4000VN008/Vs-literature/" \
+        "/mnt/ST4000VN008/Vs-nature/" \
+        "/mnt/ST4000VN008/Vs-story/" \
+        "/mnt/ST4000VN008/Vs-story-favs/" \
+        "/mnt/ST4000VN008/Vs-story-favs-US/" \
+        "/mnt/ST4000VN008/Vs-story-fun/" \
+        "/mnt/ST4000VN008/Vs-story-unseen/" \
+        "/mnt/ST4000VN008/Vs-story-US/" \
+        "/mnt/ST4000VN008/Vs-story-war/" \
+        "/mnt/ST4000VN008/Vs-theatre/" \
+    )
+fi  # $host  is defined in  $ARCHBUILDS/Bash/export-storage
+
+#==> target locations on portable drives
+# this list defines the sort order
+dirTarget=(
+  SM3/Sync0Dr/JH-Cafezoide/ \
+  SM3/Sync0Dr/JH-CforWork/ \
+  SM3/Sync0Dr/JH-copied/ \
+  SM3/Sync0Dr/JH-core/ \
+  SM3/Sync0Dr/JH-F+F/ \
+  SM3/Sync0Dr/JH-JCD-imagey-e3/ \
+  SM3/Sync0Dr/JH-now/ \
+  SM3/Sync0Dr/JH-Sh-81A4/ \
+  SM3/Sync0Dr/JH-Sh-XA10II/ \
+  SM3/Sync0Dr/JH-Sh-XA2/ \
+  SM3/Sync0Dr/JH-Stack/ \
+  SM3/Sync0Dr/JH-technos/ \
+  SM3/Sync0Dr/JH-Theatre0/ \
+  SM3/Sync0Dr/JH-Theatre1/ \
+  SM3/Sync0Dr/JH-Then0/ \
+  SM3/Sync0Dr/JH-Then1/ \
+  SM3/Sync0Dr/JH-toReduce/ \
+  SM3/Sync0Dr/JH-T91-default-release/ \
+  SM3/Sync0Dr/JH-work/ \
+  SM3/Sync0Dr/Photos/ \
+  SM3/Sync1Dr/Apps/ \
+  SM3/Sync1Dr/CAM-favs \
+  SM3/Sync1Dr/CAM-toSort0/ \
+  SM3/Sync1Dr/CAM-toSort1/ \
+  SM3/Sync1Dr/CAM-toSort1-UK \
+  SM3/Sync1Dr/CAM-toSort1-USA \
+  SM3/Sync1Dr/COutThere/ \
+  SM3/Sync2/ \
+  SM3/Dr-CAT-Buddhism/ \
+  SM3/Dr-CAT-OutThere \
+  SM3/Dr-CAT-OutThere-UK \
+  SM3/IT-Copied/ \
+  TOSHIBA/Vs-do/ \
+  TOSHIBA/Vs-forChildren-best/ \
+  TOSHIBA/Vs-forChildren-best-Europe/ \
+  TOSHIBA/Vs-forChildren-best-US/ \
+  TOSHIBA/Vs-forChildren-unseen/ \
+  TOSHIBA/Vs-inform-arts/ \
+  TOSHIBA/Vs-inform-belief/ \
+  TOSHIBA/Vs-inform-history/ \
+  TOSHIBA/Vs-inform-other/ \
+  TOSHIBA/Vs-inform-technos/ \
+  TOSHIBA/Vs-inform-war/ \
+  TOSHIBA/Vs-literature/ \
+  TOSHIBA/Vs-nature/ \
+  TOSHIBA/Vs-story/ \
+  TOSHIBA/Vs-story-favs/ \
+  TOSHIBA/Vs-story-favs-US/ \
+  TOSHIBA/Vs-story-fun/ \
+  TOSHIBA/Vs-story-unseen/ \
+  TOSHIBA/Vs-story-US/ \
+  TOSHIBA/Vs-story-war/ \
+  TOSHIBA/Vs-theatre/ \
+)
+
+#=> 1 list the included directories
+echo -en "This BASH script will run \e[1mrsync\e[0m, pushing all changes, "
+echo -e "either to or from these local directories:\e[92m"
+source "$scriptDir/rsync-list_included.sh"
+
+#=> 2 ask what to do
 read -p "Sync TO (T) portable drives (or dry-run (t)), or FROM (F) (or dry-run (f))? " drctn
 if [ $drctn ]; then
     dryrun=''
@@ -146,81 +196,7 @@ else
     exit
 fi
 
-#=> do it
-i=-1
+#=> 3 do it
 outf=`basename ${BASH_SOURCE[0]}`
-outf0="$Storage/${outf%.*}"
-outf1="$outf0.log"
-outf2="$outf0.tmp"; touch $outf2
-echo "vim: ft=rsynclog fdm=expr:" > $outf1
-echo "" | tee -a $outf1
-echo $(date)$dryrun | tee -a $outf1
-underline='------------------'
-nfd="! no SRC !"
-ntd="! no DEST !"
-j=0
-for thisdir in "${intdir[@]}"; do
-    ((i++))
-    if [ ${includeswitch[i]} -ne "0" ]; then
-        if [ ! $thisdir = "-" ]; then
-            ((j++))
-            extdd=${extdrvdir[i]}
-            if [ ${extdd%%/*} = 'K16GB500' ] # it's a FAT32 drive
-            then
-                modrsc=" --modify-window=1" # don't send fraction of second changes
-            else
-                modrsc=""
-            fi
-            if [ ${drctn,,} = "t" ]; # case-insensitive test
-            then
-                cmd="$rsynccom$modrsc"
-                fr="$thisdir"
-                to="$extmnt/$extdd"
-            else
-                modrsc=" --modify-window=1" # don't receive fraction of second changes
-                cmd="$rsynccom$modrsc"
-                fr="$extmnt/$extdd"
-                to="$thisdir"
-            fi
-            echo "" | tee -a $outf1
-            printf -v include "%02d" $j
-            echo "Push sync $include of $included - ${includedir[i]}" | tee -a $outf1
-            echo $underline | tee -a $outf1
-            fullcmd="$cmd $fr $to"
-            echo ${tpf7b}$fullcmd${tpfn}
-            echo $fullcmd >> $outf1
-            if [ -d $fr ]; then
-                if [ -d $to ]; then
-                    echo ${tpf7}
-                    $fullcmd 2>&1 | tee $outf2 # - disable for testing
-                    if [ -s $outf2 ]; then
-                        echo "" >> $outf1
-                        echo "Action:" >> $outf1
-                        cat $outf2 >> $outf1
-                    fi
-                else # no destination
-                    echo "" | tee -a $outf1
-                    echo ${tpf1b}$ntd${tpfn}
-                    echo "Action:" >> $outf1
-                    echo $ntd >> $outf1
-                fi
-            else # no source
-                echo "" | tee -a $outf1
-                echo ${tpf1b}$nfd${tpfn}
-                echo "Action:" >> $outf1
-                echo $nfd >> $outf1
-            fi
-            echo -en '\e[0m'
-        fi
-    fi
-done
-echo "" >> $outf1
-rm $outf2
-jHM=$(date "+%j-%H%M")
-outf3="$outf0-$jHM.log"
-cp $outf1 $outf3
-echo ''
-echo "- all done, and logged to $outf1 ${tpf7}(& $outf3)${tpfn}"
-gvim -c "silent! /^Action" $outf1
-exit
+source "$scriptDir/rsync-do_it.sh"
 
