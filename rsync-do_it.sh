@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Joseph Harriott - Tue 26 Apr 2022
-# included by  $onGH/rsync-portabledrives/rsync.sh
+# sourced by  $onGH/rsync-portabledrives/rsync.sh
 
 i=-1
 outf0="$Storage/${outf%.*}"  # $Storage  is defined in my  $MACHINE/export-machine
@@ -40,7 +40,7 @@ for thisdir in "${dirSource[@]}"; do
                 fi
                 echo "" | tee -a $outf1
                 printf -v include "%02d" $j
-                echo "Push sync $include of $included - ${includedir[i]}" | tee -a $outf1
+                echo "Push sync $include of $included : ${includedir[i]}" | tee -a $outf1
                 echo $underline | tee -a $outf1
                 fullcmd="$cmd $fr $to"
                 echo ${tpf7b}$fullcmd${tpfn}
@@ -48,7 +48,7 @@ for thisdir in "${dirSource[@]}"; do
                 if [ -d $fr ]; then
                     if [ -d $to ]; then
                         echo ${tpf7}
-                        $fullcmd 2>&1 | tee $outf2 # - disable for testing
+                        # $fullcmd 2>&1 | tee $outf2 # - disable for testing
                         echo $?
                         if [ -s $outf2 ]; then
                             echo "" >> $outf1

@@ -3,7 +3,7 @@
 
 # sourced from  $onGH/rsync-portabledrives/include0.sh
 
-#=> make the include array
+#=> make the include (or not) array
 includeswitch=(${includeIndexed[0]})
 includedir=(${includeIndexed[1]})
 i=0

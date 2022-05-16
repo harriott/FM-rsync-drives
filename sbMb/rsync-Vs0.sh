@@ -5,12 +5,10 @@
 # alias  rsVP  is defined in my  $Bash/bashrc-console
 # bash $onGH/rsync-portabledrives/sbMb/rsync-Vs0.sh
 
-set -e  # terminate on a fail
-
 scriptDir=$( dirname "${BASH_SOURCE[0]}" )
   rsyncDir=${scriptDir%/*}  # for accessing sourced scripts
 
-#=> 0 includes 0 abstracted list of locations
+#=> 0 includes 0 abstracted list of included locations
 includeIndexed=(
   1 Vs-do \
   1 Vs-educate \
@@ -37,7 +35,7 @@ includeIndexed=(
   1 Vs-theatre \
 )
 #=> 0 includes 1 make the include array
-source $rsyncDir/include1.sh
+source $rsyncDir/rsync-makeIncludeArray.sh
 
 #=> 0 source locations on sbMb
 dirSource=(

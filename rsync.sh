@@ -16,8 +16,69 @@
 extmnt=/run/media/jo
 scriptDir=$( dirname "${BASH_SOURCE[0]}" )
 
-#==> include list
-source "$scriptDir/include0.sh"
+#==> includes 0 abstracted list of included locations
+# set first item to 0 to exclude a directory:
+includeIndexed=(
+  1 0-Dr-JH-Cafezoide \
+  1 0-Dr-JH-CforWork \
+  1 0-Dr-JH-copied \
+  1 0-Dr-JH-core \
+  1 0-Dr-JH-F+F \
+  1 0-Dr-JH-JCD-imagey-e3 \
+  1 0-Dr-JH-now \
+  1 0-Dr-JH-Sh-81A4 \
+  1 0-Dr-JH-Sh-XA10II \
+  1 0-Dr-JH-Sh-XA2 \
+  1 0-Dr-JH-stack \
+  1 0-Dr-JH-technos \
+  1 0-Dr-JH-Theatre0 \
+  1 0-Dr-JH-Theatre1 \
+  1 0-Dr-JH-Then0 \
+  1 0-Dr-JH-Then1 \
+  1 0-Dr-JH-toReduce \
+  1 0-Dr-JH-T91-default-release \
+  1 0-Dr-JH-work \
+  1 0-Dr-Photos \
+  1 1-Dr-Apps \
+  1 1-Dr-CAM-best \
+  1 1-Dr-CAM-good \
+  1 1-Dr-CAM-toSort0 \
+  1 1-Dr-CAM-toSort1 \
+  1 1-Dr-CAM-toSort1-UK \
+  1 1-Dr-CAM-toSort1-USA \
+  1 1-Dr-COutThere \
+  1 2-Sync2 \
+  1 2-Dr-CAT-Buddhism \
+  1 2-Dr-CAT-OutThere \
+  1 2-Dr-CAT-OutThere-UK \
+  1 2-IT-Copied \
+  0 3-Vs-do \
+  0 3-Vs-forChildren-best \
+  0 3-Vs-forChildren-best-Europe \
+  0 3-Vs-forChildren-best-US \
+  0 3-Vs-forChildren-unseen \
+  0 3-Vs-inform-arts \
+  0 3-Vs-inform-belief \
+  0 3-Vs-inform-history \
+  0 3-Vs-inform-other \
+  0 3-Vs-inform-technos \
+  0 3-Vs-inform-war \
+  0 3-Vs-literature \
+  0 3-Vs-nature \
+  0 3-Vs-story \
+  0 3-Vs-story-favs \
+  0 3-Vs-story-favs-US \
+  0 3-Vs-story-fun \
+  0 3-Vs-story-unseen \
+  0 3-Vs-story-US \
+  0 3-Vs-story-war \
+  0 3-Vs-theatre \
+)
+# VsPreferred=TOSHIBA
+VsPreferred=HD103SJ
+
+#==> includes 1 make the include array
+source $scriptDir/rsync-makeIncludeArray.sh
 
 #==> source locations on i34G1TU02
 if [ $host = "i34G1TU02" ]; then
@@ -32,7 +93,7 @@ if [ $host = "i34G1TU02" ]; then
         "$DROPBOX/JH/Sh-81A4/" \
         "$DROPBOX/JH/Sh-XA10II/" \
         "$DROPBOX/JH/Sh-XA2/" \
-        "$DROPBOX/JH/Stack/" \
+        "$DROPBOX/JH/stack/" \
         "$DROPBOX/JH/technos/" \
         "$DROPBOX/JH/Theatre0/" \
         "$DROPBOX/JH/Theatre1/" \
@@ -59,7 +120,7 @@ if [ $host = "sbMb" ]; then
         "$DROPBOX/JH/Sh-81A4/" \
         "$DROPBOX/JH/Sh-XA10II/" \
         "$DROPBOX/JH/Sh-XA2/" \
-        "$DROPBOX/JH/Stack/" \
+        "$DROPBOX/JH/stack/" \
         "$DROPBOX/JH/technos/" \
         "$DROPBOX/JH/Theatre0/" \
         "$DROPBOX/JH/Theatre1/" \
@@ -70,7 +131,8 @@ if [ $host = "sbMb" ]; then
         "$DROPBOX/JH/work/" \
         "$DROPBOX/Photos/" \
         "$DROPBOX/Apps/" \
-        "$DROPBOX/CAM-favs/" \
+        "$DROPBOX/CAM-best/" \
+        "$DROPBOX/CAM-good/" \
         "$DROPBOX/CAM-toSort0/" \
         "$DROPBOX/CAM-toSort1/" \
         "$DROPBOX/CAM-toSort1-UK/" \
@@ -118,7 +180,7 @@ dirTarget=(
   SM3/Sync0Dr/JH-Sh-81A4/ \
   SM3/Sync0Dr/JH-Sh-XA10II/ \
   SM3/Sync0Dr/JH-Sh-XA2/ \
-  SM3/Sync0Dr/JH-Stack/ \
+  SM3/Sync0Dr/JH-stack/ \
   SM3/Sync0Dr/JH-technos/ \
   SM3/Sync0Dr/JH-Theatre0/ \
   SM3/Sync0Dr/JH-Theatre1/ \
@@ -129,7 +191,8 @@ dirTarget=(
   SM3/Sync0Dr/JH-work/ \
   SM3/Sync0Dr/Photos/ \
   SM3/Sync1Dr/Apps/ \
-  SM3/Sync1Dr/CAM-favs \
+  SM3/Sync1Dr/CAM-best \
+  SM3/Sync1Dr/CAM-good \
   SM3/Sync1Dr/CAM-toSort0/ \
   SM3/Sync1Dr/CAM-toSort1/ \
   SM3/Sync1Dr/CAM-toSort1-UK \
@@ -151,7 +214,7 @@ dirTarget=(
   TOSHIBA/Vs-inform-other/ \
   TOSHIBA/Vs-inform-technos/ \
   TOSHIBA/Vs-inform-war/ \
-  TOSHIBA/Vs-literature/ \
+  SM3/Vs-literature/ \
   TOSHIBA/Vs-nature/ \
   TOSHIBA/Vs-story/ \
   TOSHIBA/Vs-story-favs/ \
