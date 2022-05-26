@@ -2,8 +2,9 @@
 # vim: sw=2:
 
 # rsync backups of my preferred videos
-# alias  rsVP  is defined in my  $Bash/bashrc-console
-# bash $onGH/rsync-portabledrives/sbMb/rsync-Vs0.sh
+# ------------------------------------
+# alias  rsV  is defined in my  $Bash/bashrc-console
+# or  bash $onGH/rsync-drives/sbMb/rsync-Vs.sh
 
 scriptDir=$( dirname "${BASH_SOURCE[0]}" )
   rsyncDir=${scriptDir%/*}  # for accessing sourced scripts
@@ -13,10 +14,6 @@ includeIndexed=(
   1 Vs-do \
   1 Vs-educate \
   1 Vs-forChildren \
-  1 Vs-forChildren-best \
-  1 Vs-forChildren-best-Europe \
-  1 Vs-forChildren-best-US \
-  1 Vs-forChildren-unseen \
   1 Vs-inform-arts \
   1 Vs-inform-belief \
   1 Vs-inform-history \
@@ -42,10 +39,6 @@ dirSource=(
   "/mnt/ST4000VN008/Vs-do/" \
   "/mnt/ST4000VN008/Vs-educate/" \
   "/mnt/ST4000VN008/Vs-forChildren/" \
-  "/mnt/ST4000VN008/Vs-forChildren-best/" \
-  "/mnt/ST4000VN008/Vs-forChildren-best-Europe/" \
-  "/mnt/ST4000VN008/Vs-forChildren-best-US/" \
-  "/mnt/ST4000VN008/Vs-forChildren-unseen/" \
   "/mnt/ST4000VN008/Vs-inform-arts/" \
   "/mnt/ST4000VN008/Vs-inform-belief/" \
   "/mnt/ST4000VN008/Vs-inform-history/" \
@@ -65,13 +58,9 @@ dirSource=(
 )
 #=> 0 target locations on sbMb
 dirTarget=(
-  /mnt/HD103SJ/Vs-do/ \
+  /mnt/WD30EZRZ/Vs-do/ \
   /mnt/WD30EZRZ/Vs-educate/ \
   /mnt/HD103SJ/Vs-forChildren/ \
-  /mnt/WD30EZRZ/Vs-forChildren-best/ \
-  /mnt/WD30EZRZ/Vs-forChildren-best-Europe/ \
-  /mnt/WD30EZRZ/Vs-forChildren-best-US/ \
-  /mnt/HD103SJ/Vs-forChildren-unseen/ \
   /mnt/HD103SJ/Vs-inform-arts/ \
   /mnt/HD103SJ/Vs-inform-belief/ \
   /mnt/HD103SJ/Vs-inform-history/ \
@@ -96,6 +85,7 @@ source "$rsyncDir/rsync-list_included.sh"
 
 #=> 2 do the rsyncs
 outf=`basename ${BASH_SOURCE[0]}`
-drctn="t"
-# source $rsyncDir/rsync-do_it.sh
+drctn="t"  # required by  rsync-do_it.sh
+rsynccom="rsync -ilrt --delete"
+source $rsyncDir/rsync-do_it.sh
 

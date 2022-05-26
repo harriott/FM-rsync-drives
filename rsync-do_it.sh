@@ -48,7 +48,7 @@ for thisdir in "${dirSource[@]}"; do
                 if [ -d $fr ]; then
                     if [ -d $to ]; then
                         echo ${tpf7}
-                        # $fullcmd 2>&1 | tee $outf2 # - disable for testing
+                        $fullcmd 2>&1 | tee $outf2 # - disable for testing
                         echo $?
                         if [ -s $outf2 ]; then
                             echo "" >> $outf1

@@ -19,40 +19,42 @@ scriptDir=$( dirname "${BASH_SOURCE[0]}" )
 #==> includes 0 abstracted list of included locations
 # set first item to 0 to exclude a directory:
 includeIndexed=(
-  1 0-Dr-JH-Cafezoide \
-  1 0-Dr-JH-CforWork \
-  1 0-Dr-JH-copied \
+  0 0-Dr-JH-Cafezoide \
+  0 0-Dr-JH-CforWork \
+  0 0-Dr-JH-copied \
   1 0-Dr-JH-core \
-  1 0-Dr-JH-F+F \
-  1 0-Dr-JH-JCD-imagey-e3 \
-  1 0-Dr-JH-now \
-  1 0-Dr-JH-Sh-81A4 \
-  1 0-Dr-JH-Sh-XA10II \
-  1 0-Dr-JH-Sh-XA2 \
-  1 0-Dr-JH-stack \
-  1 0-Dr-JH-technos \
-  1 0-Dr-JH-Theatre0 \
-  1 0-Dr-JH-Theatre1 \
-  1 0-Dr-JH-Then0 \
-  1 0-Dr-JH-Then1 \
-  1 0-Dr-JH-toReduce \
-  1 0-Dr-JH-T91-default-release \
-  1 0-Dr-JH-work \
-  1 0-Dr-Photos \
-  1 1-Dr-Apps \
-  1 1-Dr-CAM-best \
-  1 1-Dr-CAM-good \
-  1 1-Dr-CAM-toSort0 \
-  1 1-Dr-CAM-toSort1 \
-  1 1-Dr-CAM-toSort1-UK \
-  1 1-Dr-CAM-toSort1-USA \
-  1 1-Dr-COutThere \
-  1 2-Sync2 \
-  1 2-Dr-CAT-Buddhism \
-  1 2-Dr-CAT-OutThere \
-  1 2-Dr-CAT-OutThere-UK \
-  1 2-IT-Copied \
+  0 0-Dr-JH-F+F \
+  0 0-Dr-JH-JCD-imagey-e3 \
+  0 0-Dr-JH-now \
+  0 0-Dr-JH-Sh-81A4 \
+  0 0-Dr-JH-Sh-XA10II \
+  0 0-Dr-JH-Sh-XA2 \
+  0 0-Dr-JH-stack \
+  0 0-Dr-JH-technos \
+  0 0-Dr-JH-Theatre0 \
+  0 0-Dr-JH-Theatre1 \
+  0 0-Dr-JH-Then0 \
+  0 0-Dr-JH-Then1 \
+  0 0-Dr-JH-toReduce \
+  0 0-Dr-JH-T91-default-release \
+  0 0-Dr-JH-work \
+  0 0-Dr-Photos \
+  0 1-Dr-Apps \
+  0 1-Dr-CAM-best \
+  0 1-Dr-CAM-good \
+  0 1-Dr-CAM-toSort0 \
+  0 1-Dr-CAM-toSort1 \
+  0 1-Dr-CAM-toSort1-UK \
+  0 1-Dr-CAM-toSort1-USA \
+  0 1-Dr-COutThere \
+  0 2-Sync2 \
+  0 2-Dr-CAT-Buddhism \
+  0 2-Dr-CAT-OutThere \
+  0 2-Dr-CAT-OutThere-UK \
+  0 2-IT-Copied \
   0 3-Vs-do \
+  1 3-Vs-educate \
+  1 3-Vs-forChildren \
   0 3-Vs-forChildren-best \
   0 3-Vs-forChildren-best-Europe \
   0 3-Vs-forChildren-best-US \
@@ -143,10 +145,12 @@ if [ $host = "sbMb" ]; then
         "$DROPBOX/CAT-OutThere/" \
         "$DROPBOX/CAT-OutThere-UK/" \
         "/mnt/WD30EZRZ/IT-Copied/" \
-        "/mnt/ST4000VN008/Vs-do/" \
-        "/mnt/ST4000VN008/Vs-forChildren-best/" \
-        "/mnt/ST4000VN008/Vs-forChildren-best-Europe/" \
-        "/mnt/ST4000VN008/Vs-forChildren-best-US/" \
+        "/mnt/WD30EZRZ/Vs-do/" \
+        "/mnt/WD30EZRZ/Vs-educate/" \
+        "/mnt/ST4000VN008/Vs-forChildren/" \
+        "/mnt/WD30EZRZ/Vs-forChildren-best/" \
+        "/mnt/WD30EZRZ/Vs-forChildren-best-Europe/" \
+        "/mnt/WD30EZRZ/Vs-forChildren-best-US/" \
         "/mnt/ST4000VN008/Vs-forChildren-unseen/" \
         "/mnt/ST4000VN008/Vs-inform-arts/" \
         "/mnt/ST4000VN008/Vs-inform-belief/" \
@@ -204,6 +208,8 @@ dirTarget=(
   SM3/Dr-CAT-OutThere-UK \
   SM3/IT-Copied/ \
   TOSHIBA/Vs-do/ \
+  TOSHIBA/Vs-educate/ \
+  SM3/Vs-forChildren/ \
   TOSHIBA/Vs-forChildren-best/ \
   TOSHIBA/Vs-forChildren-best-Europe/ \
   TOSHIBA/Vs-forChildren-best-US/ \
@@ -213,7 +219,7 @@ dirTarget=(
   TOSHIBA/Vs-inform-history/ \
   TOSHIBA/Vs-inform-other/ \
   TOSHIBA/Vs-inform-technos/ \
-  TOSHIBA/Vs-inform-war/ \
+  SM3/Vs-inform-war/ \
   SM3/Vs-literature/ \
   TOSHIBA/Vs-nature/ \
   TOSHIBA/Vs-story/ \
@@ -231,30 +237,34 @@ echo -en "This BASH script will run \e[1mrsync\e[0m, pushing all changes, "
 echo -e "either to or from these local directories:\e[92m"
 source "$scriptDir/rsync-list_included.sh"
 
-#=> 2 ask what to do
+#=> 2 decide what to do
 read -p "Sync TO (T) portable drives (or dry-run (t)), or FROM (F) (or dry-run (f))? " drctn
 if [ $drctn ]; then
-    dryrun=''
-    rsynccom="rsync -ilrt --delete"
+    dr0=''
+    dr1=''
+    # rsynccom="rsync -ilrt --delete"
     if [ $drctn = "T" ]; then
         read -p "Run several: ${tpf7b}$rsynccom <localdrive> <portabledrive> ? ${tpfn}" cnfrm
     elif [ $drctn = "t" ]; then
-        dryrun=' - dry-run'
-        rsynccom="rsync -ilnrt --delete" # dry-run
+        dr0='n'  # rsync's dry-run switch
+        dr1=' - dry-run'
+        # rsynccom="rsync -ilnrt --delete" # dry-run
         echo "Okay, running: ${tpf7b}$rsynccom <localdrive> <portabledrivebackup>${tpfn}"
         cnfrm="y"
     elif [ $drctn = "F" ]; then
         echo "About to run several: ${tpf5b}$rsynccom <portabledrive> <localdrive>${tpfn}"
         read -p "No recovery possible from this operation, GO AHEAD? " cnfrm
     elif [ $drctn = "f" ]; then
-        dryrun=' - dry-run'
-        rsynccom="rsync -ilnrt --delete" # dry-run
+        dr0='n'  # rsync's dry-run switch
+        dr1=' - dry-run'
+        # rsynccom="rsync -ilnrt --delete" # dry-run
         echo -e "Okay, running: \e[1m$rsynccom <portabledrivebackup> <localdrive>\e[0m"
         cnfrm="y"
     else
         exit
     fi
     if [ ! $cnfrm ] || [ $cnfrm != "y" ]; then exit; fi
+    rsynccom="rsync -ilrt$dr0 --delete"
 else
     exit
 fi
