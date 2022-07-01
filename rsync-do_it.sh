@@ -42,7 +42,7 @@ for thisdir in "${dirSource[@]}"; do
                 printf -v include "%02d" $j
                 echo "Push sync $include of $included : ${includedir[i]}" | tee -a $outf1
                 echo $underline | tee -a $outf1
-                fullcmd="$cmd $fr $to"
+                fullcmd="$cmd $fr/ $to"
                 echo ${tpf7b}$fullcmd${tpfn}
                 echo $fullcmd >> $outf1
                 if [ -d $fr ]; then

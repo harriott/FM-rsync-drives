@@ -3,7 +3,7 @@
 # rsync backups of my as yet unsorted music collection
 # alias  rsM  is defined in my  $Bash/bashrc-console
 
-ac="rsync -irtv --delete --progress /mnt/WD30EZRZ"
+ac="rsync -irtv --delete --progress /mnt/SD480GSSDPlus"
 
 for bl in /run/media/jo/ST905004EXD101 /run/media/jo/ST3320418AS; do
 

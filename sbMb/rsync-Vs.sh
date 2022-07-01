@@ -14,6 +14,10 @@ includeIndexed=(
   1 Vs-do \
   1 Vs-educate \
   1 Vs-forChildren \
+  1 Vs-forChildren-best \
+  1 Vs-forChildren-best-Europe \
+  1 Vs-forChildren-best-US \
+  1 Vs-forChildren-unseen \
   1 Vs-inform-arts \
   1 Vs-inform-belief \
   1 Vs-inform-history \
@@ -36,48 +40,83 @@ source $rsyncDir/rsync-makeIncludeArray.sh
 
 #=> 0 source locations on sbMb
 dirSource=(
-  "/mnt/ST4000VN008/Vs-do/" \
-  "/mnt/ST4000VN008/Vs-educate/" \
-  "/mnt/ST4000VN008/Vs-forChildren/" \
-  "/mnt/ST4000VN008/Vs-inform-arts/" \
-  "/mnt/ST4000VN008/Vs-inform-belief/" \
-  "/mnt/ST4000VN008/Vs-inform-history/" \
-  "/mnt/ST4000VN008/Vs-inform-other/" \
-  "/mnt/ST4000VN008/Vs-inform-technos/" \
-  "/mnt/ST4000VN008/Vs-inform-war/" \
-  "/mnt/ST4000VN008/Vs-literature/" \
-  "/mnt/ST4000VN008/Vs-nature/" \
-  "/mnt/ST4000VN008/Vs-story/" \
-  "/mnt/ST4000VN008/Vs-story-favs/" \
-  "/mnt/ST4000VN008/Vs-story-favs-US/" \
-  "/mnt/ST4000VN008/Vs-story-fun/" \
-  "/mnt/ST4000VN008/Vs-story-unseen/" \
-  "/mnt/ST4000VN008/Vs-story-US/" \
-  "/mnt/ST4000VN008/Vs-story-war/" \
-  "/mnt/ST4000VN008/Vs-theatre/" \
+  /mnt/SDU3D1TB/Vs-do \
+  /mnt/SDU3D1TB/Vs-educate \
+  /mnt/ST4000VN008/Vs-forChildren \
+  /mnt/ST4000VN008/Vs-forChildren-best \
+  /mnt/ST4000VN008/Vs-forChildren-best-Europe \
+  /mnt/ST4000VN008/Vs-forChildren-best-US \
+  /mnt/ST4000VN008/Vs-forChildren-unseen \
+  /mnt/ST4000VN008/Vs-inform-arts \
+  /mnt/ST4000VN008/Vs-inform-belief \
+  /mnt/ST4000VN008/Vs-inform-history \
+  /mnt/ST4000VN008/Vs-inform-other \
+  /mnt/ST4000VN008/Vs-inform-technos \
+  /mnt/ST4000VN008/Vs-inform-war \
+  /mnt/ST4000VN008/Vs-literature \
+  /mnt/ST4000VN008/Vs-nature \
+  /mnt/ST4000VN008/Vs-story \
+  /mnt/ST4000VN008/Vs-story-favs \
+  /mnt/ST4000VN008/Vs-story-favs-US \
+  /mnt/ST4000VN008/Vs-story-fun \
+  /mnt/ST4000VN008/Vs-story-unseen \
+  /mnt/ST4000VN008/Vs-story-US \
+  /mnt/ST4000VN008/Vs-story-war \
+  /mnt/ST4000VN008/Vs-theatre \
 )
-#=> 0 target locations on sbMb
+#=> 0 target locations on portable drives
 dirTarget=(
-  /mnt/WD30EZRZ/Vs-do/ \
-  /mnt/WD30EZRZ/Vs-educate/ \
-  /mnt/HD103SJ/Vs-forChildren/ \
-  /mnt/HD103SJ/Vs-inform-arts/ \
-  /mnt/HD103SJ/Vs-inform-belief/ \
-  /mnt/HD103SJ/Vs-inform-history/ \
-  /mnt/WD30EZRZ/Vs-inform-other/ \
-  /mnt/WD30EZRZ/Vs-inform-technos/ \
-  /mnt/HD103SJ/Vs-inform-war/ \
-  /mnt/HD103SJ/Vs-literature/ \
-  /mnt/WD30EZRZ/Vs-nature/ \
-  /mnt/WD30EZRZ/Vs-story/ \
-  /mnt/WD30EZRZ/Vs-story-favs/ \
-  /mnt/WD30EZRZ/Vs-story-favs-US/ \
-  /mnt/WD30EZRZ/Vs-story-fun/ \
-  /mnt/HD103SJ/Vs-story-unseen/ \
-  /mnt/WD30EZRZ/Vs-story-US/ \
-  /mnt/HD103SJ/Vs-story-war/ \
-  /mnt/HD103SJ/Vs-theatre/ \
+  run/media/jo/WD30EZRZ/Vs-do \
+  run/media/jo/WD30EZRZ/Vs-educate \
+  run/media/jo/TOSHIBA/Vs-forChildren \
+  run/media/jo/TOSHIBA/Vs-forChildren-best \
+  run/media/jo/TOSHIBA/Vs-forChildren-best-Europe \
+  run/media/jo/TOSHIBA/Vs-forChildren-best-US \
+  run/media/jo/TOSHIBA/Vs-forChildren-unseen \
+  run/media/jo/TOSHIBA/Vs-inform-arts \
+  run/media/jo/TOSHIBA/Vs-inform-belief \
+  run/media/jo/TOSHIBA/Vs-inform-history \
+  run/media/jo/TOSHIBA/Vs-inform-other \
+  run/media/jo/TOSHIBA/Vs-inform-technos \
+  run/media/jo/TOSHIBA/Vs-inform-war \
+  run/media/jo/TOSHIBA/Vs-literature \
+  run/media/jo/TOSHIBA/Vs-nature \
+  run/media/jo/TOSHIBA/Vs-story \
+  run/media/jo/TOSHIBA/Vs-story-favs \
+  run/media/jo/TOSHIBA/Vs-story-favs-US \
+  run/media/jo/TOSHIBA/Vs-story-fun \
+  run/media/jo/TOSHIBA/Vs-story-unseen \
+  run/media/jo/TOSHIBA/Vs-story-US \
+  run/media/jo/TOSHIBA/Vs-story-war \
+  run/media/jo/TOSHIBA/Vs-theatre \
 )
+
+# #=> 0 target locations on sbMb
+# dirTarget=(
+#   mnt/WD30EZRZ/nl/Vs-do \
+#   mnt/WD30EZRZ/nl/Vs-educate \
+#   mnt/WD30EZRZ/nl/Vs-forChildren \
+#   mnt/WD30EZRZ/nl/Vs-forChildren-best \
+#   mnt/WD30EZRZ/nl/Vs-forChildren-best-Europe \
+#   mnt/WD30EZRZ/nl/Vs-forChildren-best-US \
+#   mnt/WD30EZRZ/nl/Vs-forChildren-unseen \
+#   mnt/WD30EZRZ/nl/Vs-inform-arts \
+#   mnt/WD30EZRZ/nl/Vs-inform-belief \
+#   mnt/WD30EZRZ/nl/Vs-inform-history \
+#   mnt/WD30EZRZ/nl/Vs-inform-other \
+#   mnt/WD30EZRZ/nl/Vs-inform-technos \
+#   mnt/WD30EZRZ/nl/Vs-inform-war \
+#   mnt/WD30EZRZ/nl/Vs-literature \
+#   mnt/WD30EZRZ/nl/Vs-nature \
+#   mnt/WD30EZRZ/nl/Vs-story \
+#   mnt/WD30EZRZ/nl/Vs-story-favs \
+#   mnt/WD30EZRZ/nl/Vs-story-favs-US \
+#   mnt/WD30EZRZ/nl/Vs-story-fun \
+#   mnt/WD30EZRZ/nl/Vs-story-unseen \
+#   mnt/WD30EZRZ/nl/Vs-story-US \
+#   mnt/WD30EZRZ/nl/Vs-story-war \
+#   mnt/WD30EZRZ/nl/Vs-theatre \
+# )
 
 #=> 1 list the included directories
 echo -e "This BASH script will \e[1mrsync\e[0m from all of these local directories:\e[92m"
@@ -86,6 +125,6 @@ source "$rsyncDir/rsync-list_included.sh"
 #=> 2 do the rsyncs
 outf=`basename ${BASH_SOURCE[0]}`
 drctn="t"  # required by  rsync-do_it.sh
-rsynccom="rsync -ilrt --delete"
+rsynccom="rsync -ilrt --delete --progress"
 source $rsyncDir/rsync-do_it.sh
 
