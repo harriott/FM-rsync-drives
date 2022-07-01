@@ -46,7 +46,18 @@ for thisdir in "${dirSource[@]}"; do
                 echo ${tpf7b}$fullcmd${tpfn}
                 echo $fullcmd >> $outf1
                 if [ -d $fr ]; then
-                    if [ -d $to ]; then
+                    if [ ! -d $to ]; then
+                        if [[ -z $createTarget ]]; then
+                            echo "" | tee -a $outf1
+                            echo ${tpf1b}$ntdflag${tpfn}
+                            echo "Action:" >> $outf1
+                            echo $ntdflag >> $outf1
+                            ntd=1
+                        else
+                            mkdir $to
+                        fi
+                    fi  # found no destination
+                    if [[ -z $ntd ]]; then
                         echo ${tpf7}
                         $fullcmd 2>&1 | tee $outf2 # - disable for testing
                         echo $?
@@ -55,13 +66,7 @@ for thisdir in "${dirSource[@]}"; do
                             echo "Action:" >> $outf1
                             cat $outf2 >> $outf1
                         fi
-                    else # no destination
-                        echo "" | tee -a $outf1
-                        echo ${tpf1b}$ntdflag${tpfn}
-                        echo "Action:" >> $outf1
-                        echo $ntdflag >> $outf1
-                        ntd=1
-                    fi
+                    fi  # did the work
                 else # no source
                     echo "" | tee -a $outf1
                     echo ${tpf1b}$nfdflag${tpfn}

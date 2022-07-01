@@ -6,6 +6,8 @@
 # alias  rsV  is defined in my  $Bash/bashrc-console
 # or  bash $onGH/rsync-drives/sbMb/rsync-Vs.sh
 
+createTarget=1  # usually commented out
+
 scriptDir=$( dirname "${BASH_SOURCE[0]}" )
   rsyncDir=${scriptDir%/*}  # for accessing sourced scripts
 
@@ -90,33 +92,6 @@ dirTarget=(
   run/media/jo/TOSHIBA/Vs-story-war \
   run/media/jo/TOSHIBA/Vs-theatre \
 )
-
-# #=> 0 target locations on sbMb
-# dirTarget=(
-#   mnt/WD30EZRZ/nl/Vs-do \
-#   mnt/WD30EZRZ/nl/Vs-educate \
-#   mnt/WD30EZRZ/nl/Vs-forChildren \
-#   mnt/WD30EZRZ/nl/Vs-forChildren-best \
-#   mnt/WD30EZRZ/nl/Vs-forChildren-best-Europe \
-#   mnt/WD30EZRZ/nl/Vs-forChildren-best-US \
-#   mnt/WD30EZRZ/nl/Vs-forChildren-unseen \
-#   mnt/WD30EZRZ/nl/Vs-inform-arts \
-#   mnt/WD30EZRZ/nl/Vs-inform-belief \
-#   mnt/WD30EZRZ/nl/Vs-inform-history \
-#   mnt/WD30EZRZ/nl/Vs-inform-other \
-#   mnt/WD30EZRZ/nl/Vs-inform-technos \
-#   mnt/WD30EZRZ/nl/Vs-inform-war \
-#   mnt/WD30EZRZ/nl/Vs-literature \
-#   mnt/WD30EZRZ/nl/Vs-nature \
-#   mnt/WD30EZRZ/nl/Vs-story \
-#   mnt/WD30EZRZ/nl/Vs-story-favs \
-#   mnt/WD30EZRZ/nl/Vs-story-favs-US \
-#   mnt/WD30EZRZ/nl/Vs-story-fun \
-#   mnt/WD30EZRZ/nl/Vs-story-unseen \
-#   mnt/WD30EZRZ/nl/Vs-story-US \
-#   mnt/WD30EZRZ/nl/Vs-story-war \
-#   mnt/WD30EZRZ/nl/Vs-theatre \
-# )
 
 #=> 1 list the included directories
 echo -e "This BASH script will \e[1mrsync\e[0m from all of these local directories:\e[92m"
