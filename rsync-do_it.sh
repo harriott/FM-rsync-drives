@@ -4,7 +4,7 @@
 # sourced by  $onGH/rsync-portabledrives/rsync.sh
 
 i=-1
-outf0="$Storage/${outf%.*}"  # $Storage  is defined in my  $MACHINE/export-machine
+outf0="$Storage/${outf%.*}"  # $Storage  is defined in my  $machBld/export-machine
 outf1="$outf0.log"
 outf2="$outf0.tmp"; touch $outf2
 echo "vim: ft=rsynclog fdm=expr:" > $outf1
@@ -90,6 +90,7 @@ outf3="$outf0-$jHM.log"
 cp $outf1 $outf3
 echo ''
 echo "- all done, and logged to $outf1 ${tpf7}(& $outf3)${tpfn}"
+sed -i '/\r .\+/d' $outf1  # remove progress mess (= lines starting with carriage return)
 if [ $nfd ]; then
     gvim -c "silent! /$nfdflag" $outf1
 elif [ $ntd ]; then
