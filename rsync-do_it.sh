@@ -33,7 +33,7 @@ for thisdir in "${dirSource[@]}"; do
                     fr="$thisdir"
                     to="$extmnt/$extdd"
                 else
-                    modrsc=" --modify-window=1" # don't receive fraction of second changes
+                    # modrsc=" --modify-window=1" # don't receive fraction of second changes
                     cmd="$rsynccom$modrsc"
                     fr="$extmnt/$extdd"
                     to="$thisdir"
@@ -78,6 +78,7 @@ for thisdir in "${dirSource[@]}"; do
                 # check for rsync errors
                 grep -q ' failed: Invalid argument ' $outf1 && re=fIa
                 grep -q ' Input/output error ' $outf1 && re=Ioe
+                grep -q ' write error: Broken pipe ' $outf1 && re=Ioe
                 [ $re ] && echo 'there was an rsync error, so not going any further'
             fi
         fi

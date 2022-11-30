@@ -9,7 +9,7 @@
 # createTarget=1  # usually commented out
 
 scriptDir=$( dirname "${BASH_SOURCE[0]}" )
-  rsyncDir=${scriptDir%/*}  # for accessing sourced scripts
+  rsyncDir=${scriptDir%/*}  # up one, for accessing sourced scripts
 
 #=> 0 includes 0 abstracted list of included locations
 includeIndexed=(
@@ -30,12 +30,12 @@ includeIndexed=(
   1 Vs-nature
   1 Vs-story
   1 Vs-story-favs
-  1 Vs-story-favs-US
-  1 Vs-story-fun
-  1 Vs-story-unseen
-  1 Vs-story-US
-  1 Vs-story-war
-  1 Vs-theatre
+  0 Vs-story-favs-US
+  0 Vs-story-fun
+  0 Vs-story-unseen
+  0 Vs-story-US
+  0 Vs-story-war
+  0 Vs-theatre
 ) # defines the order
 
 #=> 0 includes 1 make the include array
@@ -79,7 +79,7 @@ dirTarget=(
   run/media/jo/WD30EZRZ/Vs-inform-arts
   run/media/jo/TOSHIBA/Vs-inform-belief
   run/media/jo/TOSHIBA/Vs-inform-history
-  run/media/jo/TOSHIBA/Vs-inform-other
+  run/media/jo/WD30EZRZ/Vs-inform-other
   run/media/jo/TOSHIBA/Vs-inform-technos
   run/media/jo/TOSHIBA/Vs-inform-war
   run/media/jo/TOSHIBA/Vs-literature
@@ -98,7 +98,13 @@ dirTarget=(
 echo -e "This BASH script will \e[1mrsync\e[0m from all of these local directories:\e[92m"
 source "$rsyncDir/rsync-list_included.sh"
 
-#=> 2 do the rsyncs
+# #=> 2 rsync checks from sources
+# outf=`basename ${BASH_SOURCE[0]}`
+# drctn="f"  # required by  rsync-do_it.sh
+# rsynccom="rsync -ilnrt --delete --progress"
+# source $rsyncDir/rsync-do_it.sh
+
+#=> 3 do the rsyncs to targets
 outf=`basename ${BASH_SOURCE[0]}`
 drctn="t"  # required by  rsync-do_it.sh
 rsynccom="rsync -ilrt --delete --progress"

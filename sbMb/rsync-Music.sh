@@ -9,7 +9,7 @@ ac="rsync -irtv --delete --progress /mnt/SD480GSSDPlus"  # archive command
 
 for bl in /run/media/jo/ST905004EXD101 /run/media/jo/ST3320418AS; do
 
-    for ml in H-K L+M N-Q R+S T-Z; do
+    for ml in L+M N-Q R+S T-Z; do
         fullcmd="$ac/SharonMusic-$ml/ $bl/SharonMusic-$ml"
         echo $fullcmd
         $fullcmd

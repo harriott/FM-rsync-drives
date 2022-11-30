@@ -3,7 +3,7 @@
 # A series of rsyncs between folders on local and portable archive media.
 # alias rs0 is defined in my  $Bash/bashrc-console
 
-ac="rsync -irtv --delete --progress $DROPBOX"
+ac="rsync -irtv --delete --progress $Drpbx"
 
   al='/run/media/jo/HDT721016SLA380/k6i-Dr0'
 # al='/run/media/jo/HM250HI/k3q-Dr0'

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Joseph Harriott - Tue 26 Apr 2022
+# Joseph Harriott - Sun 02 Oct 2022
 
 # A series of rsyncs between folders on local and portable media.
 # ---------------------------------------------------------------
@@ -9,12 +9,12 @@
 #   and call it from a terminal with the bash command.
 #   eg: bash /<fullpath>/rsync.sh
 
-# alias rpd  is defined in my  $Bash/bashrc-ob
+# rpd  is defined in my  $Bash/bashrc-ob
 
-createTarget=1  # usually commented out
+# createTarget=1  # usually commented out
 
 #=> 0 directory locations
-# $DROPBOX  is defined in my  $ARCHBUILDS/Bash/export-storage
+# $Drpbx  is defined in my  $ARCHBUILDS/Bash/export-storage
 extmnt=/run/media/jo
 scriptDir=$( dirname "${BASH_SOURCE[0]}" )
 
@@ -28,11 +28,9 @@ includeIndexed=(
   1 1-Dr-JH-F+F
   1 1-Dr-JH-JCD-imagey-e3
   1 1-Dr-JH-now
-  1 1-Dr-JH-Sh-LIP120s81A4
+  1 1-Dr-JH-Sh-AsusW202
   1 1-Dr-JH-Sh-sbMb
   1 1-Dr-JH-Sh-XA10II
-  1 1-Dr-JH-Sh-XA2
-  1 1-Dr-JH-Sh-XA2-ss
   1 1-Dr-JH-stack
   1 1-Dr-JH-T91-default-release
   1 1-Dr-JH-technos
@@ -40,7 +38,7 @@ includeIndexed=(
   1 1-Dr-JH-Theatre1
   1 1-Dr-JH-Then0
   1 1-Dr-JH-Then1
-  1 1-Dr-JH-toReduce
+  1 1-Dr-JH-WimHof-guides
   1 1-Dr-JH-work
   1 1-Dr-Photos
   1 2-Dr-Apps
@@ -55,8 +53,8 @@ includeIndexed=(
   1 2-Dr-CAT-OutThere-UK
   1 2-Dr-CAT-Wellbeing
   1 2-Dr-COutThere
-  0 3-IT-Copied
-  0 3-Sync2
+  1 3-IT-Copied
+  1 3-Sync2
 )  # this list defines the sort order
 
 #==> includes 1 make the include array
@@ -68,32 +66,30 @@ source $scriptDir/rsync-makeIncludeArray.sh
 #===> AsusW202
 if [ $host = "AsusW202" ]; then
     dirSource=(
-        $Cz
-        $DROPBOX/JH/CforWork
-        $DROPBOX/JH/copied
-        $DROPBOX/JH/core
-        $DROPBOX/JH/F+F
-        $DROPBOX/JH/JCD-imagey-e3
-        $DROPBOX/JH/now
-        $DROPBOX/JH/Sh-LIP120s81A4
-        $DROPBOX/JH/Sh-sbMb
-        $DROPBOX/JH/Sh-XA10II
-        $DROPBOX/JH/Sh-XA2
-        $DROPBOX/JH/Sh-XA2-ss
-        $DROPBOX/JH/stack
-        $DROPBOX/JH/T91-default-release
-        $DROPBOX/JH/technos
-        $DROPBOX/JH/Theatre0
-        $DROPBOX/JH/Theatre1
-        $DROPBOX/JH/Then0
-        $DROPBOX/JH/Then1
-        $DROPBOX/JH/toReduce
-        $DROPBOX/JH/work
-        $DROPBOX/Photos
-        $DROPBOX/Apps
-        $DROPBOX/CAM-best
-        $DROPBOX/CAM-good
-        $DROPBOX/CAM-toSort0
+        $Cfzd
+        $Drpbx/JH/CforWork
+        $Drpbx/JH/copied
+        $Drpbx/JH/core
+        $Drpbx/JH/F+F
+        $Drpbx/JH/JCD-imagey-e3
+        $Drpbx/JH/now
+        $Drpbx/JH/Sh-AsusW202
+        $Drpbx/JH/Sh-sbMb
+        $Drpbx/JH/Sh-XA10II
+        $Drpbx/JH/stack
+        $Drpbx/JH/T91-default-release
+        $Drpbx/JH/technos
+        $Drpbx/JH/Theatre0
+        $Drpbx/JH/Theatre1
+        $Drpbx/JH/Then0
+        $Drpbx/JH/Then1
+        $Drpbx/JH/WimHof-guides
+        $Drpbx/JH/work
+        $Drpbx/Photos
+        $Drpbx/Apps
+        $Drpbx/CAM-best
+        $Drpbx/CAM-good
+        $Drpbx/CAM-toSort0
         -
         -
         -
@@ -101,7 +97,7 @@ if [ $host = "AsusW202" ]; then
         -
         -
         -
-        $DROPBOX/COutThere
+        $Drpbx/COutThere
         -
         -
     )
@@ -110,69 +106,65 @@ fi  # $host  is defined in  $ARCHBUILDS/Bash/export-storage
 #===> i34G1TU02
 if [ $host = "i34G1TU02" ]; then
     dirSource=(
-        $Cz
-        $DROPBOX/JH/CforWork
-        $DROPBOX/JH/copied
-        $DROPBOX/JH/core
-        $DROPBOX/JH/F+F
-        $DROPBOX/JH/JCD-imagey-e3
-        $DROPBOX/JH/now
-        $DROPBOX/JH/Sh-LIP120s81A4
-        $DROPBOX/JH/Sh-sbMb
-        $DROPBOX/JH/Sh-XA10II
-        $DROPBOX/JH/Sh-XA2
-        $DROPBOX/JH/Sh-XA2-ss
-        $DROPBOX/JH/stack
-        $DROPBOX/JH/T91-default-release
-        $DROPBOX/JH/technos
-        $DROPBOX/JH/Theatre0
-        $DROPBOX/JH/Theatre1
-        $DROPBOX/JH/Then0
-        $DROPBOX/JH/Then1
-        $DROPBOX/JH/toReduce
-        $DROPBOX/JH/work
-        $DROPBOX/Photos
-        $DROPBOX/Apps
+        $Cfzd
+        $Drpbx/JH/CforWork
+        $Drpbx/JH/copied
+        $Drpbx/JH/core
+        $Drpbx/JH/F+F
+        $Drpbx/JH/JCD-imagey-e3
+        $Drpbx/JH/now
+        $Drpbx/JH/Sh-AsusW202
+        $Drpbx/JH/Sh-sbMb
+        $Drpbx/JH/Sh-XA10II
+        $Drpbx/JH/stack
+        $Drpbx/JH/T91-default-release
+        $Drpbx/JH/technos
+        $Drpbx/JH/Theatre0
+        $Drpbx/JH/Theatre1
+        $Drpbx/JH/Then0
+        $Drpbx/JH/Then1
+        $Drpbx/JH/WimHof-guides
+        $Drpbx/JH/work
+        $Drpbx/Photos
+        $Drpbx/Apps
     )
 fi  # $host  is defined in  $ARCHBUILDS/Bash/export-storage
 
 #===> sbMb
 if [ $host = "sbMb" ]; then
     dirSource=(
-        $Cz
-        $DROPBOX/JH/CforWork
-        $DROPBOX/JH/copied
-        $DROPBOX/JH/core
-        $DROPBOX/JH/F+F
-        $DROPBOX/JH/JCD-imagey-e3
-        $DROPBOX/JH/now
-        $DROPBOX/JH/Sh-LIP120s81A4
-        $DROPBOX/JH/Sh-sbMb
-        $DROPBOX/JH/Sh-XA10II
-        $DROPBOX/JH/Sh-XA2
-        $DROPBOX/JH/Sh-XA2-ss
-        $DROPBOX/JH/stack
-        $DROPBOX/JH/T91-default-release
-        $DROPBOX/JH/technos
-        $DROPBOX/JH/Theatre0
-        $DROPBOX/JH/Theatre1
-        $DROPBOX/JH/Then0
-        $DROPBOX/JH/Then1
-        $DROPBOX/JH/toReduce
-        $DROPBOX/JH/work
-        $DROPBOX/Photos
-        $DROPBOX/Apps
-        $DROPBOX/CAM-best
-        $DROPBOX/CAM-good
-        $DROPBOX/CAM-toSort0
-        $DROPBOX/CAM-toSort1
-        $DROPBOX/CAM-toSort1-UK
-        $DROPBOX/CAM-toSort1-USA
-        $DROPBOX/CAT-Buddhism
-        $DROPBOX/CAT-OutThere
-        $DROPBOX/CAT-OutThere-UK
-        $DROPBOX/CAT-Wellbeing
-        $DROPBOX/COutThere
+        $Cfzd
+        $Drpbx/JH/CforWork
+        $Drpbx/JH/copied
+        $Drpbx/JH/core
+        $Drpbx/JH/F+F
+        $Drpbx/JH/JCD-imagey-e3
+        $Drpbx/JH/now
+        $Drpbx/JH/Sh-AsusW202
+        $Drpbx/JH/Sh-sbMb
+        $Drpbx/JH/Sh-XA10II
+        $Drpbx/JH/stack
+        $Drpbx/JH/T91-default-release
+        $Drpbx/JH/technos
+        $Drpbx/JH/Theatre0
+        $Drpbx/JH/Theatre1
+        $Drpbx/JH/Then0
+        $Drpbx/JH/Then1
+        $Drpbx/JH/WimHof-guides
+        $Drpbx/JH/work
+        $Drpbx/Photos
+        $Drpbx/Apps
+        $Drpbx/CAM-best
+        $Drpbx/CAM-good
+        $Drpbx/CAM-toSort0
+        $Drpbx/CAM-toSort1
+        $Drpbx/CAM-toSort1-UK
+        $Drpbx/CAM-toSort1-USA
+        $Drpbx/CAT-Buddhism
+        $Drpbx/CAT-OutThere
+        $Drpbx/CAT-OutThere-UK
+        $Drpbx/CAT-Wellbeing
+        $Drpbx/COutThere
         /mnt/SDU3D1TB/IT-Copied
         /mnt/SDU3D1TB/Sync2
     )
@@ -187,11 +179,9 @@ dirTarget=(
   WD30EZRZ/Sync0Dr/JH-F+F
   WD30EZRZ/Sync0Dr/JH-JCD-imagey-e3
   WD30EZRZ/Sync0Dr/JH-now
-  WD30EZRZ/Sync0Dr/JH-Sh-LIP120s81A4
+  WD30EZRZ/Sync0Dr/JH-Sh-AsusW202
   WD30EZRZ/Sync0Dr/JH-Sh-sbMb
   WD30EZRZ/Sync0Dr/JH-Sh-XA10II
-  WD30EZRZ/Sync0Dr/JH-Sh-XA2
-  WD30EZRZ/Sync0Dr/JH-Sh-XA2-ss
   WD30EZRZ/Sync0Dr/JH-stack
   WD30EZRZ/Sync0Dr/JH-T91-default-release
   WD30EZRZ/Sync0Dr/JH-technos
@@ -199,7 +189,7 @@ dirTarget=(
   WD30EZRZ/Sync0Dr/JH-Theatre1
   WD30EZRZ/Sync0Dr/JH-Then0
   WD30EZRZ/Sync0Dr/JH-Then1
-  WD30EZRZ/Sync0Dr/JH-toReduce
+  WD30EZRZ/Sync0Dr/JH-WimHof-guides
   WD30EZRZ/Sync0Dr/JH-work
   WD30EZRZ/Sync0Dr/Photos
   WD30EZRZ/Sync1Dr/Apps
@@ -224,7 +214,11 @@ echo -e "either to or from these local directories:\e[92m"
 source "$scriptDir/rsync-list_included.sh"
 
 #=> 2 decide what to do
-read -p "Sync TO (T) portable drives (or dry-run (t)), or FROM (F) (or dry-run (f))? " drctn
+if [ $1 ]; then
+    drctn=$1
+else
+    read -p "Sync TO (T) portable drives (or dry-run (t)), or FROM (F) (or dry-run (f))? " drctn
+fi
 if [ $drctn ]; then
     dr0=''
     dr1=''

@@ -5,7 +5,7 @@
 
 # A series of rsyncs between folders on local and portable archive media.
 
-ac="rsync -irtv --delete --progress $DROPBOX"
+ac="rsync -irtv --delete --progress $Drpbx"
 
 # al='/run/media/jo/HM250HI/k3q-Dr1'
 # al='/run/media/jo/ST380815AS/k4n-Dr1'
