@@ -13,29 +13,30 @@ scriptDir=$( dirname "${BASH_SOURCE[0]}" )
 
 #=> 0 includes 0 abstracted list of included locations
 includeIndexed=(
-  1 Vs-do
-  1 Vs-educate
-  1 Vs-forChildren
-  1 Vs-forChildren-best
-  1 Vs-forChildren-best-Europe
-  1 Vs-forChildren-best-US
-  1 Vs-forChildren-unseen
-  1 Vs-inform-arts
-  1 Vs-inform-belief
-  1 Vs-inform-history
-  1 Vs-inform-other
-  1 Vs-inform-technos
-  1 Vs-inform-war
-  1 Vs-literature
-  1 Vs-nature
-  1 Vs-story
-  1 Vs-story-favs
-  0 Vs-story-favs-US
-  0 Vs-story-fun
-  0 Vs-story-unseen
-  0 Vs-story-US
-  0 Vs-story-war
-  0 Vs-theatre
+  0 Vs-do
+  0 Vs-educate
+  0 Vs-forChildren
+  0 Vs-forChildren-best
+  0 Vs-forChildren-best-Europe
+  0 Vs-forChildren-best-US
+  0 Vs-forChildren-unseen
+  0 Vs-inform-arts
+  0 Vs-inform-belief
+  0 Vs-inform-history
+  0 Vs-inform-other
+  0 Vs-inform-technos
+  0 Vs-inform-war
+  0 Vs-literature
+  0 Vs-nature
+  0 Vs-story
+  0 Vs-story-favs
+  1 Vs-story-favs-US
+  1 Vs-story-fun
+  1 Vs-story-unseen
+  1 Vs-story-US
+  1 Vs-story-war
+  1 Vs-theatre
+  1 Vs-wellbeing
 ) # defines the order
 
 #=> 0 includes 1 make the include array
@@ -48,7 +49,7 @@ dirSource=(
   /mnt/WD1001FALS/Vs-forChildren
   /mnt/WD1001FALS/Vs-forChildren-best
   /mnt/WD1001FALS/Vs-forChildren-best-Europe
-  /mnt/ST4000VN008/Vs-forChildren-best-US
+  /mnt/WD1001FALS/Vs-forChildren-best-US
   /mnt/WD1001FALS/Vs-forChildren-unseen
   /mnt/ST4000VN008/Vs-inform-arts
   /mnt/ST4000VN008/Vs-inform-belief
@@ -66,6 +67,7 @@ dirSource=(
   /mnt/ST4000VN008/Vs-story-US
   /mnt/ST4000VN008/Vs-story-war
   /mnt/ST4000VN008/Vs-theatre
+  /mnt/ST4000VN008/Vs-wellbeing
 )
 #=> 0 target locations on portable drives
 dirTarget=(
@@ -92,6 +94,7 @@ dirTarget=(
   run/media/jo/TOSHIBA/Vs-story-US
   run/media/jo/TOSHIBA/Vs-story-war
   run/media/jo/TOSHIBA/Vs-theatre
+  run/media/jo/WD30EZRZ/Vs-wellbeing
 )
 
 #=> 1 list the included directories

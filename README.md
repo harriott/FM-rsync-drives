@@ -1,7 +1,7 @@
 [//]: # ( vim: set fdl=3 fdm=expr:)
 
-rsync-portabledrives
-====================
+File Manage rsync drives
+========================
 
-A naïve Bash script built to launch rsync in various directions. Mostly just wrapping...
+A Bash script to launch rsync in various directions. Mostly just wrapping...
 

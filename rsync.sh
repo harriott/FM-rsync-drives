@@ -14,35 +14,36 @@
 # createTarget=1  # usually commented out
 
 #=> 0 directory locations
-# $Drpbx  is defined in my  $ARCHBUILDS/Bash/export-storage
+# $Drpbx  is defined in my  $OSAB/Bash/export-storage
 extmnt=/run/media/jo
 scriptDir=$( dirname "${BASH_SOURCE[0]}" )
 
 #==> includes 0 abstracted list of included locations
 # set first item to 0 to exclude a directory:
 includeIndexed=(
-  1 1-Dr-JH-Cafezoide
-  1 1-Dr-JH-CforWork
-  1 1-Dr-JH-copied
-  1 1-Dr-JH-core
-  1 1-Dr-JH-F+F
-  1 1-Dr-JH-JCD-imagey-e3
-  1 1-Dr-JH-now
-  1 1-Dr-JH-Sh-AsusW202
-  1 1-Dr-JH-Sh-sbMb
-  1 1-Dr-JH-Sh-XA10II
-  1 1-Dr-JH-stack
-  1 1-Dr-JH-T91-default-release
-  1 1-Dr-JH-technos
-  1 1-Dr-JH-Theatre0
-  1 1-Dr-JH-Theatre1
-  1 1-Dr-JH-Then0
-  1 1-Dr-JH-Then1
-  1 1-Dr-JH-WimHof-guides
-  1 1-Dr-JH-work
-  1 1-Dr-Photos
-  1 2-Dr-Apps
-  1 2-Dr-CAM-best
+  0 1-Dr-JH-Cafezoide
+  0 1-Dr-JH-CforWork
+  0 1-Dr-JH-copied
+  0 1-Dr-JH-core
+  0 1-Dr-JH-F+F
+  0 1-Dr-JH-JCD-imagey-e3
+  0 1-Dr-JH-now
+  0 1-Dr-JH-Sh-AsusW202
+  0 1-Dr-JH-Sh-OppoA76
+  0 1-Dr-JH-Sh-sbMb
+  0 1-Dr-JH-Sh-XA10II
+  0 1-Dr-JH-stack
+  0 1-Dr-JH-T91-default-release
+  0 1-Dr-JH-technos
+  0 1-Dr-JH-Theatre0
+  0 1-Dr-JH-Theatre1
+  0 1-Dr-JH-Then0
+  0 1-Dr-JH-Then1
+  0 1-Dr-JH-WimHof-guides
+  0 1-Dr-JH-work
+  0 1-Dr-Photos
+  0 2-Dr-Apps
+  0 2-Dr-CAM-best
   1 2-Dr-CAM-good
   1 2-Dr-CAM-toSort0
   1 2-Dr-CAM-toSort1
@@ -61,7 +62,7 @@ includeIndexed=(
 source $scriptDir/rsync-makeIncludeArray.sh
 
 #==> source locations on machines
-# $host  is defined in  $ARCHBUILDS/Bash/export-storage
+# $host  is defined in  $OSAB/Bash/export-storage
 
 #===> AsusW202
 if [ $host = "AsusW202" ]; then
@@ -74,6 +75,7 @@ if [ $host = "AsusW202" ]; then
         $Drpbx/JH/JCD-imagey-e3
         $Drpbx/JH/now
         $Drpbx/JH/Sh-AsusW202
+        $Drpbx/JH/Sh-OppoA76
         $Drpbx/JH/Sh-sbMb
         $Drpbx/JH/Sh-XA10II
         $Drpbx/JH/stack
@@ -84,7 +86,7 @@ if [ $host = "AsusW202" ]; then
         $Drpbx/JH/Then0
         $Drpbx/JH/Then1
         $Drpbx/JH/WimHof-guides
-        $Drpbx/JH/work
+        $JHw
         $Drpbx/Photos
         $Drpbx/Apps
         $Drpbx/CAM-best
@@ -101,7 +103,7 @@ if [ $host = "AsusW202" ]; then
         -
         -
     )
-fi  # $host  is defined in  $ARCHBUILDS/Bash/export-storage
+fi  # $host  is defined in  $OSAB/Bash/export-storage
 
 #===> i34G1TU02
 if [ $host = "i34G1TU02" ]; then
@@ -114,6 +116,7 @@ if [ $host = "i34G1TU02" ]; then
         $Drpbx/JH/JCD-imagey-e3
         $Drpbx/JH/now
         $Drpbx/JH/Sh-AsusW202
+        $Drpbx/JH/Sh-OppoA76
         $Drpbx/JH/Sh-sbMb
         $Drpbx/JH/Sh-XA10II
         $Drpbx/JH/stack
@@ -124,11 +127,11 @@ if [ $host = "i34G1TU02" ]; then
         $Drpbx/JH/Then0
         $Drpbx/JH/Then1
         $Drpbx/JH/WimHof-guides
-        $Drpbx/JH/work
+        $JHw
         $Drpbx/Photos
         $Drpbx/Apps
     )
-fi  # $host  is defined in  $ARCHBUILDS/Bash/export-storage
+fi  # $host  is defined in  $OSAB/Bash/export-storage
 
 #===> sbMb
 if [ $host = "sbMb" ]; then
@@ -141,6 +144,7 @@ if [ $host = "sbMb" ]; then
         $Drpbx/JH/JCD-imagey-e3
         $Drpbx/JH/now
         $Drpbx/JH/Sh-AsusW202
+        $Drpbx/JH/Sh-OppoA76
         $Drpbx/JH/Sh-sbMb
         $Drpbx/JH/Sh-XA10II
         $Drpbx/JH/stack
@@ -151,7 +155,7 @@ if [ $host = "sbMb" ]; then
         $Drpbx/JH/Then0
         $Drpbx/JH/Then1
         $Drpbx/JH/WimHof-guides
-        $Drpbx/JH/work
+        $JHw
         $Drpbx/Photos
         $Drpbx/Apps
         $Drpbx/CAM-best
@@ -168,7 +172,7 @@ if [ $host = "sbMb" ]; then
         /mnt/SDU3D1TB/IT-Copied
         /mnt/SDU3D1TB/Sync2
     )
-fi  # $host  is defined in  $ARCHBUILDS/Bash/export-storage
+fi  # $host  is defined in  $OSAB/Bash/export-storage
 
 #==> target locations on portable drives
 dirTarget=(
@@ -180,6 +184,7 @@ dirTarget=(
   WD30EZRZ/Sync0Dr/JH-JCD-imagey-e3
   WD30EZRZ/Sync0Dr/JH-now
   WD30EZRZ/Sync0Dr/JH-Sh-AsusW202
+  WD30EZRZ/Sync0Dr/JH-Sh-OppoA76
   WD30EZRZ/Sync0Dr/JH-Sh-sbMb
   WD30EZRZ/Sync0Dr/JH-Sh-XA10II
   WD30EZRZ/Sync0Dr/JH-stack
