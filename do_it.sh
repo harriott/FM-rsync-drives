@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Joseph Harriott - Tue 26 Apr 2022
-# sourced by  $onGH/rsync-portabledrives/rsync.sh
+# Joseph Harriott - Sat 01 Jul 2023
+# $onGH/FM-rsync-drives/rsync/do_it.sh  sourced by  $onGH/FM-rsync-drives/rsync.sh
 
 i=-1
 outf0="$Storage/${outf%.*}"  # $Storage  is defined in my  $machBld/export-machine
@@ -40,7 +40,7 @@ for thisdir in "${dirSource[@]}"; do
                 fi
                 echo "" | tee -a $outf1
                 printf -v include "%02d" $j
-                echo "Push sync $include of $included : ${includedir[i]}" | tee -a $outf1
+                echo "Push sync $include of $included : ${includeVs[i]}" | tee -a $outf1
                 echo $underline | tee -a $outf1
                 fullcmd="$cmd $fr/ $to"
                 echo ${tpf7b}$fullcmd${tpfn}

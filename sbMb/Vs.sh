@@ -4,14 +4,14 @@
 # rsync backups of my preferred videos
 # ------------------------------------
 # alias  rsV  is defined in my  $Bash/bashrc-console
-# or  bash $onGH/rsync-drives/sbMb/rsync-Vs.sh
+# or  bash $onGH/FM-rsync-drives/rsync/sbMb/Vs.sh
 
 # createTarget=1  # usually commented out
 
 scriptDir=$( dirname "${BASH_SOURCE[0]}" )
   rsyncDir=${scriptDir%/*}  # up one, for accessing sourced scripts
 
-#=> 0 includes 0 abstracted list of included locations
+#=> 0 includes 0 list of included locations
 includeIndexed=(
   1 Vs-do                      SDU3D1TB
   1 Vs-educate                 SDU3D1TB
@@ -42,7 +42,7 @@ includeIndexed=(
 ) # defines the order
 
 #=> 0 includes 1 make the include array
-source $rsyncDir/rsync-makeIncludeArray.sh
+source $rsyncDir/makeIncludeArray.sh
 
 #=> 0 source locations on sbMb
 dirSource=(
@@ -105,17 +105,18 @@ dirTarget=(
 
 #=> 1 list the included directories
 echo -e "This BASH script will \e[1mrsync\e[0m from all of these local directories:\e[92m"
-source "$rsyncDir/rsync-list_included.sh"
+source "$rsyncDir/list_included.sh"
 
 # #=> 2 rsync checks from sources
 # outf=`basename ${BASH_SOURCE[0]}`
-# drctn="f"  # required by  rsync-do_it.sh
+# drctn="f"  # required by  $onGH/FM-rsync-drives/rsync/do_it.sh
 # rsynccom="rsync -ilnrt --delete --progress"
 # source $rsyncDir/rsync-do_it.sh
 
 #=> 3 do the rsyncs to targets
 outf=`basename ${BASH_SOURCE[0]}`
-drctn="t"  # required by  rsync-do_it.sh
+drctn="t"  # required by  $onGH/FM-rsync-drives/rsync/do_it.sh
 rsynccom="rsync -ilrt --delete --progress"
-source $rsyncDir/rsync-do_it.sh
+# source $rsyncDir/rsync-do_it.sh  # comment out for testing
+# source $onGH/FM-rsync-drives/rsync/do_it.sh
 

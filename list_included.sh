@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Joseph Harriott - Mon 16 May 2022
-# sourced by  $onGH/rsync-portabledrives/rsync.sh
+# $onGH/FM-rsync-drives/list_included.sh  sourced by  $onGH/FM-rsync-drives/rsync.sh
 
 # set -x
 i=-1
