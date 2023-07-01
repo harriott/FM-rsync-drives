@@ -13,30 +13,32 @@ scriptDir=$( dirname "${BASH_SOURCE[0]}" )
 
 #=> 0 includes 0 abstracted list of included locations
 includeIndexed=(
-  0 Vs-do
-  0 Vs-educate
-  0 Vs-forChildren
-  0 Vs-forChildren-best
-  0 Vs-forChildren-best-Europe
-  0 Vs-forChildren-best-US
-  0 Vs-forChildren-unseen
-  0 Vs-inform-arts
-  0 Vs-inform-belief
-  0 Vs-inform-history
-  0 Vs-inform-other
-  0 Vs-inform-technos
-  0 Vs-inform-war
-  0 Vs-literature
-  0 Vs-nature
-  0 Vs-story
-  0 Vs-story-favs
-  1 Vs-story-favs-US
-  1 Vs-story-fun
-  1 Vs-story-unseen
-  1 Vs-story-US
-  1 Vs-story-war
-  1 Vs-theatre
-  1 Vs-wellbeing
+  1 Vs-do                      SDU3D1TB
+  1 Vs-educate                 SDU3D1TB
+  0 Vs-humanBody               SDU3D1TB
+  0 Vs-forChildren             HD103SJ
+  1 Vs-forChildren-best        WD1001FALS
+  1 Vs-forChildren-best-Europe WD1001FALS
+  1 Vs-forChildren-best-US     WD1001FALS
+  0 Vs-forChildren-unseen      HD103SJ
+  1 Vs-inform-arts             ST4000VN008
+  1 Vs-inform-belief           ST4000VN008
+  1 Vs-inform-history          ST4000VN008
+  1 Vs-inform-other            ST4000VN008
+  1 Vs-inform-technos          ST4000VN008
+  1 Vs-inform-war              ST4000VN008
+  1 Vs-literature              ST4000VN008
+  1 Vs-nature                  ST4000VN008
+  1 Vs-story                   ST4000VN008
+  1 Vs-story-favs              ST4000VN008
+  1 Vs-story-favs-US           ST4000VN008
+  1 Vs-story-favs-US-bad-guys  WD1001FALS
+  1 Vs-story-fun               ST4000VN008
+  1 Vs-story-unseen            ST4000VN008
+  1 Vs-story-US                ST4000VN008
+  1 Vs-story-war               ST4000VN008
+  1 Vs-theatre                 WD1001FALS
+  1 Vs-wellbeing               ST4000VN008
 ) # defines the order
 
 #=> 0 includes 1 make the include array
@@ -46,11 +48,12 @@ source $rsyncDir/rsync-makeIncludeArray.sh
 dirSource=(
   /mnt/SDU3D1TB/Vs-do
   /mnt/SDU3D1TB/Vs-educate
-  /mnt/WD1001FALS/Vs-forChildren
+  /mnt/SDU3D1TB/Vs-humanBody
+  /run/media/jo/HD103SJ/Vs-forChildren
   /mnt/WD1001FALS/Vs-forChildren-best
   /mnt/WD1001FALS/Vs-forChildren-best-Europe
   /mnt/WD1001FALS/Vs-forChildren-best-US
-  /mnt/WD1001FALS/Vs-forChildren-unseen
+  /run/media/jo/HD103SJ/Vs-forChildren-unseen
   /mnt/ST4000VN008/Vs-inform-arts
   /mnt/ST4000VN008/Vs-inform-belief
   /mnt/ST4000VN008/Vs-inform-history
@@ -62,17 +65,19 @@ dirSource=(
   /mnt/ST4000VN008/Vs-story
   /mnt/ST4000VN008/Vs-story-favs
   /mnt/ST4000VN008/Vs-story-favs-US
+  /mnt/WD1001FALS/Vs-story-favs-US-bad-guys
   /mnt/ST4000VN008/Vs-story-fun
   /mnt/ST4000VN008/Vs-story-unseen
   /mnt/ST4000VN008/Vs-story-US
   /mnt/ST4000VN008/Vs-story-war
-  /mnt/ST4000VN008/Vs-theatre
+  /mnt/WD1001FALS/Vs-theatre
   /mnt/ST4000VN008/Vs-wellbeing
 )
 #=> 0 target locations on portable drives
 dirTarget=(
   run/media/jo/WD30EZRZ/Vs-do
   run/media/jo/WD30EZRZ/Vs-educate
+  run/media/jo/WD30EZRZ/Vs-humanBody
   run/media/jo/TOSHIBA/Vs-forChildren
   run/media/jo/TOSHIBA/Vs-forChildren-best
   run/media/jo/TOSHIBA/Vs-forChildren-best-Europe
@@ -89,11 +94,12 @@ dirTarget=(
   run/media/jo/TOSHIBA/Vs-story
   run/media/jo/TOSHIBA/Vs-story-favs
   run/media/jo/TOSHIBA/Vs-story-favs-US
+  run/media/jo/TOSHIBA/Vs-story-favs-US-bad-guys
   run/media/jo/TOSHIBA/Vs-story-fun
   run/media/jo/TOSHIBA/Vs-story-unseen
   run/media/jo/TOSHIBA/Vs-story-US
   run/media/jo/TOSHIBA/Vs-story-war
-  run/media/jo/TOSHIBA/Vs-theatre
+  run/media/jo/WD30EZRZ/Vs-theatre
   run/media/jo/WD30EZRZ/Vs-wellbeing
 )
 

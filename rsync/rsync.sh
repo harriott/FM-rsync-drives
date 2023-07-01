@@ -39,22 +39,23 @@ includeIndexed=(
   0 1-Dr-JH-Theatre1
   0 1-Dr-JH-Then0
   0 1-Dr-JH-Then1
-  0 1-Dr-JH-WimHof-guides
   0 1-Dr-JH-work
   0 1-Dr-Photos
   0 2-Dr-Apps
   0 2-Dr-CAM-best
-  1 2-Dr-CAM-good
-  1 2-Dr-CAM-toSort0
-  1 2-Dr-CAM-toSort1
-  1 2-Dr-CAM-toSort1-UK
-  1 2-Dr-CAM-toSort1-USA
-  1 2-Dr-CAT-Buddhism
-  1 2-Dr-CAT-OutThere
-  1 2-Dr-CAT-OutThere-UK
-  1 2-Dr-CAT-Wellbeing
-  1 2-Dr-COutThere
-  1 3-IT-Copied
+  0 2-Dr-CAM-good
+  0 2-Dr-CAM-joy
+  0 2-Dr-CAM-toSort0
+  0 2-Dr-CAM-toSort1
+  0 2-Dr-CAM-toSort1-UK
+  0 2-Dr-CAM-toSort1-USA
+  0 2-Dr-CAT-Buddhism
+  0 2-Dr-CAT-OutThere
+  0 2-Dr-CAT-OutThere-UK
+  0 2-Dr-CAT-Wellbeing
+  0 2-Dr-COutThere
+  0 2-Dr-Vs-WimHof-guides
+  0 3-IT-Copied
   1 3-Sync2
 )  # this list defines the sort order
 
@@ -68,29 +69,29 @@ source $scriptDir/rsync-makeIncludeArray.sh
 if [ $host = "AsusW202" ]; then
     dirSource=(
         $Cfzd
-        $Drpbx/JH/CforWork
-        $Drpbx/JH/copied
-        $Drpbx/JH/core
-        $Drpbx/JH/F+F
-        $Drpbx/JH/JCD-imagey-e3
-        $Drpbx/JH/now
-        $Drpbx/JH/Sh-AsusW202
-        $Drpbx/JH/Sh-OppoA76
-        $Drpbx/JH/Sh-sbMb
-        $Drpbx/JH/Sh-XA10II
-        $Drpbx/JH/stack
-        $Drpbx/JH/T91-default-release
-        $Drpbx/JH/technos
-        $Drpbx/JH/Theatre0
-        $Drpbx/JH/Theatre1
-        $Drpbx/JH/Then0
-        $Drpbx/JH/Then1
-        $Drpbx/JH/WimHof-guides
+        $DJH/CforWork
+        $DJH/copied
+        $DJH/core
+        $DJH/F+F
+        $DJH/JCD-imagey-e3
+        $DJH/now
+        $DJH/Sh-AsusW202
+        $DJH/Sh-OppoA76
+        $DJH/Sh-sbMb
+        $DJH/Sh-XA10II
+        $DJH/stack
+        $DJH/T91-default-release
+        $DJH/technos
+        $DJH/Theatre0
+        $DJH/Theatre1
+        $DJH/Then0
+        $DJH/Then1
         $JHw
         $Drpbx/Photos
         $Drpbx/Apps
         $Drpbx/CAM-best
         $Drpbx/CAM-good
+        $Drpbx/CAM-joy
         $Drpbx/CAM-toSort0
         -
         -
@@ -100,6 +101,7 @@ if [ $host = "AsusW202" ]; then
         -
         -
         $Drpbx/COutThere
+        $Drpbx/Vs-WimHof-guides
         -
         -
     )
@@ -109,27 +111,40 @@ fi  # $host  is defined in  $OSAB/Bash/export-storage
 if [ $host = "i34G1TU02" ]; then
     dirSource=(
         $Cfzd
-        $Drpbx/JH/CforWork
-        $Drpbx/JH/copied
-        $Drpbx/JH/core
-        $Drpbx/JH/F+F
-        $Drpbx/JH/JCD-imagey-e3
-        $Drpbx/JH/now
-        $Drpbx/JH/Sh-AsusW202
-        $Drpbx/JH/Sh-OppoA76
-        $Drpbx/JH/Sh-sbMb
-        $Drpbx/JH/Sh-XA10II
-        $Drpbx/JH/stack
-        $Drpbx/JH/T91-default-release
-        $Drpbx/JH/technos
-        $Drpbx/JH/Theatre0
-        $Drpbx/JH/Theatre1
-        $Drpbx/JH/Then0
-        $Drpbx/JH/Then1
-        $Drpbx/JH/WimHof-guides
+        $DJH/CforWork
+        $DJH/copied
+        $DJH/core
+        $DJH/F+F
+        $DJH/JCD-imagey-e3
+        $DJH/now
+        $DJH/Sh-AsusW202
+        $DJH/Sh-OppoA76
+        $DJH/Sh-sbMb
+        $DJH/Sh-XA10II
+        $DJH/stack
+        $DJH/T91-default-release
+        $DJH/technos
+        $DJH/Theatre0
+        $DJH/Theatre1
+        $DJH/Then0
+        $DJH/Then1
         $JHw
         $Drpbx/Photos
         $Drpbx/Apps
+        -
+        -
+        -
+        -
+        -
+        -
+        -
+        -
+        -
+        -
+        -
+        $Drpbx/Vs-WimHof-guides
+        -
+        -
     )
 fi  # $host  is defined in  $OSAB/Bash/export-storage
 
@@ -137,29 +152,29 @@ fi  # $host  is defined in  $OSAB/Bash/export-storage
 if [ $host = "sbMb" ]; then
     dirSource=(
         $Cfzd
-        $Drpbx/JH/CforWork
-        $Drpbx/JH/copied
-        $Drpbx/JH/core
-        $Drpbx/JH/F+F
-        $Drpbx/JH/JCD-imagey-e3
-        $Drpbx/JH/now
-        $Drpbx/JH/Sh-AsusW202
-        $Drpbx/JH/Sh-OppoA76
-        $Drpbx/JH/Sh-sbMb
-        $Drpbx/JH/Sh-XA10II
-        $Drpbx/JH/stack
-        $Drpbx/JH/T91-default-release
-        $Drpbx/JH/technos
-        $Drpbx/JH/Theatre0
-        $Drpbx/JH/Theatre1
-        $Drpbx/JH/Then0
-        $Drpbx/JH/Then1
-        $Drpbx/JH/WimHof-guides
+        $DJH/CforWork
+        $DJH/copied
+        $DJH/core
+        $DJH/F+F
+        $DJH/JCD-imagey-e3
+        $DJH/now
+        $DJH/Sh-AsusW202
+        $DJH/Sh-OppoA76
+        $DJH/Sh-sbMb
+        $DJH/Sh-XA10II
+        $DJH/stack
+        $DJH/T91-default-release
+        $DJH/technos
+        $DJH/Theatre0
+        $DJH/Theatre1
+        $DJH/Then0
+        $DJH/Then1
         $JHw
         $Drpbx/Photos
         $Drpbx/Apps
         $Drpbx/CAM-best
         $Drpbx/CAM-good
+        $Drpbx/CAM-joy
         $Drpbx/CAM-toSort0
         $Drpbx/CAM-toSort1
         $Drpbx/CAM-toSort1-UK
@@ -169,6 +184,7 @@ if [ $host = "sbMb" ]; then
         $Drpbx/CAT-OutThere-UK
         $Drpbx/CAT-Wellbeing
         $Drpbx/COutThere
+        $Drpbx/Vs-WimHof-guides
         /mnt/SDU3D1TB/IT-Copied
         /mnt/SDU3D1TB/Sync2
     )
@@ -194,12 +210,12 @@ dirTarget=(
   WD30EZRZ/Sync0Dr/JH-Theatre1
   WD30EZRZ/Sync0Dr/JH-Then0
   WD30EZRZ/Sync0Dr/JH-Then1
-  WD30EZRZ/Sync0Dr/JH-WimHof-guides
   WD30EZRZ/Sync0Dr/JH-work
   WD30EZRZ/Sync0Dr/Photos
   WD30EZRZ/Sync1Dr/Apps
   WD30EZRZ/Sync1Dr/CAM-best
   WD30EZRZ/Sync1Dr/CAM-good
+  WD30EZRZ/Sync1Dr/CAM-joy
   WD30EZRZ/Sync1Dr/CAM-toSort0
   WD30EZRZ/Sync1Dr/CAM-toSort1
   WD30EZRZ/Sync1Dr/CAM-toSort1-UK
@@ -209,6 +225,7 @@ dirTarget=(
   WD30EZRZ/Sync1Dr/CAT-OutThere-UK
   WD30EZRZ/Sync1Dr/CAT-Wellbeing
   WD30EZRZ/Sync1Dr/COutThere
+  WD30EZRZ/Sync1Dr/Vs-WimHof-guides
   WD30EZRZ/IT-Copied
   WD30EZRZ/Sync2
 )

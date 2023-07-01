@@ -13,5 +13,6 @@ set -e
 
 #=> ST905004EXD101
 rsync -ilrt --delete --progress /mnt/SDU3D1TB/Vs-do/ /run/media/jo/ST905004EXD101/Vs-do
+rsync -ilrt --delete --progress /mnt/SDU3D1TB/Vs-humanBody/ /run/media/jo/ST905004EXD101/Vs-humanBody
 rsync -ilrt --delete --progress /mnt/SDU3D1TB/Vs-educate/ /run/media/jo/ST905004EXD101/Vs-educate
 
