@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Joseph Harriott - Sat 01 Jul 2023
-# $onGH/FM-rsync-drives/rsync/do_it.sh  sourced by  $onGH/FM-rsync-drives/rsync.sh
+# $onGH/FM-rsync-drives/rsync3-do_it.sh  sourced by  $onGH/FM-rsync-drives/rsync0.sh
 
 i=-1
 outf0="$Storage/${outf%.*}"  # $Storage  is defined in my  $machBld/export-machine

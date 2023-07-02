@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Joseph Harriott - Mon 16 May 2022
-# $onGH/FM-rsync-drives/list_included.sh  sourced by  $onGH/FM-rsync-drives/rsync.sh
+# Joseph Harriott - Sat 01 Jul 2023
+# $onGH/FM-rsync-drives/rsync2-list_included.sh  sourced by  $onGH/FM-rsync-drives/rsync0.sh
 
 # set -x
 i=-1

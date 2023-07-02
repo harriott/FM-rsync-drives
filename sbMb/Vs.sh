@@ -8,9 +8,6 @@
 
 # createTarget=1  # usually commented out
 
-scriptDir=$( dirname "${BASH_SOURCE[0]}" )
-  rsyncDir=${scriptDir%/*}  # up one, for accessing sourced scripts
-
 #=> 0 includes 0 list of included locations
 includeIndexed=(
   1 Vs-do                      SDU3D1TB
@@ -42,7 +39,7 @@ includeIndexed=(
 ) # defines the order
 
 #=> 0 includes 1 make the include array
-source $rsyncDir/makeIncludeArray.sh
+source $onGH/FM-rsync-drives/rsync1-makeIncludeArray.sh
 
 #=> 0 source locations on sbMb
 dirSource=(

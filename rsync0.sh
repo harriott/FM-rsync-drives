@@ -1,14 +1,10 @@
 #!/bin/bash
 
 # Joseph Harriott - Sat 01 Jul 2023
-# $onGH/FM-rsync-drives/rsync.sh
 
 # A series of rsyncs between folders on local and portable media.
 # ---------------------------------------------------------------
-#   As this script performs a high-impact operation,
-#   I prefer to leave it without executable permission
-#   and call it from a terminal with the bash command.
-#   eg: bash /<fullpath>/rsync.sh
+#  bash $onGH/FM-rsync-drives/rsync0.sh
 
 # rpd  is defined in my  $Bash/bashrc-ob
 
@@ -17,7 +13,6 @@
 #=> 0 directory locations
 # $Drpbx  is defined in my  $OSAB/Bash/export-storage
 extmnt=/run/media/jo
-scriptDir=$( dirname "${BASH_SOURCE[0]}" )
 
 #==> includes 0 abstracted list of included locations
 # set first item to 0 to exclude a directory:
@@ -61,7 +56,7 @@ includeIndexed=(
 )  # this list defines the sort order
 
 #==> includes 1 make the include array
-source $onGH/FM-rsync-drives/rsync/makeIncludeArray.sh
+source $onGH/FM-rsync-drives/rsync1-makeIncludeArray.sh
 
 #==> source locations on machines
 # $host  is defined in  $OSAB/Bash/export-storage
@@ -157,7 +152,7 @@ dirTarget=(
 #=> 1 list the included directories
 echo -en "This BASH script will run \e[1mrsync\e[0m, pushing all changes, "
 echo -e "either to or from these local directories:\e[92m"
-source $onGH/FM-rsync-drives/list_included.sh"
+source $onGH/FM-rsync-drives/rsync2-list_included.sh
 
 #=> 2 decide what to do
 if [ $1 ]; then
@@ -194,5 +189,5 @@ fi
 
 #=> 3 do it
 outf=`basename ${BASH_SOURCE[0]}`
-source $onGH/FM-rsync-drives/do_it.sh
+source $onGH/FM-rsync-drives/rsync3-do_it.sh
 

@@ -1,10 +1,10 @@
 #!/bin/bash
 # vim: fdl=1 sw=2:
 
-# $onGH/FM-rsync-drives/rsync/makeIncludeArray.sh
+# $onGH/FM-rsync-drives/rsync1-makeIncludeArray.sh
 #  sourced from
 #   $onGH/FM-rsync-drives/rsync/sbMb/Vs.sh
-#   $onGH/FM-rsync-drives/rsync/rsync.sh
+#   $onGH/FM-rsync-drives/rsync/rsync0.sh
 
 #=> make the include (or not) array
 includeswitch=(${includeIndexed[0]})
