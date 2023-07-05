@@ -7,18 +7,23 @@
 #   $onGH/FM-rsync-drives/rsync/rsync0.sh
 
 #=> make the include (or not) array
-includeswitch=(${includeIndexed[0]})
-echo ${includeswitch[@]}
-includeVs=(${includeIndexed[1]})
-includeSource=(${includeIndexed[2]})
-i=0
-while [ $i -le ${#includeIndexed[@]} ]; do
-  ((i+=3))
-  includeswitch=(${includeswitch[@]} ${includeIndexed[i]})
-  includeVs=(${includeVs[@]} ${includeIndexed[i+1]})
-  includeSource=(${includeSource[@]} ${includeIndexed[i+2]})
+dirsSwitch=(${dirsAbstract[0]})
+dirsBN=(${dirsAbstract[1]})  # base name
+dirsActiveDN=(${dirsAbstract[2]})  # directory name
+dirsActiveFP=(${dirsActiveDN[0]}/${dirsBN[0]})  # full path
+dirsBackupDN=(${dirsAbstract[3]})
+dirsBackupFP=(${dirsBackupDN[0]}/${dirsBN[0]})
+iAbs=0
+iAct=0
+while [[ $iAbs -le ${#dirsAbstract[@]}-5 ]]; do
+  ((iAbs+=4))
+  ((iAct+=1))
+  dirsSwitch=(${dirsSwitch[@]} ${dirsAbstract[iAbs]})
+  dirsBN=(${dirsBN[@]} ${dirsAbstract[iAbs+1]})
+  dirsActiveDN=(${dirsActiveDN[@]} ${dirsAbstract[iAbs+2]})
+  dirsActiveFP=(${dirsActiveFP[@]} ${dirsActiveDN[iAct]}/${dirsBN[iAct]})
+  dirsBackupDN=(${dirsBackupDN[@]} ${dirsAbstract[iAbs+3]})
+  dirsBackupFP=(${dirsBackupFP[@]} ${dirsBackupDN[iAct]}/${dirsBN[iAct]})
 done
-echo "(include switches: ${includeswitch[@]})"
-echo ${includeVs[@]}
-echo ${includeSource[@]}
+echo "Include switches are  ${dirsSwitch[@]},"
 

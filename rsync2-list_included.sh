@@ -1,20 +1,17 @@
 #!/bin/bash
 
-# Joseph Harriott - Sat 01 Jul 2023
+# Joseph Harriott - Wed 05 Jul 2023
 # $onGH/FM-rsync-drives/rsync2-list_included.sh  sourced by  $onGH/FM-rsync-drives/rsync0.sh
 
 # set -x
 i=-1
 included=0
-for thisdir in "${dirSource[@]}"; do
-    if [ ! $thisdir = "-" ]; then
-        i=$((i+1))
-        if [ ${includeswitch[i]} -ne "0" ]; then
-            echo "  $thisdir"
-            included=$((included+1))
-        fi
+for dS in "${dirsSwitch[@]}"; do
+    i=$((i+1))
+    if [ $dS -ne "0" ]; then
+        echo -e "  ${dirsActiveDN[i]}/\e[92m${dirsBN[i]}\e[0m\e[37m -> ${dirsBackupDN[i]}/${dirsBN[i]}\e[0m"
+        included=$((included+1))
     fi
 done
 echo "   = $included rsyncs"
-echo -e "\e[0m"
 
