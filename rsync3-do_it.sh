@@ -76,9 +76,10 @@ for thisdir in "${dirsActiveFP[@]}"; do
             fi
             echo -en '\e[0m'
             # check for rsync errors
+            grep -q ' error in rsync protocol data stream ' $logOut && rerr=eirpds
             grep -q ' failed: Invalid argument ' $logOut && rerr=fIa
             grep -q ' Input/output error ' $logOut && rerr=Ioe
-            grep -q ' write error: Broken pipe ' $logOut && rerr=Ioe
+            grep -q ' write error: Broken pipe ' $logOut && rerr=weBp
             [ $rerr ] && echo 'there was an rsync error, so not going any further'
         fi  # - only if no rsync errors
     fi
@@ -100,8 +101,10 @@ elif [ $rerr ]; then
         gvim -c "silent! /^rsync error:" $logOut
     else
         case $rerr in
+            eirpds) gvim -c " error in rsync protocol data stream " $logOut;;
             fIa) gvim -c "silent! / failed: Invalid argument " $logOut;;
             Ioe) gvim -c "silent! / Input\/output error "      $logOut;;
+            weBp) gvim -c "silent! / Broken pipe " $logOut;;
         esac
     fi
 else

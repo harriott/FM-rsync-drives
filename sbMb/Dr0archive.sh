@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # A series of rsyncs between folders on local and portable archive media.
-# alias rs0 is defined in my  $Bash/bashrc-console
+# alias rs0 is defined in my  $AjB/bashrc-console
 
 ac="rsync -irtv --delete --progress $Drpbx"
 

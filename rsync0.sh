@@ -1,54 +1,62 @@
 #!/bin/bash
 
-# Joseph Harriott - Sat 01 Jul 2023
+# Joseph Harriott - http://harriott.github.io - Tue 07 Jan 2025
 
 # A series of rsyncs between folders on local and portable media.
 # ---------------------------------------------------------------
 #  bash $onGH/FM-rsync-drives/rsync0.sh
 
-# rpd  is defined in my  $Bash/bashrc-ob
+# rpd  is defined in my  $AjB/bashrc-ob
+# bash $onGH/FM-rsync-drives/rsync0.sh $1
+# occasionally move logs from  /mnt/SDU3D1TB  to  $ulLAh/ml-$host/rpd
 
 createTarget=1  # usually commented out
 
-#=> 0 abstracted list of included locations
+#=> 0 abstracted list of included locations - sbMb
 # set first item to 0 to exclude a directory:
 dirsAbstract=(
-  0 Cafezoide           $DJH          /run/media/jo/WD30EZRZ/Sync0Dr/JH
-  0 CforWork            $DJH          /run/media/jo/WD30EZRZ/Sync0Dr/JH
-  0 copied              $DJH          /run/media/jo/WD30EZRZ/Sync0Dr/JH
-  1 core                $DJH          /run/media/jo/WD30EZRZ/Sync0Dr/JH
-  0 F+F                 $DJH          /run/media/jo/WD30EZRZ/Sync0Dr/JH
-  0 JCD-imagey-e3       $DJH          /run/media/jo/WD30EZRZ/Sync0Dr/JH
-  0 now                 $DJH          /run/media/jo/WD30EZRZ/Sync0Dr/JH
-  0 Sh-AsusW202         $DJH          /run/media/jo/WD30EZRZ/Sync0Dr/JH
-  0 Sh-OppoA76          $DJH          /run/media/jo/WD30EZRZ/Sync0Dr/JH
-  0 Sh-sbMb             $DJH          /run/media/jo/WD30EZRZ/Sync0Dr/JH
-  0 Sh-XA10II           $DJH          /run/media/jo/WD30EZRZ/Sync0Dr/JH
-  0 stack               $DJH          /run/media/jo/WD30EZRZ/Sync0Dr/JH
-  0 T91-default-release $DJH          /run/media/jo/WD30EZRZ/Sync0Dr/JH
-  0 technos             $DJH          /run/media/jo/WD30EZRZ/Sync0Dr/JH
-  0 Theatre0            $DJH          /run/media/jo/WD30EZRZ/Sync0Dr/JH
-  0 Theatre1            $DJH          /run/media/jo/WD30EZRZ/Sync0Dr/JH
-  0 Then0               $DJH          /run/media/jo/WD30EZRZ/Sync0Dr/JH
-  0 Then1               $DJH          /run/media/jo/WD30EZRZ/Sync0Dr/JH
-  0 work                $DJH          /run/media/jo/WD30EZRZ/Sync0Dr/JH
-  0 Apps                $Drpbx        /run/media/jo/WD30EZRZ/Sync1Dr
-  0 CAM-best            $Drpbx        /run/media/jo/WD30EZRZ/Sync1Dr
-  0 CAM-good            $Drpbx        /run/media/jo/WD30EZRZ/Sync1Dr
-  0 CAM-joy             $Drpbx        /run/media/jo/WD30EZRZ/Sync1Dr
-  0 CAM-toSort0         $Drpbx        /run/media/jo/WD30EZRZ/Sync1Dr
-  0 CAM-toSort1         $Drpbx        /run/media/jo/WD30EZRZ/Sync1Dr
-  0 CAM-toSort1-UK      $Drpbx        /run/media/jo/WD30EZRZ/Sync1Dr
-  0 CAM-toSort1-USA     $Drpbx        /run/media/jo/WD30EZRZ/Sync1Dr
-  0 CAT-Buddhism        $Drpbx        /run/media/jo/WD30EZRZ/Sync1Dr
-  0 CAT-OutThere        $Drpbx        /run/media/jo/WD30EZRZ/Sync1Dr
-  0 CAT-OutThere-UK     $Drpbx        /run/media/jo/WD30EZRZ/Sync1Dr
-  0 CAT-Wellbeing       $Drpbx        /run/media/jo/WD30EZRZ/Sync1Dr
-  0 COutThere           $Drpbx        /run/media/jo/WD30EZRZ/Sync1Dr
-  0 Photos              $Drpbx        /run/media/jo/WD30EZRZ/Sync0Dr
-  0 Vs-WimHof-guides    $Drpbx        /run/media/jo/WD30EZRZ/Sync1Dr
-  1 IT-Copied           /mnt/SDU3D1TB /run/media/jo/WD30EZRZ
-  0 Sync2               /mnt/SDU3D1TB /run/media/jo/WD30EZRZ
+  1 $DJH           Cop                         /run/media/jo/WD30EZRZ/sync/Drpbx0/JH
+  1 $DJH           Cop-work                    /run/media/jo/WD30EZRZ/sync/Drpbx0/JH
+  1 $DJH           core                        /run/media/jo/WD30EZRZ/sync/Drpbx0/JH
+  1 $DJH           dev-An                      /run/media/jo/WD30EZRZ/sync/Drpbx0/JH
+  1 $DJH           dev-Sh                      /run/media/jo/WD30EZRZ/sync/Drpbx0/JH
+  1 $DJH           JCD-imagey-e3               /run/media/jo/WD30EZRZ/sync/Drpbx0/JH
+  1 $DJH           Jo-F+F                      /run/media/jo/WD30EZRZ/sync/Drpbx0/JH
+  1 $DJH           Jo-now                      /run/media/jo/WD30EZRZ/sync/Drpbx0/JH
+  1 $DJH           Jo-technos                  /run/media/jo/WD30EZRZ/sync/Drpbx0/JH
+  1 $DJH           Jo-then0                    /run/media/jo/WD30EZRZ/sync/Drpbx0/JH
+  1 $DJH           Jo-then1                    /run/media/jo/WD30EZRZ/sync/Drpbx0/JH
+  1 $DJH           stack                       /run/media/jo/WD30EZRZ/sync/Drpbx0/JH
+  1 $DJH           Thb-dr                      /run/media/jo/WD30EZRZ/sync/Drpbx0/JH
+  1 $DJH           work                        /run/media/jo/WD30EZRZ/sync/Drpbx0/JH
+  1 $DJH           work-Cz                     /run/media/jo/WD30EZRZ/sync/Drpbx0/JH
+  1 $DJH           work-Cz-imagesFlat          /run/media/jo/WD30EZRZ/sync/Drpbx0/JH
+  1 $DJH           work-theatre0               /run/media/jo/WD30EZRZ/sync/Drpbx0/JH
+  1 $DJH           work-theatre1               /run/media/jo/WD30EZRZ/sync/Drpbx0/JH
+  1 $Drpbx         Apps                        /run/media/jo/WD30EZRZ/sync/Drpbx0
+  1 $Drpbx         Photos                      /run/media/jo/WD30EZRZ/sync/Drpbx0
+  1 $Drpbx/Cop     AM-best                     /run/media/jo/WD30EZRZ/sync/Drpbx1
+  1 $Drpbx/Cop     AM-good                     /run/media/jo/WD30EZRZ/sync/Drpbx1
+  1 $Drpbx/Cop     AM-good-tA-North-US         /run/media/jo/WD30EZRZ/sync/Drpbx1
+  1 $Drpbx/Cop     AM-joy                      /run/media/jo/WD30EZRZ/sync/Drpbx1
+  1 $Drpbx/Cop     AM-toSort0                  /run/media/jo/WD30EZRZ/sync/Drpbx1
+  1 $Drpbx/Cop     AM-toSort1                  /run/media/jo/WD30EZRZ/sync/Drpbx1
+  1 $Drpbx/Cop     AM-toSort1-UK               /run/media/jo/WD30EZRZ/sync/Drpbx1
+  1 $Drpbx/Cop     AM-toSort1-USA              /run/media/jo/WD30EZRZ/sync/Drpbx1
+  1 $Drpbx/Cop     AT-BuDh                     /run/media/jo/WD30EZRZ/sync/Drpbx2
+  1 $Drpbx/Cop     AT-BuDh-Theravada           /run/media/jo/WD30EZRZ/sync/Drpbx2
+  1 $Drpbx/Cop     AT-BuDh-T-oldBirkenSite     /run/media/jo/WD30EZRZ/sync/Drpbx2
+  1 $Drpbx/Cop     AT-BuDh-T-ThanissaroBhikkhu /run/media/jo/WD30EZRZ/sync/Drpbx2
+  1 $Drpbx/Cop     AT-OutThere                 /run/media/jo/WD30EZRZ/sync/Drpbx2
+  1 $Drpbx/Cop     AT-OutThere-UK              /run/media/jo/WD30EZRZ/sync/Drpbx2
+  1 $Drpbx/Cop     AT-Wb                       /run/media/jo/WD30EZRZ/sync/Drpbx2
+  1 $Drpbx/Cop     AT-Wb-m-Samaneri_Jayasara   /run/media/jo/WD30EZRZ/sync/Drpbx2
+  1 $Drpbx/Cop     GRs                         /run/media/jo/WD30EZRZ/sync/Drpbx0
+  1 $Drpbx/Cop     GRs-nerd-fonts              /run/media/jo/WD30EZRZ/sync/Drpbx0
+  1 $Drpbx/Cop     OutThere                    /run/media/jo/WD30EZRZ/sync/Drpbx0
+  1 $Drpbx/Cop     Vs-WimHof-guides            /run/media/jo/WD30EZRZ/sync/Drpbx0
+  1 /mnt/WD20EZAZ  Cop-IT                      /run/media/jo/WD30EZRZ/sync
+  1 /mnt/SDU3D1TB  stack                       /run/media/jo/WD30EZRZ/sync
 )  # $DJH  $Drpbx  defined in my  $OSAB/Bash/export-storage
 
 #=> 1 make the include array
