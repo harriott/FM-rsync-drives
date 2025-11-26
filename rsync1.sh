@@ -8,66 +8,10 @@
 # bash $onGH/FM-rsync-drives/rsync0.sh
 # occasionally move logs from  /mnt/SDU3D1TB  to  $hmlA/ml-$host/FMrd
 
-createTarget=1  # usually commented out
-
-# #=> 0 abstracted list of included locations - sbMb
-# # set first item to 0 to exclude a directory:
-# dirsAbstract=(
-#   1 $DJH           Cop                         /run/media/jo/WD30EZRZ/sync/Drpbx0/JH
-#   1 $DJH           Cop-code                    /run/media/jo/WD30EZRZ/sync/Drpbx0/JH
-#   1 $DJH           Cop-work                    /run/media/jo/WD30EZRZ/sync/Drpbx0/JH
-#   1 $DJH           core                        /run/media/jo/WD30EZRZ/sync/Drpbx0/JH
-#   1 $DJH           dev-An                      /run/media/jo/WD30EZRZ/sync/Drpbx0/JH
-#   1 $DJH           dev-Sh                      /run/media/jo/WD30EZRZ/sync/Drpbx0/JH
-#   1 $DJH           hmlArch                     /run/media/jo/WD30EZRZ/sync/Drpbx0/JH
-#   1 $DJH           JCD-imagey-e3               /run/media/jo/WD30EZRZ/sync/Drpbx0/JH
-#   1 $DJH           Jo-F+F                      /run/media/jo/WD30EZRZ/sync/Drpbx0/JH
-#   1 $DJH           Jo-now                      /run/media/jo/WD30EZRZ/sync/Drpbx0/JH
-#   1 $DJH           Jo-technos                  /run/media/jo/WD30EZRZ/sync/Drpbx0/JH
-#   1 $DJH           Jo-then0                    /run/media/jo/WD30EZRZ/sync/Drpbx0/JH
-#   1 $DJH           Jo-then1                    /run/media/jo/WD30EZRZ/sync/Drpbx0/JH
-#   1 $DJH           search                      /run/media/jo/WD30EZRZ/sync/Drpbx0/JH
-#   1 $DJH           stack                       /run/media/jo/WD30EZRZ/sync/Drpbx0/JH
-#   1 $DJH           Thb-dr                      /run/media/jo/WD30EZRZ/sync/Drpbx0/JH
-#   1 $DJH           toReduce                    /run/media/jo/WD30EZRZ/sync/Drpbx0/JH
-#   1 $DJH           WAN-npm                     /run/media/jo/WD30EZRZ/sync/Drpbx0/JH
-#   1 $DJH           work                        /run/media/jo/WD30EZRZ/sync/Drpbx0/JH
-#   1 $DJH           work-Cz                     /run/media/jo/WD30EZRZ/sync/Drpbx0/JH
-#   1 $DJH           work-Cz-imagesFlat          /run/media/jo/WD30EZRZ/sync/Drpbx0/JH
-#   1 $DJH           work-theatre0               /run/media/jo/WD30EZRZ/sync/Drpbx0/JH
-#   1 $DJH           work-theatre1               /run/media/jo/WD30EZRZ/sync/Drpbx0/JH
-#   1 $Drpbx         Apps                        /run/media/jo/WD30EZRZ/sync/Drpbx0
-#   1 $Drpbx         conflicted                  /run/media/jo/WD30EZRZ/sync/Drpbx0
-#   1 $Drpbx         Photos                      /run/media/jo/WD30EZRZ/sync/Drpbx0
-#   1 $Drpbx/Cop     AM-best                     /run/media/jo/WD30EZRZ/sync/Drpbx1
-#   1 $Drpbx/Cop     AM-good                     /run/media/jo/WD30EZRZ/sync/Drpbx1
-#   1 $Drpbx/Cop     AM-good-tA-North-US         /run/media/jo/WD30EZRZ/sync/Drpbx1
-#   1 $Drpbx/Cop     AM-joy-copies               /run/media/jo/WD30EZRZ/sync/Drpbx1
-#   1 $Drpbx/Cop     AM-toSort0                  /run/media/jo/WD30EZRZ/sync/Drpbx1
-#   1 $Drpbx/Cop     AM-toSort1-UK               /run/media/jo/WD30EZRZ/sync/Drpbx1
-#   1 $Drpbx/Cop     AM-toSort1-USA              /run/media/jo/WD30EZRZ/sync/Drpbx1
-#   1 $Drpbx/Cop     AT-BuDh                     /run/media/jo/WD30EZRZ/sync/Drpbx2
-#   1 $Drpbx/Cop     AT-BuDh-T-oldBirkenSite     /run/media/jo/WD30EZRZ/sync/Drpbx2
-#   1 $Drpbx/Cop     AT-BuDh-T-ThanissaroBhikkhu /run/media/jo/WD30EZRZ/sync/Drpbx2
-#   1 $Drpbx/Cop     AT-BuDh-Theravada           /run/media/jo/WD30EZRZ/sync/Drpbx2
-#   1 $Drpbx/Cop     AT-OutThere                 /run/media/jo/WD30EZRZ/sync/Drpbx2
-#   1 $Drpbx/Cop     AT-OutThere-UK              /run/media/jo/WD30EZRZ/sync/Drpbx2
-#   1 $Drpbx/Cop     AT-Wb                       /run/media/jo/WD30EZRZ/sync/Drpbx2
-#   1 $Drpbx/Cop     AT-Wb-m-Samaneri_Jayasara   /run/media/jo/WD30EZRZ/sync/Drpbx2
-#   1 $Drpbx/Cop     GR-nerd-fonts               /run/media/jo/WD30EZRZ/sync/Drpbx0
-#   1 $Drpbx/Cop     GRs                         /run/media/jo/WD30EZRZ/sync/Drpbx0
-#   1 $Drpbx/Cop     OutThere                    /run/media/jo/WD30EZRZ/sync/Drpbx0
-#   1 $Drpbx/Cop     Vs-WimHof-guides            /run/media/jo/WD30EZRZ/sync/Drpbx0
-#   1 /mnt/WD20EZAZ  Cop-IT                      /run/media/jo/WD30EZRZ/sync
-#   1 /mnt/SDU3D1TB  stack                       /run/media/jo/WD30EZRZ/sync
-# )  # $DJH  $Drpbx  defined in my  $OSAB/nodes-Bash/export-storage
-
 #=> 1 make the include array
 source $onGH/FM-rsync-drives/rsync2-makeIncludeArray.sh
 
 #=> 2 list the included directories
-echo -en "so this BASH script will run \e[1mrsync\e[0m, pushing all changes, "
-echo "either to or from these local directories:"
 source $onGH/FM-rsync-drives/rsync3-list_included.sh
 
 #=> 3 decide what to do
@@ -93,8 +37,8 @@ if [ $drctn ]; then
         cnfrm="y"
     else
         exit
-    fi
-    if [ ! $cnfrm ] || [ $cnfrm != "y" ]; then exit; fi
+    fi  # check what to do
+    if [ ! $cnfrm ] || [ $cnfrm != "y" ]; then exit; fi  # no confirmation was given
     rsynccom="rsync -ilrt$dryRun --delete"
 else
     exit
@@ -102,5 +46,6 @@ fi
 
 #=> 4 do it
 script_basename=$(basename "${BASH_SOURCE[0]}")
+echo $script_basename
 source $onGH/FM-rsync-drives/rsync4-do_it.sh
 

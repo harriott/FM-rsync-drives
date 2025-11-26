@@ -55,6 +55,7 @@ for thisdir in "${dirsActiveFP[@]}"; do
                         echo $ntdflag >> $logOut
                         ntd=1
                     else
+                        echo $to
                         mkdir $to
                     fi
                 fi  # found no destination

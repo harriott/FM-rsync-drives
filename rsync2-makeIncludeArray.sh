@@ -1,10 +1,10 @@
 #!/bin/bash
 # vim: fdl=1 sw=2:
 
-# $onGH/FM-rsync-drives/rsync1-makeIncludeArray.sh
+# $onGH/FM-rsync-drives/rsync2-makeIncludeArray.sh
 #  sourced from
-#   $onGH/FM-rsync-drives/rsync/sbMb/Vs.sh
-#   $onGH/FM-rsync-drives/rsync/rsync0.sh
+#   $onGH/FM-rsync-drives/sbMb/Vs.sh
+#   $onGH/FM-rsync-drives/rsync0-WD30EZRZ.sh
 
 #=> make the include (or not) array
 dirsSwitch=(${dirsAbstract[0]})

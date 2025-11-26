@@ -8,7 +8,7 @@
 # bash $onGH/FM-rsync-drives/rsync0-WD30EZRZ.sh
 # occasionally move logs from  /mnt/SDU3D1TB  to  $hmlA/ml-$host/rpd
 
-createTarget=1  # usually commented out
+# createTarget=1  # usually commented out
 
 #=> 0 abstracted list of included locations on sbMb
 # set first item to 0 to exclude a directory:
@@ -43,7 +43,6 @@ dirsAbstract=(
   1 $Drpbx/Cop     AM-good-US                  /run/media/jo/WD30EZRZ/sync/Drpbx1
   1 $Drpbx/Cop     AM-joy-copies               /run/media/jo/WD30EZRZ/sync/Drpbx1
   1 $Drpbx/Cop     AM-toSort0                  /run/media/jo/WD30EZRZ/sync/Drpbx1
-  1 $Drpbx/Cop     AM-toSort1-UK               /run/media/jo/WD30EZRZ/sync/Drpbx1
   1 $Drpbx/Cop     AM-toSort1-USA              /run/media/jo/WD30EZRZ/sync/Drpbx1
   1 $Drpbx/Cop     AT-BuDh                     /run/media/jo/WD30EZRZ/sync/Drpbx2
   1 $Drpbx/Cop     AT-BuDh-T-oldBirkenSite     /run/media/jo/WD30EZRZ/sync/Drpbx2
@@ -53,7 +52,6 @@ dirsAbstract=(
   1 $Drpbx/Cop     AT-OutThere-UK              /run/media/jo/WD30EZRZ/sync/Drpbx2
   1 $Drpbx/Cop     AT-Wb                       /run/media/jo/WD30EZRZ/sync/Drpbx2
   1 $Drpbx/Cop     AT-Wb-m-Samaneri_Jayasara   /run/media/jo/WD30EZRZ/sync/Drpbx2
-  1 $Drpbx/Cop     GRs                         /run/media/jo/WD30EZRZ/sync/Drpbx0
   1 $Drpbx/Cop     OutThere                    /run/media/jo/WD30EZRZ/sync/Drpbx0
   1 $Drpbx/Cop     Vs-WimHof-guides            /run/media/jo/WD30EZRZ/sync/Drpbx0
   1 /mnt/WD20EZAZ  Cop-IT                      /run/media/jo/WD30EZRZ/sync
