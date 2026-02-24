@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Joseph Harriott - http://harriott.github.io - Mon 19 May 2025
+# Joseph Harriott - http://harriott.github.io - Sat 29 Nov 2025
 
 # A series of rsyncs between folders on local and portable media.
 # ---------------------------------------------------------------
@@ -14,7 +14,7 @@
 # set first item to 0 to exclude a directory:
 dirsAbstract=(
   1 $DJH           Cop                         /run/media/jo/WD30EZRZ/sync/Drpbx0/JH
-  1 $DJH           Cop-code                    /run/media/jo/WD30EZRZ/sync/Drpbx0/JH
+  1 $DJH           Cop-France                  /run/media/jo/WD30EZRZ/sync/Drpbx0/JH
   1 $DJH           Cop-work                    /run/media/jo/WD30EZRZ/sync/Drpbx0/JH
   1 $DJH           core                        /run/media/jo/WD30EZRZ/sync/Drpbx0/JH
   1 $DJH           dev-An                      /run/media/jo/WD30EZRZ/sync/Drpbx0/JH
@@ -28,11 +28,12 @@ dirsAbstract=(
   1 $DJH           Jo-then1                    /run/media/jo/WD30EZRZ/sync/Drpbx0/JH
   1 $DJH           search                      /run/media/jo/WD30EZRZ/sync/Drpbx0/JH
   1 $DJH           stack                       /run/media/jo/WD30EZRZ/sync/Drpbx0/JH
-  1 $DJH           Thb-dr                      /run/media/jo/WD30EZRZ/sync/Drpbx0/JH
+  1 $DJH           Thb                         /run/media/jo/WD30EZRZ/sync/Drpbx0/JH
   1 $DJH           toReduce                    /run/media/jo/WD30EZRZ/sync/Drpbx0/JH
   1 $DJH           work                        /run/media/jo/WD30EZRZ/sync/Drpbx0/JH
   1 $DJH           work-Cz                     /run/media/jo/WD30EZRZ/sync/Drpbx0/JH
   1 $DJH           work-Cz-imagesFlat          /run/media/jo/WD30EZRZ/sync/Drpbx0/JH
+  1 $DJH           work-Cz-manage-online-ZNc   /run/media/jo/WD30EZRZ/sync/Drpbx0/JH
   1 $DJH           work-theatre0               /run/media/jo/WD30EZRZ/sync/Drpbx0/JH
   1 $DJH           work-theatre1               /run/media/jo/WD30EZRZ/sync/Drpbx0/JH
   1 $Drpbx         Apps                        /run/media/jo/WD30EZRZ/sync/Drpbx0
@@ -40,7 +41,7 @@ dirsAbstract=(
   1 $Drpbx         Photos                      /run/media/jo/WD30EZRZ/sync/Drpbx0
   1 $Drpbx/Cop     AM-best                     /run/media/jo/WD30EZRZ/sync/Drpbx1
   1 $Drpbx/Cop     AM-good                     /run/media/jo/WD30EZRZ/sync/Drpbx1
-  1 $Drpbx/Cop     AM-good-US                  /run/media/jo/WD30EZRZ/sync/Drpbx1
+  1 $Drpbx/Cop     AM-good-tA-North-US         /run/media/jo/WD30EZRZ/sync/Drpbx1
   1 $Drpbx/Cop     AM-joy-copies               /run/media/jo/WD30EZRZ/sync/Drpbx1
   1 $Drpbx/Cop     AM-toSort0                  /run/media/jo/WD30EZRZ/sync/Drpbx1
   1 $Drpbx/Cop     AM-toSort1-USA              /run/media/jo/WD30EZRZ/sync/Drpbx1
