@@ -7,7 +7,7 @@
 #   $onGH/FM-rsync-drives/sbMb/Vs.sh
 
 i=-1
-logRoot="$Storage/${script_basename%.*}"  # $Storage  is defined in my  $machBld/export-machine
+logRoot="$Storage/${script_basename%.*}"  # $Storage  is defined in my  $ABnm/Bash_start
 logOut="$logRoot.log"
 logTemp="$logRoot.tmp"; touch $logTemp
 echo "vim: ft=rsynclog fdm=expr:" > $logOut

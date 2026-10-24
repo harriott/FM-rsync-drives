@@ -1,12 +1,14 @@
 #!/bin/bash
 
-# Joseph Harriott - http://harriott.github.io - Tue 07 Jan 2025
+# Joseph Harriott - http://harriott.github.io - Fri 12 Jun 2026
 
 # A series of rsyncs between folders on local and portable media.
 # ---------------------------------------------------------------
 
-# bash $onGH/FM-rsync-drives/rsync0.sh
-# occasionally move logs from  /mnt/SDU3D1TB  to  $hmlA/ml-$host/FMrd
+# $onGH/FM-rsync-drives/rsync1.sh
+#  sourced from
+#   $onGH/FM-rsync-drives/rsync0-HDTB330EK3CA.sh
+#   $onGH/FM-rsync-drives/rsync0-sbMb-Vs.sh T
 
 #=> 1 make the include array
 source $onGH/FM-rsync-drives/rsync2-makeIncludeArray.sh
