@@ -1,4 +1,5 @@
 #!/bin/bash
+# vim: fdl=1:
 
 # Joseph Harriott - http://harriott.github.io - Fri 12 Jun 2026
 
@@ -8,7 +9,7 @@
 # $onGH/FM-rsync-drives/rsync1.sh
 #  sourced from
 #   $onGH/FM-rsync-drives/rsync0-HDTB330EK3CA.sh
-#   $onGH/FM-rsync-drives/rsync0-sbMb-Vs.sh T
+#   $onGH/FM-rsync-drives/rsync0-sbMb-Vs.sh
 
 #=> 1 make the include array
 source $onGH/FM-rsync-drives/rsync2-makeIncludeArray.sh
@@ -47,7 +48,6 @@ else
 fi
 
 #=> 4 do it
-script_basename=$(basename "${BASH_SOURCE[0]}")
-echo $script_basename
+[ dryRun=='n' ] && dryRun='  dry run'
 source $onGH/FM-rsync-drives/rsync4-do_it.sh
 

@@ -1,7 +1,10 @@
-[//]: # ( vim: set fdl=3 fdm=expr:)
+    vim: fdl=1:
 
-(File Manage) rsync drives
-=
+    $onGH/FM-rsync-drives/README.md
 
-A Bash script to launch rsync in various directions. Mostly just wrapping...
+# (File Manage) rsync drives
+
+Bash scripts to launch `rsync` in various directions for backing up directories to portable storage. Mostly just wrapping...
+
+logs are sent to `$Storage/FMrd` which I view using my [$vfv/ftplugin/FMrd.vim](https://github.com/harriott/vimfiles/blob/master/vim/ftplugin/FMrd.vim)
 

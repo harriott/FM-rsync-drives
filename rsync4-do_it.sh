@@ -1,18 +1,19 @@
 #!/bin/bash
 
 # Joseph Harriott - Sat 01 Jul 2023
-# $onGH/FM-rsync-drives/rsync3-do_it.sh
+# $onGH/FM-rsync-drives/rsync4-do_it.sh
 #  sourced by
 #   $onGH/FM-rsync-drives/rsync0.sh
 #   $onGH/FM-rsync-drives/sbMb/Vs.sh
 
 i=-1
-logRoot="$Storage/${script_basename%.*}"  # $Storage  is defined in my  $ABnm/Bash_start
-logOut="$logRoot.log"
-logTemp="$logRoot.tmp"; touch $logTemp
+logRoot="$Storage/FMrd"  # $Storage  is defined in my  $ABnm/Bash_start
+logOut="$logRoot/latest.log"
+logTemp="$logRoot/latest.tmp"; touch $logTemp
 echo "vim: ft=rsynclog fdm=expr:" > $logOut
+echo 'see  $onGH/FM-rsync-drives/README.md' >> $logOut
 echo "" | tee -a $logOut
-echo $(date)$dryrun | tee -a $logOut
+echo "$(date)$dryRun" | tee -a $logOut
 underline='------------------'
 nfdflag="! no SRC !"
 ntdflag="! no DEST !"
@@ -88,7 +89,7 @@ done
 echo "" >> $logOut
 rm $logTemp
 jHM=$(date "+%j-%H%M")
-outf3="$logRoot-$jHM.log"
+outf3="$logRoot/$jHM.log"
 cp $logOut $outf3
 echo ''
 echo "- all done, and logged to $logOut ${tpf7}(& $outf3)${tpfn}"
